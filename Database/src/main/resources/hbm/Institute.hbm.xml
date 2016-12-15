@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-08 01:23:58 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+
+    <class name="model.entity.Institute" table="st_institute" catalog="Student_Tool" optimistic-lock="version">
+    
+        <id name="instituteId" type="java.lang.Integer">
+            <column name="institute_id" />
+            <generator class="identity" />
+        </id>
+        <property name="instituteName" type="string">
+            <column name="institute_name" length="20" />
+        </property>
+        <property name="instituteDescription" type="string">
+            <column name="institute_description" length="100" />
+        </property>
+        <property name="departmentId" type="java.lang.Integer">
+            <column name="department_id" />
+        </property>
+        
+    </class>
+    
+</hibernate-mapping>

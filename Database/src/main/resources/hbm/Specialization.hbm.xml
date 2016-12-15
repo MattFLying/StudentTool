@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-08 01:23:58 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+
+    <class name="model.entity.Specialization" table="st_specialization" catalog="Student_Tool" optimistic-lock="version">
+    
+        <composite-id name="id" class="model.entity.SpecializationId">
+            <key-property name="specializationId" type="int">
+                <column name="specialization_id" />
+            </key-property>
+            <key-property name="fieldOfStudyId" type="int">
+                <column name="field_of_study_id" />
+            </key-property>
+        </composite-id>
+        
+        <property name="specializationName" type="string">
+            <column name="specialization_name" length="75" />
+        </property>
+        
+    </class>
+    
+</hibernate-mapping>

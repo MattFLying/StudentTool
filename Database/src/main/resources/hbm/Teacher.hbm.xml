@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-09 16:03:21 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+
+    <class name="model.entity.Teacher" table="st_teacher" catalog="Student_Tool" optimistic-lock="version">
+    
+        <composite-id name="id" class="model.entity.TeacherId">
+            <key-property name="teacherId" type="int">
+                <column name="teacher_id" />
+            </key-property>
+            <key-property name="userId" type="int">
+                <column name="user_id" />
+            </key-property>
+        </composite-id>
+        
+        <property name="addressId" type="java.lang.Integer">
+            <column name="address_id" />
+        </property>
+        <property name="departmentId" type="java.lang.Integer">
+            <column name="department_id" />
+        </property>
+        <property name="instituteId" type="java.lang.Integer">
+            <column name="institute_id" />
+        </property>
+        <property name="teacherPhoto" type="string">
+            <column name="teacher_photo" length="200" />
+        </property>
+        <property name="teacherTitle" type="string">
+            <column name="teacher_title" length="75" />
+        </property>
+        <property name="teacherFirstname" type="string">
+            <column name="teacher_firstname" length="100" />
+        </property>
+        <property name="teacherSecondname" type="string">
+            <column name="teacher_secondname" length="100" />
+        </property>
+        <property name="teacherLastname" type="string">
+            <column name="teacher_lastname" length="100" />
+        </property>
+        <property name="teacherBirthdate" type="string">
+            <column name="teacher_birthdate" length="10" />
+        </property>
+        <property name="teacherPhone" type="string">
+            <column name="teacher_phone" length="20" />
+        </property>
+        <property name="teacherRoom" type="string">
+            <column name="teacher_room" length="10" />
+        </property>
+        <property name="teacherWebsite" type="string">
+            <column name="teacher_website" length="100" />
+        </property>
+        
+    </class>
+    
+</hibernate-mapping>

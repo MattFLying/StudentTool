@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-08 01:23:58 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+
+    <class name="model.entity.FieldOfStudy" table="st_field_of_study" catalog="Student_Tool" optimistic-lock="version">
+    
+        <id name="fieldOfStudyId" type="java.lang.Integer">
+            <column name="field_of_study_id" />
+            <generator class="identity" />
+        </id>
+        <property name="fieldOfStudyName" type="string">
+            <column name="field_of_study_name" length="100" />
+        </property>
+        <property name="departmentId" type="java.lang.Integer">
+            <column name="department_id" />
+        </property>
+        
+    </class>
+    
+</hibernate-mapping>

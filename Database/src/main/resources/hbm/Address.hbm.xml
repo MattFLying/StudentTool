@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-08 01:23:58 by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+
+	<class name="model.entity.Address" table="st_address" catalog="Student_Tool" optimistic-lock="version">
+		
+		<id name="addressId" type="java.lang.Integer">
+			<column name="address_id" />
+			<generator class="identity" />
+		</id>
+		<property name="addressCity" type="string">
+			<column name="address_city" length="100" />
+		</property>
+		<property name="addressStreet" type="string">
+			<column name="address_street" length="150" />
+		</property>
+		<property name="addressCode" type="string">
+			<column name="address_code" length="8" />
+		</property>
+		
+	</class>
+	
+</hibernate-mapping>
