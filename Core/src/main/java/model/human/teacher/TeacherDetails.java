@@ -1,4 +1,6 @@
-package model.human.details;
+package model.human.teacher;
+
+import model.data.details.Details;
 
 public class TeacherDetails extends Details {
 	private String room, website;

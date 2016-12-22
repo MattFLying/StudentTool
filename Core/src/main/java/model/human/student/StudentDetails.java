@@ -1,12 +1,27 @@
-package model.human.details;
+package model.human.student;
 
 import java.util.Date;
+import model.bank.BankAccount;
+import model.data.details.Details;
+import model.data.details.enums.FormOfStudy;
+import model.data.details.enums.StudySystem;
+import model.department.Department;
+import model.fieldofstudy.FieldOfStudy;
+import model.group.Group;
+import model.specialization.Specialization;
 
 public class StudentDetails extends Details {
 	private Long albumNumber;
 	private Date startStudyDate, endStudyDate;
-	private String department, fieldOfStudy, group, typeOfStudy, termTitle, specialization, diplomaTitle;
+	private String termTitle, diplomaTitle;
 	private Integer currentTermNumber;
+	private FormOfStudy formOfStudy;
+	private StudySystem studySystem;
+	private BankAccount bankNumber;
+	private Specialization specialization;
+	private Department department;
+	private FieldOfStudy fieldOfStudy;
+	private Group group;
 	
 	
 	public StudentDetails() {
@@ -16,11 +31,13 @@ public class StudentDetails extends Details {
 		this.department = null;
 		this.fieldOfStudy = null;
 		this.group = null;
-		this.typeOfStudy = null;
 		this.termTitle = null;
 		this.specialization = null;
 		this.diplomaTitle = null;
 		this.currentTermNumber = null;
+		this.formOfStudy = null;
+		this.studySystem = null;
+		this.bankNumber = null;
 	}
 	
 	
@@ -42,29 +59,23 @@ public class StudentDetails extends Details {
 	public void setEndStudyDate(Date endStudyDate) {
 		this.endStudyDate = endStudyDate;
 	}
-	public String getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
-	public void setDepartment(String department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	public String getFieldOfStudy() {
+	public FieldOfStudy getFieldOfStudy() {
 		return fieldOfStudy;
 	}
-	public void setFieldOfStudy(String fieldOfStudy) {
+	public void setFieldOfStudy(FieldOfStudy fieldOfStudy) {
 		this.fieldOfStudy = fieldOfStudy;
 	}
-	public String getGroup() {
+	public Group getGroup() {
 		return group;
 	}
-	public void setGroup(String group) {
+	public void setGroup(Group group) {
 		this.group = group;
-	}
-	public String getTypeOfStudy() {
-		return typeOfStudy;
-	}
-	public void setTypeOfStudy(String typeOfStudy) {
-		this.typeOfStudy = typeOfStudy;
 	}
 	public String getTermTitle() {
 		return termTitle;
@@ -72,10 +83,10 @@ public class StudentDetails extends Details {
 	public void setTermTitle(String termTitle) {
 		this.termTitle = termTitle;
 	}
-	public String getSpecialization() {
+	public Specialization getSpecialization() {
 		return specialization;
 	}
-	public void setSpecialization(String specialization) {
+	public void setSpecialization(Specialization specialization) {
 		this.specialization = specialization;
 	}
 	public String getDiplomaTitle() {
@@ -89,5 +100,23 @@ public class StudentDetails extends Details {
 	}
 	public void setCurrentTermNumber(Integer currentTermNumber) {
 		this.currentTermNumber = currentTermNumber;
+	}
+	public FormOfStudy getFormOfStudy() {
+		return formOfStudy;
+	}
+	public void setFormOfStudy(FormOfStudy formOfStudy) {
+		this.formOfStudy = formOfStudy;
+	}
+	public StudySystem getStudySystem() {
+		return studySystem;
+	}
+	public void setStudySystem(StudySystem studySystem) {
+		this.studySystem = studySystem;
+	}
+	public BankAccount getBankNumber() {
+		return bankNumber;
+	}
+	public void setBankNumber(BankAccount bankNumber) {
+		this.bankNumber = bankNumber;
 	}
 }

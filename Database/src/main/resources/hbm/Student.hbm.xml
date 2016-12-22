@@ -42,6 +42,9 @@
         <property name="studentLastname" type="string">
             <column name="student_lastname" length="100" />
         </property>
+        <property name="studentPesel" type="string">
+            <column name="student_pesel" length="45" />
+        </property>
         <property name="studentBirthdate" type="string">
             <column name="student_birthdate" length="10" />
         </property>
@@ -51,8 +54,8 @@
         <property name="studentAlbum" type="string">
             <column name="student_album" length="5" />
         </property>
-        <property name="studentFormofstudy" type="string">
-            <column name="student_formofstudy" length="45" />
+        <property name="studentStudySystem" type="string">
+            <column name="student_study_system" length="45" />
         </property>
         <property name="studentCurrentTerm" type="java.lang.Integer">
             <column name="student_current_term" />

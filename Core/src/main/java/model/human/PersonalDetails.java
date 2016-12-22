@@ -1,12 +1,16 @@
-package model.human.details;
+package model.human;
 
-import java.text.ParseException;
 import java.util.Date;
+import model.data.details.Address;
+import model.data.details.Details;
+import model.data.details.enums.ResearchTitle;
 
 public class PersonalDetails extends Details {
-	private String firstName, secondName, lastName, phoneNumber, pesel;
+	private String firstName, secondName, lastName, phoneNumber;
+	private Long pesel;
 	private Date birthDate;
 	private Address address;
+	private ResearchTitle title;
 	
 	
 	public PersonalDetails() {
@@ -38,23 +42,16 @@ public class PersonalDetails extends Details {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getBirthDate() {
-		return DATE_PATTERN.format(this.birthDate).toString();
+	public Date getBirthDate() {
+		return this.birthDate;
 	}
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-	public void setBirthDate(String birthDate) {
-		try {
-			this.birthDate = DATE_PATTERN.parse(birthDate);
-		} catch (ParseException e) {
-			System.err.println("Blad parsowania, podaj date w formacie: dd-MM-yyyy");
-		}
-	}
-	public String getPesel() {
+	public Long getPesel() {
 		return pesel;
 	}
-	public void setPesel(String pesel) {
+	public void setPesel(Long pesel) {
 		this.pesel = pesel;
 	}
 	public Address getAddress() {
@@ -68,5 +65,11 @@ public class PersonalDetails extends Details {
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public ResearchTitle getTitle() {
+		return title;
+	}
+	public void setTitle(ResearchTitle title) {
+		this.title = title;
 	}
 }

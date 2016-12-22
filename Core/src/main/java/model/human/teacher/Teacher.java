@@ -1,8 +1,7 @@
 package model.human.teacher;
 
 import model.human.Person;
-import model.human.details.PersonalDetails;
-import model.human.details.TeacherDetails;
+import model.human.PersonalDetails;
 
 public class Teacher extends Person<TeacherDetails> implements ITeacher {
 	private TeacherDetails teacherDetails;

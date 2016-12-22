@@ -1,7 +1,5 @@
 package model.course;
 
-import model.human.details.CourseDetails;
-
 public class Course implements ICourse {
 	private CourseDetails details;
 	
@@ -20,5 +18,4 @@ public class Course implements ICourse {
 	public void setCourse(CourseDetails details) {
 		this.details = details;
 	}
-	
 }

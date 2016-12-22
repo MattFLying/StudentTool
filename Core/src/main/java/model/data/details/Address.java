@@ -1,4 +1,4 @@
-package model.human.details;
+package model.data.details;
 
 public class Address {
 	private String city, postalCode, streetFullAddress;

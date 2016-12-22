@@ -1,7 +1,6 @@
 package model.human;
 
-import model.human.details.Details;
-import model.human.details.PersonalDetails;
+import model.data.details.Details;
 
 public abstract class Person<T extends Details> implements IPerson<T> {
 	private PersonalDetails details;

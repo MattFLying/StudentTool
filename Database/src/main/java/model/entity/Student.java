@@ -16,10 +16,11 @@ public class Student implements java.io.Serializable {
 	private String studentFirstname;
 	private String studentSecondname;
 	private String studentLastname;
+	private String studentPesel;
 	private String studentBirthdate;
 	private String studentPhone;
 	private String studentAlbum;
-	private String studentFormofstudy;
+	private String studentStudySystem;
 	private Integer studentCurrentTerm;
 	private String studentFormOfStudy;
 	private String studentTermTitle;
@@ -32,8 +33,8 @@ public class Student implements java.io.Serializable {
 	}
 	public Student(StudentId id, Integer groupId, Integer addressId, Integer fieldOfStudyId,
 			Integer specializationId, String studentPhoto, String studentTitle, String studentFirstname, String studentSecondname,
-			String studentLastname, String studentBirthdate, String studentPhone, String studentAlbum,
-			String studentFormofstudy, Integer studentCurrentTerm, String studentFormOfStudy, String studentTermTitle,
+			String studentLastname, String studentPesel, String studentBirthdate, String studentPhone, String studentAlbum,
+			String studentStudySystem, Integer studentCurrentTerm, String studentFormOfStudy, String studentTermTitle,
 			String studentDiplomaTitle) {
 		this.id = id;
 		this.groupId = groupId;
@@ -45,10 +46,11 @@ public class Student implements java.io.Serializable {
 		this.studentFirstname = studentFirstname;
 		this.studentSecondname = studentSecondname;
 		this.studentLastname = studentLastname;
+		this.studentPesel = studentPesel;
 		this.studentBirthdate = studentBirthdate;
 		this.studentPhone = studentPhone;
 		this.studentAlbum = studentAlbum;
-		this.studentFormofstudy = studentFormofstudy;
+		this.studentStudySystem = studentStudySystem;
 		this.studentCurrentTerm = studentCurrentTerm;
 		this.studentFormOfStudy = studentFormOfStudy;
 		this.studentTermTitle = studentTermTitle;
@@ -56,8 +58,8 @@ public class Student implements java.io.Serializable {
 	}
 	public Student(int studentId, int userId, Integer groupId, Integer addressId, Integer fieldOfStudyId,
 			Integer specializationId, String studentPhoto, String studentTitle, String studentFirstname, String studentSecondname,
-			String studentLastname, String studentBirthdate, String studentPhone, String studentAlbum,
-			String studentFormofstudy, Integer studentCurrentTerm, String studentFormOfStudy, String studentTermTitle,
+			String studentLastname, String studentPesel, String studentBirthdate, String studentPhone, String studentAlbum,
+			String studentStudySystem, Integer studentCurrentTerm, String studentFormOfStudy, String studentTermTitle,
 			String studentDiplomaTitle) {
 		this.id = new StudentId(studentId, userId);
 		this.groupId = groupId;
@@ -69,10 +71,11 @@ public class Student implements java.io.Serializable {
 		this.studentFirstname = studentFirstname;
 		this.studentSecondname = studentSecondname;
 		this.studentLastname = studentLastname;
+		this.studentPesel = studentPesel;
 		this.studentBirthdate = studentBirthdate;
 		this.studentPhone = studentPhone;
 		this.studentAlbum = studentAlbum;
-		this.studentFormofstudy = studentFormofstudy;
+		this.studentStudySystem = studentStudySystem;
 		this.studentCurrentTerm = studentCurrentTerm;
 		this.studentFormOfStudy = studentFormOfStudy;
 		this.studentTermTitle = studentTermTitle;
@@ -152,11 +155,11 @@ public class Student implements java.io.Serializable {
 	public void setStudentAlbum(String studentAlbum) {
 		this.studentAlbum = studentAlbum;
 	}
-	public String getStudentFormofstudy() {
-		return this.studentFormofstudy;
+	public String getStudentStudySystem() {
+		return this.studentStudySystem;
 	}
-	public void setStudentFormofstudy(String studentFormofstudy) {
-		this.studentFormofstudy = studentFormofstudy;
+	public void setStudentStudySystem(String studentStudySystem) {
+		this.studentStudySystem = studentStudySystem;
 	}
 	public Integer getStudentCurrentTerm() {
 		return this.studentCurrentTerm;
@@ -187,5 +190,11 @@ public class Student implements java.io.Serializable {
 	}
 	public void setStudentTitle(String studentTitle) {
 		this.studentTitle = studentTitle;
+	}
+	public String getStudentPesel() {
+		return studentPesel;
+	}
+	public void setStudentPesel(String studentPesel) {
+		this.studentPesel = studentPesel;
 	}
 }
