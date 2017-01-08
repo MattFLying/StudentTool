@@ -10,11 +10,10 @@
             <key-property name="studentId" type="int">
                 <column name="student_id" />
             </key-property>
-            <key-property name="userId" type="int">
-                <column name="user_id" />
+            <key-property name="userLogin" type="string">
+                <column name="user_login" length="5" />
             </key-property>
         </composite-id>
-        
         <property name="groupId" type="java.lang.Integer">
             <column name="group_id" />
         </property>
@@ -42,8 +41,8 @@
         <property name="studentLastname" type="string">
             <column name="student_lastname" length="100" />
         </property>
-        <property name="studentPesel" type="string">
-            <column name="student_pesel" length="45" />
+        <property name="studentPesel" type="java.lang.Long">
+            <column name="student_pesel" />
         </property>
         <property name="studentBirthdate" type="string">
             <column name="student_birthdate" length="10" />
@@ -51,8 +50,8 @@
         <property name="studentPhone" type="string">
             <column name="student_phone" length="20" />
         </property>
-        <property name="studentAlbum" type="string">
-            <column name="student_album" length="5" />
+        <property name="studentAlbum" type="java.lang.Long">
+            <column name="student_album" />
         </property>
         <property name="studentStudySystem" type="string">
             <column name="student_study_system" length="45" />
@@ -68,6 +67,12 @@
         </property>
         <property name="studentDiplomaTitle" type="string">
             <column name="student_diploma_title" length="250" />
+        </property>
+        <property name="studentStartDate" type="string">
+            <column name="student_start_date" length="45" />
+        </property>
+        <property name="studentEndDate" type="string">
+            <column name="student_end_date" length="45" />
         </property>
         
     </class>

@@ -7,18 +7,17 @@
 	<class name="model.entity.Bank" table="st_bank" catalog="Student_Tool" optimistic-lock="version">
 		
 		<composite-id name="id" class="model.entity.BankId">
-			<key-property name="bankId" type="int">
-				<column name="bank_id" />
-			</key-property>
-			<key-property name="studentId" type="int">
-				<column name="student_id" />
-			</key-property>
-		</composite-id>
-		
-		<property name="bankNumber" type="string">
-			<column name="bank_number" length="26" />
-		
-		</property>
+            <key-property name="bankId" type="int">
+                <column name="bank_id" />
+            </key-property>
+            <key-property name="studentId" type="int">
+                <column name="student_id" />
+            </key-property>
+        </composite-id>
+        <property name="bankNumber" type="string">
+            <column name="bank_number" length="26" />
+        </property>
+        
 	</class>
 	
 </hibernate-mapping>

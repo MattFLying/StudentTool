@@ -10,17 +10,20 @@
             <column name="course_id" />
             <generator class="identity" />
         </id>
+        <property name="fieldOfStudyId" type="java.lang.Integer">
+            <column name="field_of_study_id" />
+        </property>
         <property name="courseName" type="string">
-            <column name="course_name" length="150" />
+            <column name="course_name" length="200" />
+        </property>
+        <property name="courseForm" type="string">
+            <column name="course_form" length="20" />
         </property>
         <property name="courseEcts" type="java.lang.Integer">
             <column name="course_ects" />
         </property>
         <property name="courseTerm" type="java.lang.Integer">
             <column name="course_term" />
-        </property>
-        <property name="fieldOfStudyId" type="java.lang.Integer">
-            <column name="field_of_study_id" />
         </property>
         
     </class>

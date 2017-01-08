@@ -10,11 +10,10 @@
             <key-property name="teacherId" type="int">
                 <column name="teacher_id" />
             </key-property>
-            <key-property name="userId" type="int">
-                <column name="user_id" />
+            <key-property name="userLogin" type="string">
+                <column name="user_login" length="5" />
             </key-property>
         </composite-id>
-        
         <property name="addressId" type="java.lang.Integer">
             <column name="address_id" />
         </property>
@@ -49,7 +48,7 @@
             <column name="teacher_room" length="10" />
         </property>
         <property name="teacherWebsite" type="string">
-            <column name="teacher_website" length="100" />
+            <column name="teacher_website" length="150" />
         </property>
         
     </class>

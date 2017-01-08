@@ -10,14 +10,14 @@
             <column name="group_id" />
             <generator class="identity" />
         </id>
+        <property name="fieldOfStudyId" type="java.lang.Integer">
+            <column name="field_of_study_id" />
+        </property>
         <property name="groupName" type="string">
-            <column name="group_name" length="15" />
+            <column name="group_name" length="20" />
         </property>
         <property name="groupDescription" type="string">
             <column name="group_description" length="100" />
-        </property>
-        <property name="fieldOfStudyId" type="java.lang.Integer">
-            <column name="field_of_study_id" />
         </property>
         
     </class>

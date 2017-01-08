@@ -20,13 +20,13 @@ public class CourseDao extends GenericDao<Course, Integer> implements ICourseDao
 	}
 	
 
-	public Course findByName(String name) {
+	public Course findByNameAndForm(String name, String form) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		
 		try {
 			criteria = session.createCriteria(Course.class);
-			criteria.add(Restrictions.eq("courseName", name));
+			criteria.add(Restrictions.and(Restrictions.eq("courseName", name), Restrictions.eq("courseForm", form)));
 			courseEntity = (Course)criteria.list().get(0);
 		} catch( Exception e ) {
 			e.getStackTrace();
@@ -39,6 +39,40 @@ public class CourseDao extends GenericDao<Course, Integer> implements ICourseDao
 		} else {
 			return null;
 		}
+	}
+	public List<Course> findByName(String name) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Course> list = new ArrayList<Course>();
+		
+		try {
+			criteria = session.createCriteria(Course.class);
+			criteria.add(Restrictions.eq("courseName", name));
+			list = criteria.list();
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return list;
+	}
+	public List<Course> findByFieldOfStudyId(Integer fieldOfStudyId) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Course> list = new ArrayList<Course>();
+		
+		try {
+			criteria = session.createCriteria(Course.class);
+			criteria.add(Restrictions.eq("fieldOfStudyId", fieldOfStudyId));
+			list = criteria.list();
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return list;
 	}
 	public List<Course> findByTermAndFieldOfStudyId(Integer term, Integer fieldOfStudyId) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
