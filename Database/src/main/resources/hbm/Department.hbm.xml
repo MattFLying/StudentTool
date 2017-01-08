@@ -17,7 +17,7 @@
             <column name="department_building" length="15" />
         </property>
         <property name="departmentDescription" type="string">
-            <column name="department_description" length="100" />
+            <column name="department_description" length="150" />
         </property>
         
     </class>

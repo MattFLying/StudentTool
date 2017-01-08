@@ -10,11 +10,11 @@
             <column name="field_of_study_id" />
             <generator class="identity" />
         </id>
-        <property name="fieldOfStudyName" type="string">
-            <column name="field_of_study_name" length="100" />
-        </property>
         <property name="departmentId" type="java.lang.Integer">
             <column name="department_id" />
+        </property>
+        <property name="fieldOfStudyName" type="string">
+            <column name="field_of_study_name" length="100" />
         </property>
         
     </class>

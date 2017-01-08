@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!-- 
+HEAD  
+-->
+<head>
+	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+	<link rel="stylesheet" href="/css/mainST.css" />
+</head>
+<!-- 
+/HEAD  
+-->
+<!-- 
+BODY  
+-->
+<body>
+	<div id="bodyContainer">
+	   <div id="header"></div>
+	   <div id="body">
+
+			<h1 style="color:blue">Witaj w Panelu Administratora!</h1>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Wyloguj"/>
+			</form>
+
+		</div>
+	   <div id="footer"></div>
+	</div>
+</body>
+<!-- 
+/BODY  
+-->
+<script>
+	$(function() {
+		$("#header").load("/core/header/header.html");
+
+	});
+</script>
+<script>
+	$(function() {
+		$("#footer").load("/core/footer/footer.html");
+
+	});
+</script>
+</html>

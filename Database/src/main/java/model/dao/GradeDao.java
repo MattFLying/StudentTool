@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import model.dao.interfaces.GenericDao;
 import model.dao.interfaces.IGradeDao;
 import model.db.hib.util.HibernateUtil;
+import model.entity.Bank;
 import model.entity.Grade;
 import model.entity.GradeId;
 import model.entity.Student;
@@ -21,6 +22,26 @@ public class GradeDao extends GenericDao<Grade, GradeId> implements IGradeDao {
 	}
 
 
+	public Grade findByGradeId(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		
+		try {
+			criteria = session.createCriteria(Grade.class);
+			criteria.add(Restrictions.eq("id.gradeId", id));
+			gradeEntity = (Grade)criteria.list().get(0);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		if(gradeEntity != null) {
+			return gradeEntity;
+		} else {
+			return null;
+		}
+	}
 	public List<Grade> findByTeacherId(Integer id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;

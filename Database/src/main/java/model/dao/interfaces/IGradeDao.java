@@ -5,6 +5,7 @@ import model.entity.Grade;
 import model.entity.GradeId;
 
 public interface IGradeDao extends IGenericDao<Grade, GradeId> {
+	Grade findByGradeId(Integer id);
 	List<Grade> findByTeacherId(Integer id);
 	List<Grade> findByStudentId(Integer id);
 	List<Grade> findByGradeType(String type);

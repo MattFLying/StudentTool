@@ -7,7 +7,6 @@
     <class name="model.entity.TeachersCourses" table="st_teachers_courses" catalog="Student_Tool" optimistic-lock="version">
     
         <composite-id name="id" class="model.entity.TeachersCoursesId">
-           
             <key-property name="teacherId" type="int">
                 <column name="teacher_id" />
             </key-property>
@@ -17,7 +16,6 @@
             <key-property name="courseFormId" type="int">
                 <column name="course_form_id" />
             </key-property>
-            
         </composite-id>
         
     </class>

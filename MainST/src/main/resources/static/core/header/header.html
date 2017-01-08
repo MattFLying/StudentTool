@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+	<link rel="stylesheet" href="/css/mainST.css" />
+</head>
+
+<body>
+	<div class="page-header">
+		<img src="/image/header_logo.png" alt="ST Logo"
+			style="width: 450px; height: 80px;">
+	</div>
+	<div id="navbar"></div>
+</body>
+
+<script>
+	$(function() {
+		$("#navbar").load("/core/header/navbar.html");
+	});
+</script>
+
+</html>

@@ -50,4 +50,82 @@ public class AddressDao extends GenericDao<Address, Integer> implements IAddress
 		
 		return list;
 	}
+	public void updateCity(Integer addressId, String newValue) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		Address entity = null;
+		
+		try {
+			criteria = session.createCriteria(Address.class);
+			criteria.add(Restrictions.eq("addressId", addressId));
+			entity = (Address)criteria.list().get(0);
+			
+			entity.setAddressCity(newValue);
+			
+			update(entity);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	public void updateCode(Integer addressId, String newValue) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		Address entity = null;
+		
+		try {
+			criteria = session.createCriteria(Address.class);
+			criteria.add(Restrictions.eq("addressId", addressId));
+			entity = (Address)criteria.list().get(0);
+			
+			entity.setAddressCode(newValue);
+			
+			update(entity);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	public void updateStreet(Integer addressId, String newValue) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		Address entity = null;
+		
+		try {
+			criteria = session.createCriteria(Address.class);
+			criteria.add(Restrictions.eq("addressId", addressId));
+			entity = (Address)criteria.list().get(0);
+			
+			entity.setAddressStreet(newValue);
+			
+			update(entity);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	public void updateFullAddress(Integer addressId, String city, String street, String code) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		Address entity = null;
+		
+		try {
+			criteria = session.createCriteria(Address.class);
+			criteria.add(Restrictions.eq("addressId", addressId));
+			entity = (Address)criteria.list().get(0);
+			
+			entity.setAddressCity(city);
+			entity.setAddressStreet(street);
+			entity.setAddressCode(code);
+			
+			update(entity);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 }

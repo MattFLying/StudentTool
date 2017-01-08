@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<!-- 
+HEAD  
+-->
+<head>
+	<title>Elektroniczny System Do Zarz¹dzania Sprawami Studenckimi</title>
+	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+	<link rel="stylesheet" href="/css/mainST.css" />
+	<link rel="stylesheet" href="/css/bootstrap.css" />
+</head>
+<!-- 
+/HEAD  
+-->
+<!-- 
+BODY  
+-->
+<body>
+	<div id="bodyContainer">
+		<div id="header"></div>
+		<div id="body">
+
+
+
+			<div align="center" class="indexToLoginPanel">
+				<h1>Witaj w Systemie Zarzadzania Studiami</h1>
+				<p>Zaloguj sie aby kontynuowac.</p>
+				<p>
+					<a class="btn btn-primary btn-lg" th:href="@{/login}" role="button">Zaloguj sie!</a>
+				</p>
+			</div>
+
+
+
+		</div>
+		<div id="footer"></div>
+	</div>
+</body>
+<!-- 
+/BODY  
+-->
+<script>
+	$(function() {
+		$("#header").load("/core/header/header.html");
+
+	});
+</script>
+<script>
+	$(function() {
+		$("#footer").load("/core/footer/footer.html");
+
+	});
+</script>
+</html>

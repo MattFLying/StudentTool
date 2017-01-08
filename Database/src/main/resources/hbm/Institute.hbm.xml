@@ -10,14 +10,14 @@
             <column name="institute_id" />
             <generator class="identity" />
         </id>
+        <property name="departmentId" type="java.lang.Integer">
+            <column name="department_id" />
+        </property>
         <property name="instituteName" type="string">
             <column name="institute_name" length="20" />
         </property>
         <property name="instituteDescription" type="string">
-            <column name="institute_description" length="100" />
-        </property>
-        <property name="departmentId" type="java.lang.Integer">
-            <column name="department_id" />
+            <column name="institute_description" length="150" />
         </property>
         
     </class>
