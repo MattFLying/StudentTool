@@ -1,13 +1,20 @@
 package app.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
 import app.services.factory.DaoFactory;
 import core.study.department.Department;
 import core.study.fieldofstudy.FieldOfStudy;
+import model.dao.FieldOfStudyDao;
 import model.dao.interfaces.IFieldOfStudyDao;
 import model.entity.Entity;
-
+@Service
 public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 	public FieldOfStudyService() {
 		super(DaoFactory.Dao.FIELD_OF_STUDY);
@@ -23,7 +30,7 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		model.entity.FieldOfStudy fieldEntity = (model.entity.FieldOfStudy)entity;
 		FieldOfStudy field = (FieldOfStudy)base;
 		
-		model.entity.Department dept = new DepartmentService().getDao().findDepartmentIdByName(field.getDetails().getDepartment().getDetails().getDepartmentShortName());
+		model.entity.Department dept = new DepartmentService().getDao().findDepartmentIdByFullName(field.getDetails().getDepartment().getDetails().getDepartmentFullName());
 
 		fieldEntity.setFieldOfStudyName(field.getDetails().getFieldOfStudyName());
 		fieldEntity.setDepartmentId(dept.getDepartmentId());
@@ -87,15 +94,6 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		
 		return list;
 	}
-	public List<FieldOfStudy> findAll() {
-		List<FieldOfStudy> list = new ArrayList<FieldOfStudy>();
-		
-		dao().findAll(model.entity.FieldOfStudy.class).forEach( (x) -> {
-			list.add(createFromEntity(new FieldOfStudy(), x));
-		});
-		
-		return list;
-	}
 	public void save(FieldOfStudy field) {
 		model.entity.FieldOfStudy entity = new model.entity.FieldOfStudy();	
 		createEntity(field, entity);
@@ -114,4 +112,76 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		
 		dao().delete(entity);
 	}
+	
+	
+	
+	
+	
+	
+
+	public List<FieldOfStudy> findAll() {
+		List<FieldOfStudy> list = new ArrayList<FieldOfStudy>();
+		
+		dao().findAll(model.entity.FieldOfStudy.class).forEach( (x) -> {
+			FieldOfStudy field = new FieldOfStudy();
+			Department dept = new Department();
+			
+			field.getDetails().setFieldOfStudyName(x.getFieldOfStudyName());
+			dept.getDetails().setId(x.getDepartmentId());
+			field.getDetails().setDepartment(dept);
+			
+			list.add(field);
+		});
+		
+		return list;
+	}
+	
+	
+	/*private static FieldOfStudyDao f = new FieldOfStudyDao();
+	public static void main(String[] args) {
+		
+		HashMap<Department, List<FieldOfStudy>> list = findAllFieldsForAllDepartments();
+
+		for (Map.Entry<Department, List<FieldOfStudy>> entry : list.entrySet()) {
+			Department d = entry.getKey();
+			List<FieldOfStudy> f = entry.getValue();
+			
+			System.out.println(d.getDetails().getDepartmentFullName() + ": " + f.size() + " " + f.get(0).getDetails().getFieldOfStudyName());
+		}
+
+
+		
+	}*/
+	
+	
+	
+	public HashMap<Department, List<FieldOfStudy>> findAllFieldsForAllDepartments() {
+		HashMap<model.entity.Department, List<model.entity.FieldOfStudy>> entities = dao().findAllFieldsForAllDepartments();
+		HashMap<Department, List<FieldOfStudy>> list = new HashMap<Department, List<FieldOfStudy>>();
+		
+		for(Map.Entry<model.entity.Department, List<model.entity.FieldOfStudy>> entry : entities.entrySet()) {
+			Department dept = new Department();
+			dept.getDetails().setDepartmentFullName(entry.getKey().getDepartmentDescription());
+			dept.getDetails().setId(entry.getKey().getDepartmentId());
+			
+			List<FieldOfStudy> fields = new ArrayList<FieldOfStudy>();
+			for(model.entity.FieldOfStudy f : entry.getValue()) {
+				FieldOfStudy field = new FieldOfStudy();
+				field.getDetails().setFieldOfStudyName(f.getFieldOfStudyName());
+				
+				field.getDetails().setDepartment(dept);
+				
+				fields.add(field);
+			}
+			
+			list.put(dept, fields);
+		}
+		
+		return list;
+	}
+	
+	
+	
+	
+	
 }

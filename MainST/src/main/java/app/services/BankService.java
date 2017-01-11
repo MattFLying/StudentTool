@@ -20,14 +20,14 @@ public class BankService extends DaoService<IBankDao> {
 		model.entity.Bank bankEntity = (model.entity.Bank)entity;
 		BankAccount bank = (BankAccount)base;
 		
-		bankEntity.setBankNumber(bank.getBankNumber());
+		bankEntity.setBankNumber(bank.getNumber());
 	}
 	@Override
 	protected void createFromEntity(Entity entity, Object base) {
 		model.entity.Bank bankEntity = (model.entity.Bank)entity;
 		BankAccount bank = (BankAccount)base;
 		
-		bank.setBankNumber(bankEntity.getBankNumber());
+		bank.setNumber(bankEntity.getBankNumber());
 	}
 	public BankAccount findOneByStudentId(int id) {
 		model.entity.Bank entity = dao().findByStudentId(id);

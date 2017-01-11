@@ -7,7 +7,7 @@ import core.model.base.Details;
 public class PersonalDetails extends Details {
 	private String firstName, secondName, lastName, phoneNumber;
 	private Long pesel;
-	private Date birthDate;
+	private String birthDate;
 	private Address address;
 	private ResearchTitle title;
 	
@@ -45,10 +45,10 @@ public class PersonalDetails extends Details {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return this.birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public Long getPesel() {
@@ -74,5 +74,10 @@ public class PersonalDetails extends Details {
 	}
 	public void setTitle(ResearchTitle title) {
 		this.title = title;
+	}
+	public void setTitle(String title) {
+		if(title.equals(ResearchTitle.LICENTIATE.toString())) {
+			this.title = ResearchTitle.LICENTIATE;
+		}
 	}
 }

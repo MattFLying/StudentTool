@@ -62,13 +62,13 @@ public class DepartmentDao extends GenericDao<Department, Integer> implements ID
 			return null;
 		}
 	}
-	public Department findDepartmentIdByName(String name) {
+	public Department findDepartmentIdByFullName(String name) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Department entity = null;
 		
 		try {
 			List results = session.createCriteria(Department.class)
-					.add(Restrictions.eq("departmentName", name))
+					.add(Restrictions.eq("departmentDescription", name))
 					.setProjection( Projections.projectionList()
 					.add( Projections.property("departmentId"), "departmentId") )
 					.setResultTransformer(Transformers.aliasToBean(Department.class))
@@ -95,7 +95,7 @@ public class DepartmentDao extends GenericDao<Department, Integer> implements ID
 			List results = session.createCriteria(Department.class)
 					.add(Restrictions.eq("departmentId", id))
 					.setProjection( Projections.projectionList()
-					.add( Projections.property("departmentName"), "departmentName") )
+					.add( Projections.property("departmentDescription"), "departmentDescription") )
 					.setResultTransformer(Transformers.aliasToBean(Department.class))
 					.list();
 

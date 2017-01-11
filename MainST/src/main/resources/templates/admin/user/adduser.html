@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<!-- 
+HEAD  
+-->
+<head>
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
+</head>
+<!-- 
+/HEAD  
+-->
+<!-- 
+BODY  
+-->
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+	<div id="bodyContainer">
+		<div id="header"></div>
+		<div id="body">
+
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 12; font-weight: bold; color: black">Zostałeś
+							zalogowany do Panelu administracyjnego o identyfikatorze
+							użytkownika: </span> <span style="font-weight: bold; color: red"
+							th:text="${session.username}"></span>
+
+						<form th:action="@{/logout}" method="post">
+							<input type="submit"
+								class="btn btn-info text-center center-block" value="Wyloguj" />
+						</form>
+					</center>
+				</div>
+			</div>
+
+
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 14; font-weight: bold; color: green">Dodaj
+							Użytkownika</span>
+					</center>
+				</div>
+				<div class="panel-body">
+					<form action="#" th:action="@{/adduserdb}" th:object="${userform}"
+						method="post">
+						<div th:if="${param.success}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Użytkownik
+									dodany!</span>
+							</center>
+						</div>
+						<div th:if="${param.error}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Coś
+									poszło nie tak, upewnij się, że podałeś właściwe dane!</span>
+							</center>
+						</div>
+						<div>
+							<div class="col-xs-3">
+								<label for="usr">Login:</label> <input class="form-control"
+									id="usr" type="text" th:field="*{login}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Hasło:</label> <input class="form-control"
+									id="pwd" type="text" th:field="*{password}" />
+							</div>
+						</div>
+
+						<br /> <br /> <br /> <br /> <label>Typ konta</label>
+						<div class="radio">
+							<label><input type="radio" name="typeacc" value="ADMIN"
+								th:field="*{role}" />Administrator</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="typeacc" value="STUDENT"
+								th:field="*{role}" />Student</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="typeacc" value="TEACHER"
+								th:field="*{role}" />Prowadzący zajęcia</label>
+						</div>
+
+						<br /> <br /> <input type="submit"
+							class="btn btn-info text-center center-block" value="Dodaj" />
+					</form>
+				</div>
+			</div>
+
+
+
+
+
+
+
+		</div>
+		<div id="footer"></div>
+	</div>
+</body>
+<!-- 
+/BODY  
+-->
+<script>
+	$(function() {
+		$("#header").load("/core/header/header.html");
+
+	});
+</script>
+<script>
+	$(function() {
+		$("#footer").load("/core/footer/footer.html");
+
+	});
+</script>
+</html>

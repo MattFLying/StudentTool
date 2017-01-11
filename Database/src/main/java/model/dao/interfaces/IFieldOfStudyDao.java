@@ -1,5 +1,6 @@
 package model.dao.interfaces;
 
+import java.util.HashMap;
 import java.util.List;
 
 import model.entity.Department;
@@ -13,4 +14,5 @@ public interface IFieldOfStudyDao extends IGenericDao<FieldOfStudy, Integer> {
 	List<FieldOfStudy> findByDepartmentName(String name);
 	List<FieldOfStudy> findByDepartmentFullName(String name);
 	List<FieldOfStudy> findAllFields();
+	HashMap<Department, List<FieldOfStudy>> findAllFieldsForAllDepartments();
 }

@@ -16,7 +16,7 @@ public class InstituteDetails extends StudyDetails {
 	protected void initialize() {
 		this.instituteShortName = null;
 		this.instituteFullName = null;
-		this.department = null;
+		this.department = new Department();
 	}
 	public String getInstituteFullName() {
 		return instituteFullName;

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!-- 
+HEAD  
+-->
+<head>
+	<meta charset="utf-8" />
+	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+	<link rel="stylesheet" href="/css/mainST.css" />
+</head>
+<!-- 
+/HEAD  
+-->
+<!-- 
+BODY  
+-->
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+	<div id="bodyContainer">
+		<div id="header"></div>
+		<div id="body">
+
+
+			<!-- -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 12; font-weight: bold; color: black">Zostałeś
+							zalogowany do Panelu administracyjnego o identyfikatorze
+							użytkownika: </span> <span style="font-weight: bold; color: red"
+							th:text="${session.username}"></span>
+
+						<form th:action="@{/logout}" method="post">
+							<input type="submit"
+								class="btn btn-info text-center center-block" value="Wyloguj" />
+						</form>
+					</center>
+				</div>
+			</div>
+			<!-- -->
+
+
+			<!-- -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 14; font-weight: bold; color: green">Dodaj
+							Przedmiot</span>
+					</center>
+				</div>
+				<!-- -->
+				<form action="#" th:action="@{/addcoursedb}"
+					th:object="${courseform}" method="post">
+					<!-- -->
+					<div class="panel-body">
+						<div th:if="${param.success}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Przedmiot
+									dodana!</span>
+							</center>
+						</div>
+						<div th:if="${param.error}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Coś
+									poszło nie tak, upewnij się, że podałeś właściwe dane!</span>
+							</center>
+						</div>
+						<!-- -->
+						<div>
+							<div class="col-xs-3">
+								<label for="fullName">Nazwa przedmiotu:</label> <input
+									class="form-control" id="fullName" type="text"
+									th:field="*{details.courseName}" />
+							</div>
+							
+							
+							
+							
+							
+							
+							<table>
+
+								<tr>
+
+									<th>Wydział</th>
+
+									<th>Kierunek</th>
+
+								</tr>
+
+								<tr th:each="entry : ${fieldsdepts}">
+
+									<td th:text="${entry.getKey().details.departmentFullName}" th:value="${entry.getKey().details.departmentFullName}"></td>
+
+									<td>
+										<select id="fieldslist" class="form-control" th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
+											<option selected="selected" value="">Wybierz...</option>
+											<option th:each="field : ${entry.getValue()}" 
+												th:value="${field.details.fieldOfStudyName}" 
+												th:text="${field.details.fieldOfStudyName}">
+											</option>
+										</select>
+									</td>
+
+								</tr>
+
+							</table>
+							
+							<div class="col-xs-3">
+								<label for="fullName">Semestr:</label> <input
+									class="form-control" id="fullName" type="text"
+									th:field="*{details.term}" />
+							</div>
+							<div class="form-group col-xs-3">
+								<label for="sel1">Forma:</label> <select
+									class="form-control"
+									th:field="*{details.courseForm}">
+									<option
+										th:each="form : ${T(core.study.details.CourseForm).values()}"
+										th:value="${form}" th:text="${form.name}"></option>
+								</select>
+							</div>
+						</div>
+						<!-- -->
+						<br /> <br />
+					</div>
+					<!-- -->
+					<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+				</form>
+				<!-- -->
+			</div>
+			<!-- -->
+		</div>
+		<div id="footer"></div>
+	</div>
+</body>
+<!-- 
+/BODY  
+-->
+<script>
+	$(function() {
+		$("#header").load("/core/header/header.html");
+
+	});
+</script>
+<script>
+	$(function() {
+		$("#footer").load("/core/footer/footer.html");
+
+	});
+</script>
+</html>

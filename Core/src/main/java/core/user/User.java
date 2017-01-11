@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class User implements Serializable {
 	private static final long serialVersionUID = -200636714946439691L;
 	private String login, password;
+	private Role role;
+	
 	public enum Role {
 		ADMIN("ROLE_ADMIN"), STUDENT("ROLE_STUDENT"), TEACHER("ROLE_TEACHER");
 		
@@ -41,5 +43,20 @@ public class User implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	public void setRole(String role) {
+		if(role.equals(Role.ADMIN.getName())) {
+			this.role = Role.ADMIN;
+		} else if(role.equals(Role.STUDENT.getName())) {
+			this.role = Role.STUDENT;
+		} else if(role.equals(Role.TEACHER.getName())) {
+			this.role = Role.TEACHER;
+		}	
 	}
 }

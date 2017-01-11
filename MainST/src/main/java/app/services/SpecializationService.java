@@ -2,12 +2,16 @@ package app.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import app.services.factory.DaoFactory;
 import core.study.fieldofstudy.FieldOfStudy;
 import core.study.fieldofstudy.Specialization;
+import model.dao.SpecializationDao;
 import model.dao.interfaces.ISpecializationDao;
 import model.entity.Entity;
-
+@Service
 public class SpecializationService extends DaoService<ISpecializationDao> {
 	public SpecializationService() {
 		super(DaoFactory.Dao.SPECIALIZATION);
@@ -21,6 +25,9 @@ public class SpecializationService extends DaoService<ISpecializationDao> {
 	@Override
 	protected void createEntity(Object base, Entity entity) {
 		model.entity.Specialization groupEntity = (model.entity.Specialization)entity;
+		model.entity.SpecializationId id = new model.entity.SpecializationId();
+		groupEntity.setId(id);
+		
 		Specialization specialization = (Specialization)base;
 		
 		model.entity.FieldOfStudy field = new FieldOfStudyService().getDao().findFieldOfStudyIdByName(specialization.getDetails().getFieldOfStudy().getDetails().getFieldOfStudyName());
@@ -89,4 +96,15 @@ public class SpecializationService extends DaoService<ISpecializationDao> {
 		
 		dao().delete(entity);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

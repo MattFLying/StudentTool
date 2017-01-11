@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
+<!-- 
+HEAD  
+-->
+<head>
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
+</head>
+<!-- 
+/HEAD  
+-->
+<!-- 
+BODY  
+-->
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+	<div id="bodyContainer">
+		<div id="header"></div>
+		<div id="body">
+
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 12; font-weight: bold; color: black">Zostałeś
+							zalogowany do Panelu administracyjnego o identyfikatorze
+							użytkownika: </span> <span style="font-weight: bold; color: red"
+							th:text="${session.username}"></span>
+
+						<form th:action="@{/logout}" method="post">
+							<input type="submit"
+								class="btn btn-info text-center center-block" value="Wyloguj" />
+						</form>
+					</center>
+				</div>
+			</div>
+
+
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 14; font-weight: bold; color: green">Dodaj
+							Studenta</span>
+					</center>
+				</div>
+				<div class="panel-body">
+					<form action="#" th:action="@{/addstudentdb}" method="post">
+						<div th:if="${param.success}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Student
+									dodany!</span>
+							</center>
+						</div>
+						<div th:if="${param.error}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Coś
+									poszło nie tak, upewnij się, że podałeś właściwe dane!</span>
+							</center>
+						</div>
+						<div>
+							<div class="col-xs-3">
+								<label for="login">Login:</label> <input class="form-control"
+									type="text" th:value="${userform.login}" id="login"
+									name="login" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Hasło:</label> <input class="form-control"
+									id="pwd" type="text" th:value="${userform.password}" />
+							</div>
+						</div>
+
+						<br /> <br /> <br /> <br /> <label>Typ konta</label>
+						<div class="radio">
+							<label><input type="radio" name="typeacc" value="ADMIN"
+								th:value="${userform.role}" />Administrator</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="typeacc" value="STUDENT"
+								th:value="${userform.role}" />Student</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="typeacc" value="TEACHER"
+								th:value="${userform.role}" />Prowadzący zajęcia</label>
+						</div>
+						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<br />
+						<div>
+							<div class="col-xs-3">
+								<label for="usr">Imie:</label> <input class="form-control"
+									id="details.firstName" name="details.firstName" type="text"
+									th:value="${studentform.details.firstName}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Drugie imie:</label> <input
+									class="form-control" id="details.secondName"
+									name="details.secondName" type="text"
+									th:value="${studentform.details.secondName}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Nazwisko:</label> <input class="form-control"
+									id="details.lastName" name="details.lastName" type="text"
+									th:value="${studentform.details.lastName}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Pesel:</label> <input class="form-control"
+									id="details.pesel" name="details.pesel" type="text"
+									th:value="${studentform.details.pesel}" />
+							</div>
+							<!--  -->
+							<div class="col-xs-3">
+								<label for="pwd">Data urodzenia:</label> <input
+									class="form-control" id="details.birthDate"
+									name="details.birthDate" type="text"
+									th:value="${studentform.details.birthDate}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Telefon:</label> <input class="form-control"
+									id="details.phoneNumber" name="details.phoneNumber" type="text"
+									th:value="${studentform.details.phoneNumber}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Numer konta:</label> <input
+									class="form-control" id="details.bankNumber.number"
+									name="details.bankNumber.number" type="text"
+									th:value="${studentform.details.bankNumber.number}" />
+							</div>
+							<!--  -->
+							<br />
+							<div class="col-xs-3">
+								<label for="pwd">Numer albumu:</label> <input
+									class="form-control" id="details.albumNumber"
+									name="details.albumNumber" type="text"
+									th:value="${studentform.details.albumNumber}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Wydział:</label> <input class="form-control"
+									id="details.department.details.departmentFullName"
+									name="details.department.details.departmentFullName"
+									type="text"
+									th:value="${studentform.details.department.details.departmentFullName}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Kierunek:</label> <input class="form-control"
+									id="details.fieldOfStudy.details.fieldOfStudyName"
+									name="details.fieldOfStudy.details.fieldOfStudyName"
+									type="text"
+									th:value="${studentform.details.fieldOfStudy.details.fieldOfStudyName}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Grupa:</label> <input class="form-control"
+									id="details.group.details.groupName"
+									name="details.group.details.groupName" type="text"
+									th:value="${studentform.details.group.details.groupName}" />
+							</div>
+							<!--  -->
+							<div class="col-xs-3">
+								<label for="pwd">Specjalizacja:</label> <input
+									class="form-control"
+									id="details.specialization.details.specializationName"
+									name="details.specialization.details.specializationName"
+									type="text"
+									th:value="${studentform.details.specialization.details.specializationName}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Nazwa semestru:</label> <input
+									class="form-control" id="details.termTitle"
+									name="details.termTitle" type="text"
+									th:value="${studentform.details.termTitle}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Semestr:</label> <input class="form-control"
+									id="details.currentTermNumber" name="details.currentTermNumber"
+									type="text" th:value="${studentform.details.currentTermNumber}" />
+							</div>
+							<!--  -->
+							<div class="form-group col-xs-3">
+								<label for="sel1">System studiów:</label> <select
+									class="form-control"
+									th:field="${studentform.details.studySystem}">
+									<option
+										th:each="system : ${T(core.study.details.StudySystem).values()}"
+										th:value="${system}" th:text="${system.name}"></option>
+								</select>
+							</div>
+							<div class="form-group col-xs-3">
+								<label for="sel1">Forma studiów:</label> <select
+									class="form-control"
+									th:field="${studentform.details.formOfStudy}">
+									<option
+										th:each="form : ${T(core.study.details.FormOfStudy).values()}"
+										th:value="${form}" th:text="${form.name}"></option>
+								</select>
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Początek studiów:</label> <input
+									class="form-control" id="details.startStudyDate"
+									name="details.startStudyDate" type="text"
+									th:value="${studentform.details.startStudyDate}" />
+							</div>
+							<div class="col-xs-3">
+								<label for="pwd">Koniec studiów:</label> <input
+									class="form-control" id="details.endStudyDate"
+									name="details.endStudyDate" type="text"
+									th:value="${studentform.details.endStudyDate}" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+
+		</div>
+		<div id="footer"></div>
+	</div>
+</body>
+<!-- 
+/BODY  
+-->
+<script>
+	$(function() {
+		$("#header").load("/core/header/header.html");
+
+	});
+</script>
+<script>
+	$(function() {
+		$("#footer").load("/core/footer/footer.html");
+
+	});
+</script>
+</html>

@@ -6,7 +6,7 @@ import core.study.fieldofstudy.FieldOfStudy;
 
 public class CourseDetails extends StudyDetails {
 	private String courseName;
-	private Integer ects, term;
+	private Integer term;
 	private CourseForm courseForm;
 	private FieldOfStudy fieldOfStudy;
 	
@@ -19,9 +19,8 @@ public class CourseDetails extends StudyDetails {
 	@Override
 	protected void initialize() {
 		this.courseName = null;
-		this.ects = null;
 		this.term = null;
-		this.fieldOfStudy = null;
+		this.fieldOfStudy = new FieldOfStudy();
 		this.courseForm = null;
 	}
 	public String getCourseName() {
@@ -29,12 +28,6 @@ public class CourseDetails extends StudyDetails {
 	}
 	public void setCourseName(String name) {
 		this.courseName = name;
-	}
-	public Integer getEcts() {
-		return ects;
-	}
-	public void setEcts(Integer ects) {
-		this.ects = ects;
 	}
 	public Integer getTerm() {
 		return term;
@@ -55,13 +48,13 @@ public class CourseDetails extends StudyDetails {
 		this.courseForm = courseForm;
 	}
 	public void setCourseForm(String courseForm) {
-		if(courseForm.equals(CourseForm.EXERCISES.toString()))
+		if(courseForm.equals(CourseForm.EXERCISES.getName()))
 			this.courseForm = CourseForm.EXERCISES;
-		if(courseForm.equals(CourseForm.LABORATORY.toString()))
+		if(courseForm.equals(CourseForm.LABORATORY.getName()))
 			this.courseForm = CourseForm.LABORATORY;
-		if(courseForm.equals(CourseForm.LECTURE.toString()))
+		if(courseForm.equals(CourseForm.LECTURE.getName()))
 			this.courseForm = CourseForm.LECTURE;
-		if(courseForm.equals(CourseForm.PROJECT.toString()))
+		if(courseForm.equals(CourseForm.PROJECT.getName()))
 			this.courseForm = CourseForm.PROJECT;
 	}
 }

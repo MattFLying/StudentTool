@@ -15,13 +15,13 @@ public class SpecializationDetails extends StudyDetails {
 	@Override
 	protected void initialize() {
 		this.specializationName = null;
-		this.fieldOfStudy = null;
+		this.fieldOfStudy = new FieldOfStudy();
 	}
 	public String getSpecializationName() {
 		return specializationName;
 	}
 	public void setSpecializationName(String specializationName) {
-		this.specializationName = specializationName;
+		this.specializationName = specializationName.replaceAll("­", "");
 	}
 	public FieldOfStudy getFieldOfStudy() {
 		return fieldOfStudy;

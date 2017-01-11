@@ -13,7 +13,7 @@ import core.study.group.Group;
 
 public class StudentDetails extends PersonalDetails {
 	private Long albumNumber;
-	private Date startStudyDate, endStudyDate;
+	private String startStudyDate, endStudyDate;
 	private String termTitle, diplomaTitle;
 	private Integer currentTermNumber;
 	private FormOfStudy formOfStudy;
@@ -36,16 +36,16 @@ public class StudentDetails extends PersonalDetails {
 		this.albumNumber = null;
 		this.startStudyDate = null;
 		this.endStudyDate = null;
-		this.department = null;
-		this.fieldOfStudy = null;
-		this.group = null;
+		this.department = new Department();
+		this.fieldOfStudy = new FieldOfStudy();
+		this.group = new Group();
 		this.termTitle = null;
-		this.specialization = null;
+		this.specialization = new Specialization();
 		this.diplomaTitle = null;
 		this.currentTermNumber = null;
 		this.formOfStudy = null;
 		this.studySystem = null;
-		this.bankNumber = null;
+		this.bankNumber = new BankAccount();
 	}
 	public Long getAlbumNumber() {
 		return albumNumber;
@@ -53,16 +53,16 @@ public class StudentDetails extends PersonalDetails {
 	public void setAlbumNumber(Long albumNumber) {
 		this.albumNumber = albumNumber;
 	}
-	public Date getStartStudyDate() {
+	public String getStartStudyDate() {
 		return startStudyDate;
 	}
-	public void setStartStudyDate(Date startStudyDate) {
+	public void setStartStudyDate(String startStudyDate) {
 		this.startStudyDate = startStudyDate;
 	}
-	public Date getEndStudyDate() {
+	public String getEndStudyDate() {
 		return endStudyDate;
 	}
-	public void setEndStudyDate(Date endStudyDate) {
+	public void setEndStudyDate(String endStudyDate) {
 		this.endStudyDate = endStudyDate;
 	}
 	public Department getDepartment() {

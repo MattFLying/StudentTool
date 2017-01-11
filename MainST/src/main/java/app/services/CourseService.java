@@ -2,12 +2,15 @@ package app.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import app.services.factory.DaoFactory;
 import core.study.course.Course;
 import core.study.fieldofstudy.FieldOfStudy;
 import model.dao.interfaces.ICourseDao;
 import model.entity.Entity;
-
+@Service
 public class CourseService extends DaoService<ICourseDao> {
 	public CourseService() {
 		super(DaoFactory.Dao.COURSE);
@@ -25,11 +28,10 @@ public class CourseService extends DaoService<ICourseDao> {
 		
 		model.entity.FieldOfStudy field = new FieldOfStudyService().getDao().findFieldOfStudyIdByName(course.getDetails().getFieldOfStudy().getDetails().getFieldOfStudyName());
 		
-		courseEntity.setCourseEcts(course.getDetails().getEcts());
 		courseEntity.setCourseName(course.getDetails().getCourseName());
 		courseEntity.setCourseTerm(course.getDetails().getTerm());
 		courseEntity.setFieldOfStudyId(field.getFieldOfStudyId());
-		courseEntity.setCourseForm(course.getDetails().getCourseForm().toString());
+		courseEntity.setCourseForm(course.getDetails().getCourseForm().getName());
 	}
 	@Override
 	protected void createFromEntity(Entity entity, Object base) {
@@ -40,7 +42,6 @@ public class CourseService extends DaoService<ICourseDao> {
 		
 		course.getDetails().setCourseForm(courseEntity.getCourseForm());
 		course.getDetails().setCourseName(courseEntity.getCourseName());
-		course.getDetails().setEcts(courseEntity.getCourseEcts());
 		course.getDetails().setTerm(courseEntity.getCourseTerm());
 		course.getDetails().setFieldOfStudy(field);
 	}

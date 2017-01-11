@@ -17,10 +17,7 @@
             <column name="course_name" length="200" />
         </property>
         <property name="courseForm" type="string">
-            <column name="course_form" length="20" />
-        </property>
-        <property name="courseEcts" type="java.lang.Integer">
-            <column name="course_ects" />
+            <column name="course_form" length="45" />
         </property>
         <property name="courseTerm" type="java.lang.Integer">
             <column name="course_term" />

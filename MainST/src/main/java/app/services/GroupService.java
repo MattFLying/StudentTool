@@ -2,12 +2,15 @@ package app.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import app.services.factory.DaoFactory;
 import core.study.fieldofstudy.FieldOfStudy;
 import core.study.group.Group;
 import model.dao.interfaces.IGroupDao;
 import model.entity.Entity;
-
+@Service
 public class GroupService extends DaoService<IGroupDao> {
 	public GroupService() {
 		super(DaoFactory.Dao.GROUP);

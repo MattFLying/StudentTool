@@ -1,6 +1,8 @@
 package model.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -45,6 +47,33 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} else {
 			return null;
 		}
+	}
+	public HashMap<Department, List<FieldOfStudy>> findAllFieldsForAllDepartments() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteriaDept, criteriaField = null;
+		List<Department> departments = new ArrayList<Department>();
+		List<FieldOfStudy> fields = new ArrayList<FieldOfStudy>();
+		HashMap<Department, List<FieldOfStudy>> list = new HashMap<Department, List<FieldOfStudy>>();
+		
+		try {
+			criteriaDept = session.createCriteria(Department.class);
+			departments = criteriaDept.list();	
+			Collections.sort(departments, (a, b) -> a.getDepartmentName().compareToIgnoreCase(b.getDepartmentName()));
+			
+			for(Department dept : departments) {
+				criteriaField = session.createCriteria(FieldOfStudy.class).add(Restrictions.eq("departmentId", dept.getDepartmentId()));
+				fields = criteriaField.list();
+				
+				Collections.sort(fields, (a, b) -> a.getFieldOfStudyName().compareToIgnoreCase(b.getFieldOfStudyName()));
+				list.put(dept, fields);
+			}
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return list;
 	}
 	public FieldOfStudy findFieldOfStudyNameById(Integer id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();

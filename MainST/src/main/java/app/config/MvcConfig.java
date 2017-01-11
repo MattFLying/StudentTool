@@ -7,7 +7,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-@ComponentScan(basePackages = "app.controller")
+@ComponentScan(basePackages = {"app.controller", "app.services"})
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	@Bean(name = "dataSource")
 	public DriverManagerDataSource dataSource() {

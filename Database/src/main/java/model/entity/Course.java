@@ -9,16 +9,14 @@ public class Course extends Entity {
 	private Integer courseId;
 	private String courseName;
 	private String courseForm;
-	private Integer courseEcts;
 	private Integer courseTerm;
 	private Integer fieldOfStudyId;
 
 	
 	public Course() {}
-	public Course(String courseName, String courseForm, Integer courseEcts, Integer courseTerm, Integer fieldOfStudyId) {
+	public Course(String courseName, String courseForm, Integer courseTerm, Integer fieldOfStudyId) {
 		this.courseName = courseName;
 		this.courseForm = courseForm;
-		this.courseEcts = courseEcts;
 		this.courseTerm = courseTerm;
 		this.fieldOfStudyId = fieldOfStudyId;
 	}
@@ -35,12 +33,6 @@ public class Course extends Entity {
 	}
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
-	}
-	public Integer getCourseEcts() {
-		return this.courseEcts;
-	}
-	public void setCourseEcts(Integer courseEcts) {
-		this.courseEcts = courseEcts;
 	}
 	public Integer getCourseTerm() {
 		return this.courseTerm;

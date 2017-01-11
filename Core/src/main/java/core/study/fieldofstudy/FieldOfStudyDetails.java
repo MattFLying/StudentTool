@@ -16,13 +16,13 @@ public class FieldOfStudyDetails extends StudyDetails {
 	@Override
 	protected void initialize() {
 		this.fieldOfStudyName = null;
-		this.department = null;
+		this.department = new Department();
 	}
-	public String getFieldOfStudyName() {
+	public String getFieldOfStudyName() {		
 		return fieldOfStudyName;
 	}
 	public void setFieldOfStudyName(String fieldOfStudyName) {
-		this.fieldOfStudyName = fieldOfStudyName;
+		this.fieldOfStudyName = fieldOfStudyName.replaceAll(",", "");
 	}
 	public Department getDepartment() {
 		return department;

@@ -1,11 +1,13 @@
 package app.services;
 
+import org.springframework.stereotype.Service;
+
 import app.services.factory.DaoFactory;
 import core.humanity.student.Student;
 import core.study.group.Group;
 import model.dao.interfaces.IStudentDao;
 import model.entity.Entity;
-
+@Service
 public class StudentService extends DaoService<IStudentDao> {
 	public StudentService() {
 		super(DaoFactory.Dao.STUDENT);

@@ -1,18 +1,18 @@
 package core.humanity.details;
 
 public class BankAccount {
-	private String bankNumber;
+	private String number;
 
 	
 	public BankAccount() {
-		this.bankNumber = null;
+		this.number = null;
 	}
 	
 	
-	public String getBankNumber() {
-		return bankNumber;
+	public String getNumber() {
+		return number;
 	}
-	public void setBankNumber(String bankNumber) {
-		this.bankNumber = bankNumber;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 }

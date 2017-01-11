@@ -2,12 +2,15 @@ package app.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import app.services.factory.DaoFactory;
 import core.study.department.Department;
 import core.study.department.Institute;
 import model.dao.interfaces.IInstituteDao;
 import model.entity.Entity;
-
+@Service
 public class InstituteService extends DaoService<IInstituteDao> {
 	public InstituteService() {
 		super(DaoFactory.Dao.INSTITUTE);
@@ -18,35 +21,7 @@ public class InstituteService extends DaoService<IInstituteDao> {
 	public IInstituteDao getDao() {
 		return (IInstituteDao)dao;
 	}
-	@Override
-	protected void createEntity(Object base, Entity entity) {
-		model.entity.Institute instituteEntity = (model.entity.Institute)entity;
-		Institute institute = (Institute)base;
-		
-		model.entity.Department dept = new DepartmentService().getDao().findDepartmentIdByName(institute.getDetails().getDepartment().getDetails().getDepartmentShortName());
-		
-		instituteEntity.setInstituteDescription(institute.getDetails().getInstituteFullName());
-		instituteEntity.setInstituteName(institute.getDetails().getInstituteShortName());
-		instituteEntity.setDepartmentId(dept.getDepartmentId());
-	}
-	@Override
-	protected void createFromEntity(Entity entity, Object base) {
-		model.entity.Institute instituteEntity = (model.entity.Institute)entity;
-		Institute institute = (Institute)base;
-		
-		Department dept = new DepartmentService().findDepartmentNameById(instituteEntity.getDepartmentId());
-		
-		institute.getDetails().setInstituteFullName(instituteEntity.getInstituteDescription());
-		institute.getDetails().setInstituteShortName(instituteEntity.getInstituteName());
-		institute.getDetails().setDepartment(dept);
-	}
-	private Institute createFromEntity(Institute base, model.entity.Institute entity) {
-		Institute institute = new Institute();
-		
-		createFromEntity(entity, institute);
-		
-		return institute;
-	}
+	
 	public Institute findByShortName(String name) {
 		model.entity.Institute entity = dao().findByName(name);
 		
@@ -97,12 +72,7 @@ public class InstituteService extends DaoService<IInstituteDao> {
 		
 		return institute;
 	}
-	public void save(Institute institute) {
-		model.entity.Institute entity = new model.entity.Institute();	
-		createEntity(institute, entity);
-		
-		dao().save(entity);
-	}
+	
 	public void update(Institute institute) {
 		model.entity.Institute entity = new model.entity.Institute();	
 		createEntity(institute, entity);
@@ -115,4 +85,60 @@ public class InstituteService extends DaoService<IInstituteDao> {
 		
 		dao().delete(entity);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	protected void createEntity(Object base, Entity entity) {
+		model.entity.Institute instituteEntity = (model.entity.Institute)entity;
+		Institute institute = (Institute)base;
+		
+		model.entity.Department dept = new DepartmentService().getDao().findDepartmentIdByFullName(institute.getDetails().getDepartment().getDetails().getDepartmentFullName());
+		
+		instituteEntity.setInstituteDescription(institute.getDetails().getInstituteFullName());
+		instituteEntity.setInstituteName(institute.getDetails().getInstituteShortName());
+		instituteEntity.setDepartmentId(dept.getDepartmentId());
+	}
+	@Override
+	protected void createFromEntity(Entity entity, Object base) {
+		model.entity.Institute instituteEntity = (model.entity.Institute)entity;
+		Institute institute = (Institute)base;
+		
+		Department dept = new DepartmentService().findDepartmentNameById(instituteEntity.getDepartmentId());
+		
+		institute.getDetails().setInstituteFullName(instituteEntity.getInstituteDescription());
+		institute.getDetails().setInstituteShortName(instituteEntity.getInstituteName());
+		institute.getDetails().setDepartment(dept);
+	}
+	private Institute createFromEntity(Institute base, model.entity.Institute entity) {
+		Institute institute = new Institute();
+		
+		createFromEntity(entity, institute);
+		
+		return institute;
+	}
+	public void save(Institute institute) {
+		model.entity.Institute entity = new model.entity.Institute();	
+		createEntity(institute, entity);
+		
+		dao().save(entity);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
