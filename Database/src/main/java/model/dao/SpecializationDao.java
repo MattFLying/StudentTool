@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
+
 import model.dao.interfaces.GenericDao;
 import model.dao.interfaces.ISpecializationDao;
 import model.db.hib.util.HibernateUtil;
+import model.entity.Department;
 import model.entity.FieldOfStudy;
 import model.entity.Specialization;
 import model.entity.SpecializationId;
@@ -77,4 +81,57 @@ public class SpecializationDao extends GenericDao<Specialization, Specialization
 		
 		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<Specialization> findSpecsByDepartmentId(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Specialization> list = new ArrayList<Specialization>();
+		
+		try {
+			List<FieldOfStudy> fields = new FieldOfStudyDao().findByDepartmentId(id);
+
+			for(FieldOfStudy field : fields) {
+				criteria = session.createCriteria(Specialization.class);
+				criteria.add(Restrictions.eq("id.fieldOfStudyId", field.getFieldOfStudyId()));
+				List listBase = criteria.list();
+				
+				list.addAll(listBase);
+			}	
+			
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

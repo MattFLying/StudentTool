@@ -24,7 +24,7 @@ public class PersonalDetails extends Details {
 		this.lastName = null;
 		this.birthDate = null;
 		this.pesel = null;
-		this.address = null;
+		this.address = new Address();
 		this.phoneNumber = null;
 	}
 	public String getFirstName() {
@@ -76,8 +76,13 @@ public class PersonalDetails extends Details {
 		this.title = title;
 	}
 	public void setTitle(String title) {
-		if(title.equals(ResearchTitle.LICENTIATE.toString())) {
+		if(title.equals(ResearchTitle.LICENTIATE.getName())) 
 			this.title = ResearchTitle.LICENTIATE;
-		}
+		if(title.equals(ResearchTitle.ENGINEER.getName())) 
+			this.title = ResearchTitle.ENGINEER;
+		if(title.equals(ResearchTitle.MAGISTER.getName())) 
+			this.title = ResearchTitle.MAGISTER;
+		if(title.equals(ResearchTitle.NONE.getName())) 
+			this.title = ResearchTitle.NONE;
 	}
 }

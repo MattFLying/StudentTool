@@ -23,9 +23,6 @@
         <property name="instituteId" type="java.lang.Integer">
             <column name="institute_id" />
         </property>
-        <property name="teacherPhoto" type="string">
-            <column name="teacher_photo" length="200" />
-        </property>
         <property name="teacherTitle" type="string">
             <column name="teacher_title" length="75" />
         </property>

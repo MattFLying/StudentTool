@@ -14,6 +14,7 @@ import model.db.hib.util.HibernateUtil;
 import model.entity.Department;
 import model.entity.FieldOfStudy;
 import model.entity.Group;
+import model.entity.Specialization;
 
 public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 	private Group groupEntity;
@@ -150,4 +151,49 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		
 		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+	public List<Group> findSpecsByDepartmentId(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Group> list = new ArrayList<Group>();
+		
+		try {
+			List<FieldOfStudy> fields = new FieldOfStudyDao().findByDepartmentId(id);
+
+			for(FieldOfStudy field : fields) {
+				criteria = session.createCriteria(Group.class);
+				criteria.add(Restrictions.eq("fieldOfStudyId", field.getFieldOfStudyId()));
+				List listBase = criteria.list();
+				
+				list.addAll(listBase);
+			}	
+			
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

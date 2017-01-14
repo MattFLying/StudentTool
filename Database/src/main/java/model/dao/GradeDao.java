@@ -8,7 +8,6 @@ import org.hibernate.criterion.Restrictions;
 import model.dao.interfaces.GenericDao;
 import model.dao.interfaces.IGradeDao;
 import model.db.hib.util.HibernateUtil;
-import model.entity.Bank;
 import model.entity.Grade;
 import model.entity.GradeId;
 import model.entity.Student;

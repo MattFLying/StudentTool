@@ -11,7 +11,6 @@ public class Student extends Entity {
 	private Integer addressId;
 	private Integer fieldOfStudyId;
 	private Integer specializationId;
-	private String studentPhoto;
 	private String studentTitle;
 	private String studentFirstname;
 	private String studentSecondname;
@@ -23,10 +22,9 @@ public class Student extends Entity {
 	private String studentStudySystem;
 	private Integer studentCurrentTerm;
 	private String studentFormOfStudy;
-	private String studentTermTitle;
-	private String studentDiplomaTitle;
 	private String studentStartDate;
 	private String studentEndDate;
+	private String studentBankNumber;
 
 	
 	public Student() {}
@@ -34,17 +32,16 @@ public class Student extends Entity {
 		this.id = id;
 	}
 	public Student(StudentId id, Integer groupId, Integer addressId, Integer fieldOfStudyId,
-			Integer specializationId, String studentPhoto, String studentTitle, String studentFirstname,
+			Integer specializationId, String studentTitle, String studentFirstname,
 			String studentSecondname, String studentLastname, Long studentPesel, String studentBirthdate,
 			String studentPhone, Long studentAlbum, String studentStudySystem, Integer studentCurrentTerm,
-			String studentFormOfStudy, String studentTermTitle, String studentDiplomaTitle, String studentStartDate,
-			String studentEndDate) {
+			String studentFormOfStudy, String studentStartDate,
+			String studentEndDate, String studentBankNumber) {
 		this.id = id;
 		this.groupId = groupId;
 		this.addressId = addressId;
 		this.fieldOfStudyId = fieldOfStudyId;
 		this.specializationId = specializationId;
-		this.studentPhoto = studentPhoto;
 		this.studentTitle = studentTitle;
 		this.studentFirstname = studentFirstname;
 		this.studentSecondname = studentSecondname;
@@ -56,23 +53,21 @@ public class Student extends Entity {
 		this.studentStudySystem = studentStudySystem;
 		this.studentCurrentTerm = studentCurrentTerm;
 		this.studentFormOfStudy = studentFormOfStudy;
-		this.studentTermTitle = studentTermTitle;
-		this.studentDiplomaTitle = studentDiplomaTitle;
 		this.studentStartDate = studentStartDate;
 		this.studentEndDate = studentEndDate;
+		this.studentBankNumber = studentBankNumber;
 	}
 	public Student(int studentId, String userLogin, Integer groupId, Integer addressId, Integer fieldOfStudyId,
-			Integer specializationId, String studentPhoto, String studentTitle, String studentFirstname,
+			Integer specializationId, String studentTitle, String studentFirstname,
 			String studentSecondname, String studentLastname, Long studentPesel, String studentBirthdate,
 			String studentPhone, Long studentAlbum, String studentStudySystem, Integer studentCurrentTerm,
-			String studentFormOfStudy, String studentTermTitle, String studentDiplomaTitle, String studentStartDate,
-			String studentEndDate) {
+			String studentFormOfStudy, String studentStartDate,
+			String studentEndDate, String studentBankNumber) {
 		this.id = new StudentId(studentId, userLogin);
 		this.groupId = groupId;
 		this.addressId = addressId;
 		this.fieldOfStudyId = fieldOfStudyId;
 		this.specializationId = specializationId;
-		this.studentPhoto = studentPhoto;
 		this.studentTitle = studentTitle;
 		this.studentFirstname = studentFirstname;
 		this.studentSecondname = studentSecondname;
@@ -84,10 +79,9 @@ public class Student extends Entity {
 		this.studentStudySystem = studentStudySystem;
 		this.studentCurrentTerm = studentCurrentTerm;
 		this.studentFormOfStudy = studentFormOfStudy;
-		this.studentTermTitle = studentTermTitle;
-		this.studentDiplomaTitle = studentDiplomaTitle;
 		this.studentStartDate = studentStartDate;
 		this.studentEndDate = studentEndDate;
+		this.studentBankNumber = studentBankNumber;
 	}
 
 	
@@ -120,12 +114,6 @@ public class Student extends Entity {
 	}
 	public void setSpecializationId(Integer specializationId) {
 		this.specializationId = specializationId;
-	}
-	public String getStudentPhoto() {
-		return this.studentPhoto;
-	}
-	public void setStudentPhoto(String studentPhoto) {
-		this.studentPhoto = studentPhoto;
 	}
 	public String getStudentFirstname() {
 		return this.studentFirstname;
@@ -181,18 +169,6 @@ public class Student extends Entity {
 	public void setStudentFormOfStudy(String studentFormOfStudy) {
 		this.studentFormOfStudy = studentFormOfStudy;
 	}
-	public String getStudentTermTitle() {
-		return this.studentTermTitle;
-	}
-	public void setStudentTermTitle(String studentTermTitle) {
-		this.studentTermTitle = studentTermTitle;
-	}
-	public String getStudentDiplomaTitle() {
-		return this.studentDiplomaTitle;
-	}
-	public void setStudentDiplomaTitle(String studentDiplomaTitle) {
-		this.studentDiplomaTitle = studentDiplomaTitle;
-	}
 	public String getStudentTitle() {
 		return studentTitle;
 	}
@@ -216,5 +192,11 @@ public class Student extends Entity {
 	}
 	public void setStudentEndDate(String studentEndDate) {
 		this.studentEndDate = studentEndDate;
+	}
+	public String getStudentBankNumber() {
+		return studentBankNumber;
+	}
+	public void setStudentBankNumber(String studentBankNumber) {
+		this.studentBankNumber = studentBankNumber;
 	}
 }

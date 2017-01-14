@@ -78,6 +78,19 @@ public class SpecializationService extends DaoService<ISpecializationDao> {
 		
 		return list;
 	}
+	public List<Specialization> findSpecsByDepartmentId(Integer id) {
+		List<Specialization> list = new ArrayList<Specialization>();		
+		
+		dao().findSpecsByDepartmentId(id).forEach( (x) -> {
+			Specialization spec = new Specialization();
+			
+			spec.getDetails().setSpecializationName(x.getSpecializationName());
+			
+			list.add(spec);
+		});
+		
+		return list;
+	}
 	public void save(Specialization specialization) {
 		model.entity.Specialization entity = new model.entity.Specialization();	
 		createEntity(specialization, entity);

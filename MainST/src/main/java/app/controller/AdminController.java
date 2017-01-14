@@ -17,8 +17,11 @@ import app.services.FieldOfStudyService;
 import app.services.GroupService;
 import app.services.InstituteService;
 import app.services.SpecializationService;
+import app.services.StudentService;
+import app.services.TeacherService;
 import app.services.UsersService;
 import core.humanity.student.Student;
+import core.humanity.teacher.Teacher;
 import core.study.course.Course;
 import core.study.department.Department;
 import core.study.department.Institute;
@@ -44,6 +47,10 @@ public class AdminController {
 	private GroupService groupService = new GroupService();
 	@Autowired
 	private CourseService courseService = new CourseService();
+	@Autowired
+	private StudentService studentService = new StudentService();
+	@Autowired
+	private TeacherService teacherService = new TeacherService();
 	
 	@RequestMapping(value="/admin/user/adduser", method=RequestMethod.GET)
 	public String addUser(Model model) {
@@ -57,9 +64,13 @@ public class AdminController {
 	public String addStudent(Model model) {
 		User user = new User();
 		Student student = new Student();
-
+		
 		model.addAttribute("userform", user);
 		model.addAttribute("studentform", student);
+		model.addAttribute("fieldsdepts", fieldOfStudyService.findAllFieldsForAllDepartments());
+		
+		model.addAttribute("groupService", groupService);
+		model.addAttribute("specializationService", specializationService);
 		
 		return "admin/user/addstudent";
 	}
@@ -68,7 +79,14 @@ public class AdminController {
 		return "admin/user/addstudents";
 	}
 	@RequestMapping(value={"/admin/user/addteacher"})
-	public String addTeacher() {
+	public String addTeacher(Model model) {
+		User user = new User();
+		Teacher teacher = new Teacher();
+		
+		model.addAttribute("userform", user);
+		model.addAttribute("teacherform", teacher);
+		model.addAttribute("institutesdepts", instituteService.findAllInstitutesForAllDepartments());
+		
 		return "admin/user/addteacher";
 	}
 	
@@ -149,20 +167,25 @@ public class AdminController {
 	@RequestMapping(value="/addstudentdb", method=RequestMethod.POST)
 	public String addStudentToDb(@ModelAttribute(value="userform") User user, @ModelAttribute(value="studentform") Student student) {
 		try {
-			System.out.println(student.getDetails().getFirstName());
-			System.out.println(user.getLogin());
-			System.out.println(student.getDetails().getCurrentTermNumber());
-			System.out.println(student.getDetails().getFormOfStudy().getName());
-			System.out.println(student.getDetails().getStudySystem().getName());
-			/*student.getDetails();
-			userService.createBasicUser(user);*/
+			studentService.save(student, user);
 			
 			return "redirect:/admin/user/addstudent?success";
 		} catch(Exception e) {
+			e.printStackTrace();
 			return "redirect:/admin/user/addstudent?error";
 		}
 	}
-	
+	@RequestMapping(value="/addteacherdb", method=RequestMethod.POST)
+	public String addTeacherToDb(@ModelAttribute(value="userform") User user, @ModelAttribute(value="teacherform") Teacher teacher) {
+		try {
+			teacherService.save(teacher, user);
+			
+			return "redirect:/admin/user/addteacher?success";
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "redirect:/admin/user/addteacher?error";
+		}
+	}
 	
 	
 	

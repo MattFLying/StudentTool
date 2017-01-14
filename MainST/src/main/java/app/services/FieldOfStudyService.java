@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import app.services.factory.DaoFactory;
 import core.study.department.Department;
 import core.study.fieldofstudy.FieldOfStudy;
+import core.study.fieldofstudy.Specialization;
+import core.study.group.Group;
 import model.dao.FieldOfStudyDao;
+import model.dao.GroupDao;
 import model.dao.interfaces.IFieldOfStudyDao;
 import model.entity.Entity;
 @Service
@@ -179,6 +182,65 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		
 		return list;
 	}
+	
+	
+	
+	
+	private Department createDepartment(model.entity.Department entity) {
+		Department department = new Department();
+		
+		department.getDetails().setDepartmentBuilding(entity.getDepartmentBuilding());
+		department.getDetails().setDepartmentFullName(entity.getDepartmentDescription());
+		department.getDetails().setDepartmentShortName(entity.getDepartmentName());
+		department.getDetails().setId(entity.getDepartmentId());
+		
+		return department;
+	}
+	private FieldOfStudy createFieldOfStudy(model.entity.FieldOfStudy entity, Department dept) {
+		FieldOfStudy field = new FieldOfStudy();
+		
+		field.getDetails().setFieldOfStudyName(entity.getFieldOfStudyName());
+		field.getDetails().setId(entity.getFieldOfStudyId());
+		field.getDetails().setDepartment(dept);
+		
+		return field;
+	}
+	private Group createGroup(model.entity.Group entity) {
+		Group group = new Group();
+		
+		group.getDetails().setGroupName(entity.getGroupName());
+		group.getDetails().setDescription(entity.getGroupDescription());
+		
+		return group;
+	}
+	private Specialization createSpecialization(model.entity.Specialization entity) {
+		Specialization specialization = new Specialization();
+		
+		specialization.getDetails().setSpecializationName(entity.getSpecializationName());
+		specialization.getDetails().setId(entity.getId().getSpecializationId());
+		
+		return specialization;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

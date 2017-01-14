@@ -54,9 +54,8 @@ public class UsersService extends DaoService<IUserDao> {
 		model.entity.UserDetails userDetailsEntity = new model.entity.UserDetails();
 		
 		userEntity.setLogin(user.getLogin());
-		userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
+		userEntity.setPassword(passwordEncoder().encode(user.getPassword()));
 		userEntity.setEnabled(1);
-		
 		userDetailsEntity.setLogin(user.getLogin());
 		userDetailsEntity.setRole(user.getRole().getName());
 		

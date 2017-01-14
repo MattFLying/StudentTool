@@ -30,7 +30,7 @@ public class Group extends Entity {
 		return this.groupName;
 	}
 	public void setGroupName(String groupName) {
-		this.groupName = groupName;
+		this.groupName = groupName.replaceAll(",", "");
 	}
 	public String getGroupDescription() {
 		return this.groupDescription;

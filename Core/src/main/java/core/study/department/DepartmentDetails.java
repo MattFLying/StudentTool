@@ -27,7 +27,7 @@ public class DepartmentDetails extends StudyDetails {
 		return departmentFullName;
 	}
 	public void setDepartmentFullName(String departmentFullName) {
-		this.departmentFullName = departmentFullName;
+		this.departmentFullName = departmentFullName.replaceAll(",", "");
 	}
 	public String getDepartmentShortName() {
 		return departmentShortName;

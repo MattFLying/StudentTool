@@ -106,20 +106,25 @@ BODY
 
 							</table>
 							
+							
+							<div class="col-xs-3">
+								<label for="fullName">Forma:</label>
+								<div th:each="form : ${T(core.study.details.CourseForm).values()}">
+									<input type="checkbox" th:field="*{details.courseForms}" th:value="${form}" /> 
+									<label th:text="${form.name}"></label>
+								</div>
+							</div>
+							
+							
 							<div class="col-xs-3">
 								<label for="fullName">Semestr:</label> <input
 									class="form-control" id="fullName" type="text"
 									th:field="*{details.term}" />
 							</div>
-							<div class="form-group col-xs-3">
-								<label for="sel1">Forma:</label> <select
-									class="form-control"
-									th:field="*{details.courseForm}">
-									<option
-										th:each="form : ${T(core.study.details.CourseForm).values()}"
-										th:value="${form}" th:text="${form.name}"></option>
-								</select>
-							</div>
+
+							
+
+							
 						</div>
 						<!-- -->
 						<br /> <br />

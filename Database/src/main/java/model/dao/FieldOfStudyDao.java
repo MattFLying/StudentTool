@@ -12,6 +12,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 
+import model.entity.Specialization;
 import model.dao.interfaces.GenericDao;
 import model.dao.interfaces.IFieldOfStudyDao;
 import model.db.hib.util.HibernateUtil;
@@ -75,6 +76,131 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		
 		return list;
 	}
+	public HashMap<Department, HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>> findAllFieldsSpecsGroupsForAllDepartments() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteriaDept, criteriaField, criteriaSpec, criteriaGroup = null;
+		
+		List<Department> departments = new ArrayList<Department>();
+		List<Group> groups = new ArrayList<Group>();
+		List<Specialization> specs = new ArrayList<Specialization>();
+		List<FieldOfStudy> fields = new ArrayList<FieldOfStudy>();
+		HashMap<List<Specialization>, List<Group>> specsGroups = new HashMap<List<Specialization>, List<Group>>();
+		HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>> specsGroupsForFields = new HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>();
+		HashMap<Department, HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>> all = new HashMap<Department, HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>>();
+		
+		
+		try {
+			criteriaDept = session.createCriteria(Department.class);
+			departments = criteriaDept.list();
+			
+			for(Department dept : departments) {
+				criteriaField = session.createCriteria(FieldOfStudy.class).add(Restrictions.eq("departmentId", dept.getDepartmentId()));
+				fields = criteriaField.list();
+				
+				specs = new ArrayList<Specialization>();
+				groups = new ArrayList<Group>();
+				//System.out.println(dept.getDepartmentDescription());
+				for(FieldOfStudy field : fields) {
+					criteriaSpec = session.createCriteria(Specialization.class).add(Restrictions.eq("id.fieldOfStudyId", field.getFieldOfStudyId()));
+					criteriaGroup = session.createCriteria(Group.class).add(Restrictions.eq("fieldOfStudyId", field.getFieldOfStudyId()));
+					
+					specs.addAll(criteriaSpec.list());
+					groups.addAll(criteriaGroup.list());
+					
+					specsGroups.put(specs, groups);
+					specsGroupsForFields.put(field, specsGroups);
+					
+					//System.out.println("\n"+ field.getFieldOfStudyName() + " grupy: " + groups.size() + " spece: " + specs.size() +"\n");
+				}
+				all.put(dept, specsGroupsForFields);
+			}
+			
+			
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return all;
+	}
+	
+	
+	
+	
+	
+	public static HashMap<Department, HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>> ffindAllFieldsSpecsGroupsForAllDepartments() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteriaDept, criteriaField, criteriaSpec, criteriaGroup = null;
+		
+		List<Department> departments = new ArrayList<Department>();
+		List<Group> groups = new ArrayList<Group>();
+		List<Specialization> specs = new ArrayList<Specialization>();
+		List<FieldOfStudy> fields = new ArrayList<FieldOfStudy>();
+		HashMap<List<Specialization>, List<Group>> specsGroups = new HashMap<List<Specialization>, List<Group>>();
+		HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>> specsGroupsForFields = new HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>();
+		HashMap<Department, HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>> all = new HashMap<Department, HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>>();
+		
+		
+		try {
+			criteriaDept = session.createCriteria(Department.class);
+			departments = criteriaDept.list();
+			
+			for(Department dept : departments) {
+				criteriaField = session.createCriteria(FieldOfStudy.class).add(Restrictions.eq("departmentId", dept.getDepartmentId()));
+				fields = criteriaField.list();
+				
+				specs = new ArrayList<Specialization>();
+				groups = new ArrayList<Group>();
+				System.out.println(dept.getDepartmentDescription());
+				for(FieldOfStudy field : fields) {
+					criteriaSpec = session.createCriteria(Specialization.class).add(Restrictions.eq("id.fieldOfStudyId", field.getFieldOfStudyId()));
+					criteriaGroup = session.createCriteria(Group.class).add(Restrictions.eq("fieldOfStudyId", field.getFieldOfStudyId()));
+					
+					specs.addAll(criteriaSpec.list());
+					groups.addAll(criteriaGroup.list());
+					
+					specsGroups.put(specs, groups);
+					specsGroupsForFields.put(field, specsGroups);
+					
+					System.out.println("\n"+ field.getFieldOfStudyName() + " grupy: " + groups.size() + " spece: " + specs.size() +"\n");
+				}
+				all.put(dept, specsGroupsForFields);
+			}
+			
+			
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return all;
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		ffindAllFieldsSpecsGroupsForAllDepartments();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public FieldOfStudy findFieldOfStudyNameById(Integer id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		FieldOfStudy entity = null;

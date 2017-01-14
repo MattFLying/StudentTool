@@ -23,9 +23,7 @@
 		<mapping resource="hbm/Department.hbm.xml" />
 		<mapping resource="hbm/Group.hbm.xml" />
 		<mapping resource="hbm/TeachersCourses.hbm.xml" />
-		<mapping resource="hbm/Certificate.hbm.xml" />
 		<mapping resource="hbm/Student.hbm.xml" />
-		<mapping resource="hbm/Bank.hbm.xml" />
 		<mapping resource="hbm/Address.hbm.xml" />
 		<mapping resource="hbm/Institute.hbm.xml" />
 		<mapping resource="hbm/Specialization.hbm.xml" />

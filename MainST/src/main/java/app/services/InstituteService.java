@@ -1,13 +1,16 @@
 package app.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import app.services.factory.DaoFactory;
 import core.study.department.Department;
 import core.study.department.Institute;
+import core.study.fieldofstudy.FieldOfStudy;
 import model.dao.interfaces.IInstituteDao;
 import model.entity.Entity;
 @Service
@@ -88,7 +91,30 @@ public class InstituteService extends DaoService<IInstituteDao> {
 	
 	
 	
-	
+	public HashMap<Department, List<Institute>> findAllInstitutesForAllDepartments() {
+		HashMap<model.entity.Department, List<model.entity.Institute>> entities = dao().findAllInstitutesForAllDepartments();
+		HashMap<Department, List<Institute>> list = new HashMap<Department, List<Institute>>();
+		
+		for(Map.Entry<model.entity.Department, List<model.entity.Institute>> entry : entities.entrySet()) {
+			Department dept = new Department();
+			dept.getDetails().setDepartmentFullName(entry.getKey().getDepartmentDescription());
+			dept.getDetails().setId(entry.getKey().getDepartmentId());
+			
+			List<Institute> fields = new ArrayList<Institute>();
+			for(model.entity.Institute i : entry.getValue()) {
+				Institute institute = new Institute();
+				institute.getDetails().setInstituteFullName(i.getInstituteDescription());
+				
+				institute.getDetails().setDepartment(dept);
+				
+				fields.add(institute);
+			}
+			
+			list.put(dept, fields);
+		}
+		
+		return list;
+	}
 	
 	
 	

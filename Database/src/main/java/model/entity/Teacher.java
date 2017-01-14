@@ -10,7 +10,6 @@ public class Teacher extends Entity {
 	private Integer addressId;
 	private Integer departmentId;
 	private Integer instituteId;
-	private String teacherPhoto;
 	private String teacherTitle;
 	private String teacherFirstname;
 	private String teacherSecondname;
@@ -25,14 +24,13 @@ public class Teacher extends Entity {
 	public Teacher(TeacherId id) {
 		this.id = id;
 	}
-	public Teacher(TeacherId id, Integer addressId, Integer departmentId, Integer instituteId, String teacherPhoto,
+	public Teacher(TeacherId id, Integer addressId, Integer departmentId, Integer instituteId,
 			String teacherTitle, String teacherFirstname, String teacherSecondname, String teacherLastname, String teacherBirthdate,
 			String teacherPhone, String teacherRoom, String teacherWebsite) {
 		this.id = id;
 		this.addressId = addressId;
 		this.departmentId = departmentId;
 		this.instituteId = instituteId;
-		this.teacherPhoto = teacherPhoto;
 		this.teacherTitle = teacherTitle;
 		this.teacherFirstname = teacherFirstname;
 		this.teacherSecondname = teacherSecondname;
@@ -42,14 +40,13 @@ public class Teacher extends Entity {
 		this.teacherRoom = teacherRoom;
 		this.teacherWebsite = teacherWebsite;
 	}
-	public Teacher(int teacherId, String userLogin, Integer addressId, Integer departmentId, Integer instituteId, String teacherPhoto,
+	public Teacher(int teacherId, String userLogin, Integer addressId, Integer departmentId, Integer instituteId,
 			String teacherTitle, String teacherFirstname, String teacherSecondname, String teacherLastname, String teacherBirthdate,
 			String teacherPhone, String teacherRoom, String teacherWebsite) {
 		this.id = new TeacherId(teacherId, userLogin);
 		this.addressId = addressId;
 		this.departmentId = departmentId;
 		this.instituteId = instituteId;
-		this.teacherPhoto = teacherPhoto;
 		this.teacherTitle = teacherTitle;
 		this.teacherFirstname = teacherFirstname;
 		this.teacherSecondname = teacherSecondname;
@@ -84,12 +81,6 @@ public class Teacher extends Entity {
 	}
 	public void setInstituteId(Integer instituteId) {
 		this.instituteId = instituteId;
-	}
-	public String getTeacherPhoto() {
-		return this.teacherPhoto;
-	}
-	public void setTeacherPhoto(String teacherPhoto) {
-		this.teacherPhoto = teacherPhoto;
 	}
 	public String getTeacherFirstname() {
 		return this.teacherFirstname;

@@ -8,6 +8,7 @@ public class CourseDetails extends StudyDetails {
 	private String courseName;
 	private Integer term;
 	private CourseForm courseForm;
+	private CourseForm[] courseForms;
 	private FieldOfStudy fieldOfStudy;
 	
 	
@@ -22,6 +23,7 @@ public class CourseDetails extends StudyDetails {
 		this.term = null;
 		this.fieldOfStudy = new FieldOfStudy();
 		this.courseForm = null;
+		this.courseForms = new CourseForm[0];
 	}
 	public String getCourseName() {
 		return courseName;
@@ -56,5 +58,11 @@ public class CourseDetails extends StudyDetails {
 			this.courseForm = CourseForm.LECTURE;
 		if(courseForm.equals(CourseForm.PROJECT.getName()))
 			this.courseForm = CourseForm.PROJECT;
+	}
+	public CourseForm[] getCourseForms() {
+		return courseForms;
+	}
+	public void setCourseForms(CourseForm[] courseForms) {
+		this.courseForms = courseForms;
 	}
 }

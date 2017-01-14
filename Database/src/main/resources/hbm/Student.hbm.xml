@@ -26,9 +26,6 @@
         <property name="specializationId" type="java.lang.Integer">
             <column name="specialization_id" />
         </property>
-        <property name="studentPhoto" type="string">
-            <column name="student_photo" length="200" />
-        </property>
         <property name="studentTitle" type="string">
             <column name="student_title" length="75" />
         </property>
@@ -62,17 +59,14 @@
         <property name="studentFormOfStudy" type="string">
             <column name="student_form_of_study" length="45" />
         </property>
-        <property name="studentTermTitle" type="string">
-            <column name="student_term_title" length="55" />
-        </property>
-        <property name="studentDiplomaTitle" type="string">
-            <column name="student_diploma_title" length="250" />
-        </property>
         <property name="studentStartDate" type="string">
             <column name="student_start_date" length="45" />
         </property>
         <property name="studentEndDate" type="string">
             <column name="student_end_date" length="45" />
+        </property>
+        <property name="studentBankNumber" type="string">
+            <column name="student_bank_number" length="26" />
         </property>
         
     </class>

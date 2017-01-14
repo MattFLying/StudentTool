@@ -21,7 +21,7 @@ public class SpecializationDetails extends StudyDetails {
 		return specializationName;
 	}
 	public void setSpecializationName(String specializationName) {
-		this.specializationName = specializationName.replaceAll("­", "");
+		this.specializationName = specializationName.replaceAll("­", "").replaceAll(",", "");
 	}
 	public FieldOfStudy getFieldOfStudy() {
 		return fieldOfStudy;

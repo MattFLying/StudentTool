@@ -25,15 +25,189 @@ BODY
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<center>
-					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu administracyjnego o identyfikatorze użytkownika: </span>
-					
-					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
-					
-					<form th:action="@{/logout}" method="post">
-						<input type="submit" class="btn btn-info text-center center-block"
-							value="Wyloguj" />
-					</form></center>
+						<span style="font-size: 12; font-weight: bold; color: black">Zostałeś
+							zalogowany do Panelu administracyjnego o identyfikatorze
+							użytkownika: </span> <span style="font-weight: bold; color: red"
+							th:text="${session.username}"></span>
+
+						<form th:action="@{/logout}" method="post">
+							<input type="submit"
+								class="btn btn-info text-center center-block" value="Wyloguj" />
+						</form>
+					</center>
 				</div>
+			</div>
+
+
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 14; font-weight: bold; color: green">Dodaj
+							Prowadzącego</span>
+					</center>
+				</div>
+				<form action="#" th:action="@{/addteacherdb}" th:object="${teacherform}" method="post">
+					<div class="panel-body">
+
+						<div th:if="${param.success}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Prowadzący
+									dodany!</span>
+							</center>
+						</div>
+						<div th:if="${param.error}">
+							<center>
+								<span style="font-size: 12; font-weight: bold; color: orange">Coś
+									poszło nie tak, upewnij się, że podałeś właściwe dane!</span>
+							</center>
+						</div>
+						<div>
+							<div class="col-xs-3">
+								<label for="password">Hasło:</label> <input class="form-control"
+									id="password" name="password" type="text" th:value="${userform.password}" />
+							</div>
+						</div>
+
+						<br /> <br /> <br /> <br /> 
+
+						<br />
+						<div>
+						
+							<div>
+								<div class="col-xs-3">
+								<label for="usr">Imie:</label> <input class="form-control"
+									id="details.firstName" name="details.firstName" type="text"
+									th:value="${teacherform.details.firstName}" />
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Drugie imie:</label> <input
+										class="form-control" id="details.secondName"
+										name="details.secondName" type="text"
+										th:value="${teacherform.details.secondName}" />
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Nazwisko:</label> <input class="form-control"
+										id="details.lastName" name="details.lastName" type="text"
+										th:value="${teacherform.details.lastName}" />
+								</div>
+								<div class="col-xs-3">
+								<label for="pwd">Data urodzenia:</label> <input
+									class="form-control" id="details.birthDate"
+									name="details.birthDate" type="text"
+									th:value="${teacherform.details.birthDate}" />
+								</div>
+							</div>
+						
+						
+							<div>
+								<div class="col-xs-3">
+									<label for="pwd">Telefon:</label> <input class="form-control"
+										id="details.phoneNumber" name="details.phoneNumber" type="text"
+										th:value="${teacherform.details.phoneNumber}" />
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Pokój:</label> <input
+										class="form-control" id="details.bankNumber"
+										name="details.bankNumber" type="text"
+										th:value="${teacherform.details.room}" />
+								</div>
+								<div class="col-xs-3">
+								<label for="pwd">Strona internetowa:</label> <input
+									class="form-control" id="details.albumNumber"
+									name="details.albumNumber" type="text"
+									th:value="${teacherform.details.website}" />
+								</div>
+							</div>
+						
+							<div>
+								<div class="form-group col-xs-3">
+									<label for="sel1">Tytuł:</label> 
+									<select
+										class="form-control"
+										th:field="${teacherform.details.title}">
+										<option
+											th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
+											th:value="${title}" th:text="${title.name}"></option>
+									</select>
+									
+									<table>
+									<tr>
+
+										<th>Adres</th>
+
+									</tr>
+								
+									<tr>
+
+										<td>
+											<label for="pwd">Miasto:</label>
+											<input class="form-control" id="details.address.city" name="details.address.city" type="text" 
+												th:value="${teacherform.details.address.city}" />
+										</td>
+										<td>
+											<label for="pwd">Kod pocztowy:</label>
+											<input class="form-control" id="details.address.postalCode" name="details.address.postalCode" type="text" 
+												th:value="${teacherform.details.address.postalCode}" />
+										</td>
+										<td>
+											<label for="pwd">Ulica:</label>
+											<input class="form-control" id="details.address.streetFullAddress" name="details.address.streetFullAddress" type="text" 
+												th:value="${teacherform.details.address.streetFullAddress}" />
+										</td>
+
+									</tr>
+								
+								</table>
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+
+								<table>
+
+									<tr>
+
+										<th>Wydział</th>
+
+										<th>Instytut</th>
+
+									</tr>
+
+									<tr th:each="entry : ${institutesdepts}">
+
+										<td th:text="${entry.getKey().details.departmentFullName}"
+											th:value="${entry.getKey().details.departmentFullName}"></td>
+
+										<td>
+											<select id="fieldslist" class="form-control" th:field="*{details.institute.details.instituteFullName}">
+												<option selected="selected" value="">Wybierz...</option>
+												<option th:each="institute : ${entry.getValue()}"
+													th:value="${institute.details.instituteFullName}"
+													th:text="${institute.details.instituteFullName}"></option>
+											</select>
+										</td>
+
+									</tr>
+
+								</table>
+
+
+
+							</div>
+						
+						</div>
+
+					</div>
+					<input type="submit" class="btn btn-info text-center center-block"
+						value="Dodaj" />
+				</form>
 			</div>
 
 

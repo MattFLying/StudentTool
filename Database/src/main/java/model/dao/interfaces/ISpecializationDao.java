@@ -8,4 +8,5 @@ public interface ISpecializationDao extends IGenericDao<Specialization, Speciali
 	Specialization findByName(String name);
 	List<Specialization> findByFieldOfStudyId(Integer id);
 	List<Specialization> findByFieldOfStudyName(String name);
+	public List<Specialization> findSpecsByDepartmentId(Integer id);
 }

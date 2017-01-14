@@ -10,4 +10,5 @@ public interface IGroupDao extends IGenericDao<Group, Integer> {
 	Group findGroupIdByName(String name);
 	List<Group> findByFieldOfStudyId(Integer id); 
 	List<Group> findByFieldOfStudyName(String name); 
+	List<Group> findSpecsByDepartmentId(Integer id);
 }

@@ -41,6 +41,14 @@ public class AddressService extends DaoService<IAddressDao> {
 		
 		return address;
 	}
+	public Integer saveWithId(Address address) {
+		model.entity.Address entity = new model.entity.Address();	
+		createEntity(address, entity);
+		
+		dao().save(entity);
+		
+		return entity.getAddressId();
+	}
 	public void save(Address address) {
 		model.entity.Address entity = new model.entity.Address();	
 		createEntity(address, entity);

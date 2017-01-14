@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import app.services.factory.DaoFactory;
 import core.study.fieldofstudy.FieldOfStudy;
+import core.study.fieldofstudy.Specialization;
 import core.study.group.Group;
 import model.dao.interfaces.IGroupDao;
 import model.entity.Entity;
@@ -15,7 +16,7 @@ public class GroupService extends DaoService<IGroupDao> {
 	public GroupService() {
 		super(DaoFactory.Dao.GROUP);
 	}
-	
+	public String test_1 = new String("tescik haha");
 	
 	@Override
 	public IGroupDao getDao() {
@@ -104,6 +105,20 @@ public class GroupService extends DaoService<IGroupDao> {
 		
 		dao().findByFieldOfStudyName(name).forEach( (x) -> {
 			list.add(createFromEntity(new Group(), x));
+		});
+		
+		return list;
+	}
+	public List<Group> findGroupsByDepartmentId(Integer id) {
+		List<Group> list = new ArrayList<Group>();		
+		
+		dao().findSpecsByDepartmentId(id).forEach( (x) -> {
+			Group group = new Group();
+			
+			group.getDetails().setGroupName(x.getGroupName());
+			group.getDetails().setId(x.getGroupId());
+			
+			list.add(group);
 		});
 		
 		return list;

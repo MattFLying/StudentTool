@@ -49,8 +49,9 @@ BODY
 							Studenta</span>
 					</center>
 				</div>
-				<div class="panel-body">
-					<form action="#" th:action="@{/addstudentdb}" method="post">
+				<form action="#" th:action="@{/addstudentdb}" th:object="${studentform}" method="post">
+					<div class="panel-body">
+
 						<div th:if="${param.success}">
 							<center>
 								<span style="font-size: 12; font-weight: bold; color: orange">Student
@@ -65,121 +66,74 @@ BODY
 						</div>
 						<div>
 							<div class="col-xs-3">
-								<label for="login">Login:</label> <input class="form-control"
-									type="text" th:value="${userform.login}" id="login"
-									name="login" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Hasło:</label> <input class="form-control"
-									id="pwd" type="text" th:value="${userform.password}" />
+								<label for="password">Hasło:</label> <input class="form-control"
+									id="password" name="password" type="text" th:value="${userform.password}" />
 							</div>
 						</div>
 
-						<br /> <br /> <br /> <br /> <label>Typ konta</label>
-						<div class="radio">
-							<label><input type="radio" name="typeacc" value="ADMIN"
-								th:value="${userform.role}" />Administrator</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="typeacc" value="STUDENT"
-								th:value="${userform.role}" />Student</label>
-						</div>
-						<div class="radio">
-							<label><input type="radio" name="typeacc" value="TEACHER"
-								th:value="${userform.role}" />Prowadzący zajęcia</label>
-						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<br /> <br /> <br /> <br /> 
+
 						<br />
 						<div>
-							<div class="col-xs-3">
+						
+							<div>
+								<div class="col-xs-3">
 								<label for="usr">Imie:</label> <input class="form-control"
 									id="details.firstName" name="details.firstName" type="text"
 									th:value="${studentform.details.firstName}" />
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Drugie imie:</label> <input
+										class="form-control" id="details.secondName"
+										name="details.secondName" type="text"
+										th:value="${studentform.details.secondName}" />
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Nazwisko:</label> <input class="form-control"
+										id="details.lastName" name="details.lastName" type="text"
+										th:value="${studentform.details.lastName}" />
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Pesel:</label> <input class="form-control"
+										id="details.pesel" name="details.pesel" type="text"
+										th:value="${studentform.details.pesel}" />
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Drugie imie:</label> <input
-									class="form-control" id="details.secondName"
-									name="details.secondName" type="text"
-									th:value="${studentform.details.secondName}" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Nazwisko:</label> <input class="form-control"
-									id="details.lastName" name="details.lastName" type="text"
-									th:value="${studentform.details.lastName}" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Pesel:</label> <input class="form-control"
-									id="details.pesel" name="details.pesel" type="text"
-									th:value="${studentform.details.pesel}" />
-							</div>
-							<!--  -->
-							<div class="col-xs-3">
+						
+						
+							<div>
+								<div class="col-xs-3">
 								<label for="pwd">Data urodzenia:</label> <input
 									class="form-control" id="details.birthDate"
 									name="details.birthDate" type="text"
 									th:value="${studentform.details.birthDate}" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Telefon:</label> <input class="form-control"
-									id="details.phoneNumber" name="details.phoneNumber" type="text"
-									th:value="${studentform.details.phoneNumber}" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Numer konta:</label> <input
-									class="form-control" id="details.bankNumber.number"
-									name="details.bankNumber.number" type="text"
-									th:value="${studentform.details.bankNumber.number}" />
-							</div>
-							<!--  -->
-							<br />
-							<div class="col-xs-3">
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Telefon:</label> <input class="form-control"
+										id="details.phoneNumber" name="details.phoneNumber" type="text"
+										th:value="${studentform.details.phoneNumber}" />
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Numer konta:</label> <input
+										class="form-control" id="details.bankNumber"
+										name="details.bankNumber" type="text"
+										th:value="${studentform.details.bankNumber}" />
+								</div>
+								<div class="col-xs-3">
 								<label for="pwd">Numer albumu:</label> <input
 									class="form-control" id="details.albumNumber"
 									name="details.albumNumber" type="text"
 									th:value="${studentform.details.albumNumber}" />
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Wydział:</label> <input class="form-control"
-									id="details.department.details.departmentFullName"
-									name="details.department.details.departmentFullName"
-									type="text"
-									th:value="${studentform.details.department.details.departmentFullName}" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Kierunek:</label> <input class="form-control"
-									id="details.fieldOfStudy.details.fieldOfStudyName"
-									name="details.fieldOfStudy.details.fieldOfStudyName"
-									type="text"
-									th:value="${studentform.details.fieldOfStudy.details.fieldOfStudyName}" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Grupa:</label> <input class="form-control"
-									id="details.group.details.groupName"
-									name="details.group.details.groupName" type="text"
-									th:value="${studentform.details.group.details.groupName}" />
-							</div>
-							<!--  -->
-							<div class="col-xs-3">
-								<label for="pwd">Specjalizacja:</label> <input
-									class="form-control"
-									id="details.specialization.details.specializationName"
-									name="details.specialization.details.specializationName"
-									type="text"
-									th:value="${studentform.details.specialization.details.specializationName}" />
-							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Nazwa semestru:</label> <input
-									class="form-control" id="details.termTitle"
-									name="details.termTitle" type="text"
-									th:value="${studentform.details.termTitle}" />
-							</div>
-							<div class="col-xs-3">
+						
+							<div>
+								<div class="col-xs-3">
 								<label for="pwd">Semestr:</label> <input class="form-control"
 									id="details.currentTermNumber" name="details.currentTermNumber"
 									type="text" th:value="${studentform.details.currentTermNumber}" />
-							</div>
-							<!--  -->
-							<div class="form-group col-xs-3">
+								</div>
+								<div class="form-group col-xs-3">
 								<label for="sel1">System studiów:</label> <select
 									class="form-control"
 									th:field="${studentform.details.studySystem}">
@@ -196,22 +150,130 @@ BODY
 										th:each="form : ${T(core.study.details.FormOfStudy).values()}"
 										th:value="${form}" th:text="${form.name}"></option>
 								</select>
+								</div>
+								<div class="col-xs-3">
+									<label for="pwd">Początek studiów:</label> <input
+										class="form-control" id="details.startStudyDate"
+										name="details.startStudyDate" type="text"
+										th:value="${studentform.details.startStudyDate}" />
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Początek studiów:</label> <input
-									class="form-control" id="details.startStudyDate"
-									name="details.startStudyDate" type="text"
-									th:value="${studentform.details.startStudyDate}" />
+						
+							<div>
+								<div class="col-xs-3">
+									<label for="pwd">Koniec studiów:</label> <input
+										class="form-control" id="details.endStudyDate"
+										name="details.endStudyDate" type="text"
+										th:value="${studentform.details.endStudyDate}" />
+								</div>
+								<div class="form-group col-xs-3">
+									<label for="sel1">Tytuł:</label> 
+									<select
+										class="form-control"
+										th:field="${studentform.details.title}">
+										<option
+											th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
+											th:value="${title}" th:text="${title.name}"></option>
+									</select>
+									
+									<table>
+									<tr>
+
+										<th>Adres</th>
+
+									</tr>
+								
+									<tr>
+
+										<td>
+											<label for="pwd">Miasto:</label>
+											<input class="form-control" id="details.address.city" name="details.address.city" type="text" 
+												th:value="${studentform.details.address.city}" />
+										</td>
+										<td>
+											<label for="pwd">Kod pocztowy:</label>
+											<input class="form-control" id="details.address.postalCode" name="details.address.postalCode" type="text" 
+												th:value="${studentform.details.address.postalCode}" />
+										</td>
+										<td>
+											<label for="pwd">Ulica:</label>
+											<input class="form-control" id="details.address.streetFullAddress" name="details.address.streetFullAddress" type="text" 
+												th:value="${studentform.details.address.streetFullAddress}" />
+										</td>
+
+									</tr>
+								
+								</table>
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+
+								<table>
+
+									<tr>
+
+										<th>Wydział</th>
+
+										<th>Kierunek</th>
+
+										<th>Specjalizacja</th>
+
+										<th>Grupa</th>
+
+									</tr>
+
+									<tr th:each="entry : ${fieldsdepts}">
+
+										<td th:text="${entry.getKey().details.departmentFullName}"
+											th:value="${entry.getKey().details.departmentFullName}"></td>
+
+										<td>
+											<select id="fieldslist" class="form-control" th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
+												<option selected="selected" value="">Wybierz...</option>
+												<option th:each="field : ${entry.getValue()}"
+													th:value="${field.details.fieldOfStudyName}"
+													th:text="${field.details.fieldOfStudyName}"></option>
+											</select>
+										</td>
+										
+										<td>
+											<select id="specslist" class="form-control" th:field="*{details.specialization.details.specializationName}">
+												<option selected="selected" value="">Wybierz...</option>
+												<option th:each="spec : ${specializationService.findSpecsByDepartmentId(entry.getKey().details.id)}"
+													th:value="${spec.details.specializationName}"
+													th:text="${spec.details.specializationName}"></option>
+											</select>
+										</td>
+										
+										<td>
+											<select id="groupslist" class="form-control" th:field="*{details.group.details.groupName}">
+												<option selected="selected" value="">Wybierz...</option>
+												<option th:each="group : ${groupService.findGroupsByDepartmentId(entry.getKey().details.id)}"
+													th:value="${group.details.groupName}"
+													th:text="${group.details.groupName}"></option>
+											</select>
+										</td>
+
+									</tr>
+
+								</table>
+
+
+
 							</div>
-							<div class="col-xs-3">
-								<label for="pwd">Koniec studiów:</label> <input
-									class="form-control" id="details.endStudyDate"
-									name="details.endStudyDate" type="text"
-									th:value="${studentform.details.endStudyDate}" />
-							</div>
+						
 						</div>
-					</form>
-				</div>
+
+					</div>
+					<input type="submit" class="btn btn-info text-center center-block"
+						value="Dodaj" />
+				</form>
 			</div>
 
 

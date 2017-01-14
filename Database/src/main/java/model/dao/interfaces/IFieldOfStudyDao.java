@@ -5,6 +5,8 @@ import java.util.List;
 
 import model.entity.Department;
 import model.entity.FieldOfStudy;
+import model.entity.Group;
+import model.entity.Specialization;
 
 public interface IFieldOfStudyDao extends IGenericDao<FieldOfStudy, Integer> {
 	FieldOfStudy findByName(String name);
@@ -15,4 +17,5 @@ public interface IFieldOfStudyDao extends IGenericDao<FieldOfStudy, Integer> {
 	List<FieldOfStudy> findByDepartmentFullName(String name);
 	List<FieldOfStudy> findAllFields();
 	HashMap<Department, List<FieldOfStudy>> findAllFieldsForAllDepartments();
+	HashMap<Department, HashMap<FieldOfStudy, HashMap<List<Specialization>, List<Group>>>> findAllFieldsSpecsGroupsForAllDepartments();
 }

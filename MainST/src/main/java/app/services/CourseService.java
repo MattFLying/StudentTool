@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import app.services.factory.DaoFactory;
 import core.study.course.Course;
+import core.study.details.CourseForm;
 import core.study.fieldofstudy.FieldOfStudy;
 import model.dao.interfaces.ICourseDao;
 import model.entity.Entity;
@@ -97,9 +98,13 @@ public class CourseService extends DaoService<ICourseDao> {
 	}
 	public void save(Course course) {
 		model.entity.Course entity = new model.entity.Course();	
-		createEntity(course, entity);
 		
-		dao().save(entity);
+		for(CourseForm form : course.getDetails().getCourseForms()) {
+			course.getDetails().setCourseForm(form);
+			
+			createEntity(course, entity);
+			dao().save(entity);
+		}
 	}
 	public void update(Course course) {
 		model.entity.Course entity = new model.entity.Course();	

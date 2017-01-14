@@ -5,17 +5,13 @@ import model.dao.interfaces.GenericDao;
 
 public final class DaoFactory {
 	public enum Dao {
-		ADDRESS, BANK, CERTIFICATE, COURSE, DEPARTMENT, FIELD_OF_STUDY, GRADE, GROUP, INSTITUTE, SPECIALIZATION, STUDENT, TEACHER, TEACHERS_COURSES, USER;
+		ADDRESS, COURSE, DEPARTMENT, FIELD_OF_STUDY, GRADE, GROUP, INSTITUTE, SPECIALIZATION, STUDENT, TEACHER, TEACHERS_COURSES, USER;
 	}
 	
 	public GenericDao<?, ?> get(Dao type) {
 		switch(type) {
 			case ADDRESS:
 				return new AddressDao();
-			case BANK:
-				return new BankDao();
-			case CERTIFICATE:
-				return new CertificateDao();
 			case COURSE:
 				return new CourseDao();
 			case DEPARTMENT:

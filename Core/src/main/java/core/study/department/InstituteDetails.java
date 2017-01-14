@@ -22,7 +22,7 @@ public class InstituteDetails extends StudyDetails {
 		return instituteFullName;
 	}
 	public void setInstituteFullName(String instituteFullName) {
-		this.instituteFullName = instituteFullName;
+		this.instituteFullName = instituteFullName.replaceAll(",", "");
 	}
 	public String getInstituteShortName() {
 		return instituteShortName;
