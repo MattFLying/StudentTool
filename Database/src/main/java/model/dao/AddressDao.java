@@ -28,6 +28,7 @@ public class AddressDao extends GenericDao<Address, Integer> implements IAddress
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -45,6 +46,7 @@ public class AddressDao extends GenericDao<Address, Integer> implements IAddress
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -66,6 +68,7 @@ public class AddressDao extends GenericDao<Address, Integer> implements IAddress
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 	}
@@ -85,6 +88,7 @@ public class AddressDao extends GenericDao<Address, Integer> implements IAddress
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 	}
@@ -104,6 +108,7 @@ public class AddressDao extends GenericDao<Address, Integer> implements IAddress
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 	}
@@ -125,6 +130,7 @@ public class AddressDao extends GenericDao<Address, Integer> implements IAddress
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 	}

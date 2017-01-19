@@ -36,6 +36,7 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -56,6 +57,7 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -81,6 +83,7 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -106,6 +109,7 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -127,6 +131,7 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -146,6 +151,7 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -177,6 +183,7 @@ public class GroupDao extends GenericDao<Group, Integer> implements IGroupDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 

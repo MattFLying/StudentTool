@@ -112,11 +112,27 @@ public class StudentDetails extends PersonalDetails {
 	public void setFormOfStudy(FormOfStudy formOfStudy) {
 		this.formOfStudy = formOfStudy;
 	}
+	public void setFormOfStudy(String formOfStudy) {
+		if(formOfStudy.equals(FormOfStudy.FIRST_CYCLE_ENGINEER.getName()))
+			this.formOfStudy = FormOfStudy.FIRST_CYCLE_ENGINEER;
+		if(formOfStudy.equals(FormOfStudy.FIRST_CYCLE_LICENTIATE.getName()))
+			this.formOfStudy = FormOfStudy.FIRST_CYCLE_LICENTIATE;
+		if(formOfStudy.equals(FormOfStudy.SECOND_CYCLE_MAGISTER.getName()))
+			this.formOfStudy = FormOfStudy.SECOND_CYCLE_MAGISTER;
+	}
 	public StudySystem getStudySystem() {
 		return studySystem;
 	}
 	public void setStudySystem(StudySystem studySystem) {
 		this.studySystem = studySystem;
+	}
+	public void setStudySystem(String studySystem) {
+		if(studySystem.equals(StudySystem.FULL_TIME.getName()))
+			this.studySystem = StudySystem.FULL_TIME;
+		if(studySystem.equals(StudySystem.HALF_TIME.getName()))
+			this.studySystem = StudySystem.HALF_TIME;
+		if(studySystem.equals(StudySystem.NONE.getName()))
+			this.studySystem = StudySystem.NONE;
 	}
 	public String getBankNumber() {
 		return bankNumber;

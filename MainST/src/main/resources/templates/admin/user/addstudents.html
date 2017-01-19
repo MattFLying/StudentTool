@@ -25,15 +25,48 @@ BODY
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<center>
-					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu administracyjnego o identyfikatorze użytkownika: </span>
-					
-					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
-					
-					<form th:action="@{/logout}" method="post">
-						<input type="submit" class="btn btn-info text-center center-block"
-							value="Wyloguj" />
-					</form></center>
+						<span style="font-size: 12; font-weight: bold; color: black">Zostałeś
+							zalogowany do Panelu administracyjnego o identyfikatorze
+							użytkownika: </span> <span style="font-weight: bold; color: red"
+							th:text="${session.username}"></span>
+
+						<form th:action="@{/logout}" method="post">
+							<input type="submit"
+								class="btn btn-info text-center center-block" value="Wyloguj" />
+						</form>
+					</center>
 				</div>
+			</div>
+
+
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+						<span style="font-size: 14; font-weight: bold; color: green">Dodaj
+							Studentów z pliku Excel (.xls)</span>
+					</center>
+				</div>
+				<form action="#" th:action="@{/addstudentsdb}" method="post" enctype="multipart/form-data">
+					<div class="panel-body">
+
+						<label class="control-label">Wybierz plik</label>
+						<input id="file" name="file" type="file" class="file" data-show-preview="false" />
+
+					</div>
+					<input type="submit" class="btn btn-info text-center center-block"
+						value="Dodaj" />
+						
+						
+						<div th:if="${param.success}">
+							<center>
+								<span class="label" style="font-weight:bold; color:green" th:text="${fileName} + ' ' + ${content}"></span>
+							</center>
+						</div>
+						
+						
+				</form>
 			</div>
 
 

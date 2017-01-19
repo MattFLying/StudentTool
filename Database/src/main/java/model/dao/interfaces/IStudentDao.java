@@ -14,4 +14,5 @@ public interface IStudentDao extends IGenericDao<Student, StudentId> {
 	List<Student> findByFieldOfStudyName(String name);
 	List<Student> findBySpecializationName(String name);
 	Student findByUserId(Integer id);
+	Student findById(Integer id);
 }

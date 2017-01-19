@@ -45,6 +45,7 @@ public class CourseService extends DaoService<ICourseDao> {
 		course.getDetails().setCourseName(courseEntity.getCourseName());
 		course.getDetails().setTerm(courseEntity.getCourseTerm());
 		course.getDetails().setFieldOfStudy(field);
+		course.getDetails().setId(courseEntity.getCourseId());
 	}
 	private Course createFromEntity(Course base, model.entity.Course entity) {
 		Course course = new Course();

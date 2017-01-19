@@ -36,6 +36,28 @@ public class SpecializationDao extends GenericDao<Specialization, Specialization
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
+			session.close();
+		}
+
+		if(specializationEntity != null) {
+			return specializationEntity;
+		} else {
+			return null;
+		}
+	}
+	public Specialization findById(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		
+		try {
+			criteria = session.createCriteria(Specialization.class);
+			criteria.add(Restrictions.eq("id.specializationId", id));
+			specializationEntity = (Specialization)criteria.list().get(0);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -57,6 +79,7 @@ public class SpecializationDao extends GenericDao<Specialization, Specialization
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -76,6 +99,7 @@ public class SpecializationDao extends GenericDao<Specialization, Specialization
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -109,6 +133,7 @@ public class SpecializationDao extends GenericDao<Specialization, Specialization
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 

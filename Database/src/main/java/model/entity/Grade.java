@@ -24,8 +24,8 @@ public class Grade extends Entity {
 		this.gradeType = gradeType;
 		this.gradeDescription = gradeDescription;
 	}
-	public Grade(int gradeId, int studentId, int courseId, int courseFormId, Integer teacherId, Float gradeValue, String gradeType, String gradeDescription) {
-		this.id = new GradeId(gradeId, studentId, courseId, courseFormId);
+	public Grade(int gradeId, int studentId, int courseId, Integer teacherId, Float gradeValue, String gradeType, String gradeDescription) {
+		this.id = new GradeId(gradeId, studentId, courseId);
 		this.teacherId = teacherId;
 		this.gradeValue = gradeValue;
 		this.gradeType = gradeType;

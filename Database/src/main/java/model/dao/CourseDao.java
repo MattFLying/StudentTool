@@ -31,6 +31,7 @@ public class CourseDao extends GenericDao<Course, Integer> implements ICourseDao
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -52,6 +53,7 @@ public class CourseDao extends GenericDao<Course, Integer> implements ICourseDao
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -69,6 +71,7 @@ public class CourseDao extends GenericDao<Course, Integer> implements ICourseDao
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -86,6 +89,7 @@ public class CourseDao extends GenericDao<Course, Integer> implements ICourseDao
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -105,6 +109,7 @@ public class CourseDao extends GenericDao<Course, Integer> implements ICourseDao
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		

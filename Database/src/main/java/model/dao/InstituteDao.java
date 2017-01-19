@@ -40,6 +40,7 @@ public class InstituteDao extends GenericDao<Institute, Integer> implements IIns
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -60,6 +61,7 @@ public class InstituteDao extends GenericDao<Institute, Integer> implements IIns
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -81,6 +83,7 @@ public class InstituteDao extends GenericDao<Institute, Integer> implements IIns
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -100,6 +103,7 @@ public class InstituteDao extends GenericDao<Institute, Integer> implements IIns
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -122,6 +126,7 @@ public class InstituteDao extends GenericDao<Institute, Integer> implements IIns
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -147,6 +152,7 @@ public class InstituteDao extends GenericDao<Institute, Integer> implements IIns
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -186,6 +192,7 @@ public class InstituteDao extends GenericDao<Institute, Integer> implements IIns
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		

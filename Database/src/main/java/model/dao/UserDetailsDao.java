@@ -28,6 +28,7 @@ public class UserDetailsDao extends GenericDao<UserDetails, Integer> implements 
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 

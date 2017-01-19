@@ -40,6 +40,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -71,6 +72,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -119,6 +121,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -172,6 +175,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -180,9 +184,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 	
 	
 	
-	public static void main(String[] args) {
-		ffindAllFieldsSpecsGroupsForAllDepartments();
-	}
+	
 	
 	
 	
@@ -217,6 +219,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -242,6 +245,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -263,6 +267,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -282,6 +287,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -301,6 +307,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -315,6 +322,7 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		

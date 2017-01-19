@@ -32,6 +32,7 @@ public class TeacherDao extends GenericDao<Teacher, TeacherId> implements ITeach
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -49,6 +50,7 @@ public class TeacherDao extends GenericDao<Teacher, TeacherId> implements ITeach
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -65,6 +67,28 @@ public class TeacherDao extends GenericDao<Teacher, TeacherId> implements ITeach
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
+			session.close();
+		}
+
+		if(teacherEntity != null) {
+			return teacherEntity;
+		} else {
+			return null;
+		}
+	}
+	public Teacher findByLogin(String userLogin) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		
+		try {
+			criteria = session.createCriteria(Teacher.class);
+			criteria.add(Restrictions.eq("id.userLogin", userLogin));
+			teacherEntity = (Teacher)criteria.list().get(0);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -85,6 +109,28 @@ public class TeacherDao extends GenericDao<Teacher, TeacherId> implements ITeach
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
+			session.close();
+		}
+
+		if(teacherEntity != null) {
+			return teacherEntity;
+		} else {
+			return null;
+		}
+	}
+	public Teacher findById(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		
+		try {
+			criteria = session.createCriteria(Teacher.class);
+			criteria.add(Restrictions.eq("id.teacherId", id));
+			teacherEntity = (Teacher)criteria.list().get(0);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
 			session.close();
 		}
 

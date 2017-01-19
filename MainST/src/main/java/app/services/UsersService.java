@@ -64,7 +64,15 @@ public class UsersService extends DaoService<IUserDao> {
 	}
 	
 	
-	
+	public void changePassword(User user) {
+		model.entity.Users userEntity = new model.entity.Users();
+		
+		userEntity.setLogin(user.getLogin());
+		userEntity.setPassword(passwordEncoder().encode(user.getPassword()));
+		userEntity.setEnabled(1);
+		
+		dao().update(userEntity);
+	}
 	
 	
 	

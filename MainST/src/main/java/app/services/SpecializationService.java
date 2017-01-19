@@ -60,6 +60,14 @@ public class SpecializationService extends DaoService<ISpecializationDao> {
 		
 		return group;
 	}
+	public Specialization findOneById(Integer id) {
+		model.entity.Specialization entity = dao().findById(id);
+		
+		Specialization group = new Specialization();
+		createFromEntity(entity, group);
+		
+		return group;
+	}
 	public List<Specialization> findByFieldOfStudyId(Integer id) {
 		List<Specialization> list = new ArrayList<Specialization>();
 		

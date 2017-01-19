@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!-- 
+HEAD  
+-->
+<head>
+	<meta charset="utf-8" />
+	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+	<link rel="stylesheet" href="/css/mainST.css" />
+</head>
+<!-- 
+/HEAD  
+-->
+<!-- 
+BODY  
+-->
+<body>
+	<div id="bodyContainer">
+	   <div id="header"></div>
+	   <div id="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu studenckiego o identyfikatorze użytkownika: </span>
+					
+					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
+					
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Wyloguj" />
+					</form></center>
+				</div>
+			</div>
+			<a href="/teacher/index.html" class="btn btn-primary">Wróć</a> 
+		</div>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">Zmień hasło</div>
+			<div class="panel-body">
+			
+			
+				<form action="#" th:action="@{/changepwd_teacher}" th:object="${userform}" method="post"><center>
+					<div>
+						<label for="pwd">Nowe hasło:</label> <input class="form-control" id="pwd" type="password" th:field="*{password}" />
+						<br />
+						<input type="submit" class="btn btn-info text-center center-block" value="Zmień hasło" />
+					</div></center>
+
+					
+
+					<div th:if="${param.success}">
+						<center>
+							<span style="font-size: 12; font-weight: bold; color: orange">Hasło zostało zmienione!</span>
+						</center>
+					</div>
+					<div th:if="${param.error}">
+						<center>
+							<span style="font-size: 12; font-weight: bold; color: orange">Coś
+								poszło nie tak, upewnij się, że podałeś właściwe dane!</span>
+						</center>
+					</div>
+				</form>
+
+
+
+
+			</div>
+			
+			
+			
+			
+		</div>
+	   <div id="footer"></div>
+	</div>
+</body>
+<!-- 
+/BODY  
+-->
+<script>
+	$(function() {
+		$("#header").load("/core/header/header.html");
+
+	});
+</script>
+<script>
+	$(function() {
+		$("#footer").load("/core/footer/footer.html");
+
+	});
+</script>
+</html>

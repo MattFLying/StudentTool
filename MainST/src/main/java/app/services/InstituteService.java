@@ -63,7 +63,7 @@ public class InstituteService extends DaoService<IInstituteDao> {
 		model.entity.Institute entity = dao().findInstituteNameById(id);
 		
 		Institute institute = new Institute();
-		institute.getDetails().setInstituteShortName(entity.getInstituteName());
+		institute.getDetails().setInstituteFullName(entity.getInstituteDescription());
 		
 		return institute;
 	}

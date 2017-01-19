@@ -37,6 +37,7 @@ public class TeachersCoursesDao extends GenericDao<TeachersCourses, TeachersCour
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -55,6 +56,7 @@ public class TeachersCoursesDao extends GenericDao<TeachersCourses, TeachersCour
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -73,6 +75,7 @@ public class TeachersCoursesDao extends GenericDao<TeachersCourses, TeachersCour
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		

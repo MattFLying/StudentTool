@@ -9,8 +9,6 @@ public class UserDetails extends Entity {
 	private Integer userRoleId;
 	private String login;
 	private String role;
-	private String salt;
-	private Integer iterations;
 
 	public UserDetails() {
 	}
@@ -18,13 +16,6 @@ public class UserDetails extends Entity {
 	public UserDetails(String login, String role) {
 		this.login = login;
 		this.role = role;
-	}
-
-	public UserDetails(String login, String role, String salt, Integer iterations) {
-		this.login = login;
-		this.role = role;
-		this.salt = salt;
-		this.iterations = iterations;
 	}
 
 	public Integer getUserRoleId() {
@@ -50,21 +41,4 @@ public class UserDetails extends Entity {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	public String getSalt() {
-		return this.salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
-	public Integer getIterations() {
-		return this.iterations;
-	}
-
-	public void setIterations(Integer iterations) {
-		this.iterations = iterations;
-	}
-
 }

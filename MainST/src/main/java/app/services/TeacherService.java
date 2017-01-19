@@ -6,6 +6,8 @@ import app.services.factory.DaoFactory;
 import core.humanity.details.Address;
 import core.humanity.student.Student;
 import core.humanity.teacher.Teacher;
+import core.study.department.Department;
+import core.study.department.Institute;
 import core.user.User;
 import model.dao.interfaces.ITeacherDao;
 import model.entity.Entity;
@@ -34,7 +36,7 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		teacherEntity.setTeacherLastname(teacher.getDetails().getLastName());
 		teacherEntity.setTeacherBirthdate(teacher.getDetails().getBirthDate());
 		teacherEntity.setTeacherPhone(teacher.getDetails().getPhoneNumber());
-		
+		System.out.println(teacher.getDetails().getRoom() + " " + teacher.getDetails().getWebsite());
 		teacherEntity.setTeacherRoom(teacher.getDetails().getRoom());
 		teacherEntity.setTeacherWebsite(teacher.getDetails().getWebsite());
 		teacherEntity.setTeacherTitle(teacher.getDetails().getTitle().getName());
@@ -46,12 +48,46 @@ public class TeacherService extends DaoService<ITeacherDao> {
 
 	@Override
 	protected void createFromEntity(Entity entity, Object base) {
-		// TODO Auto-generated method stub
+		model.entity.Teacher teacherEntity = (model.entity.Teacher)entity;
+		Teacher teacher = (Teacher)base;
 		
+		teacher.getDetails().setFirstName(teacherEntity.getTeacherFirstname());
+		teacher.getDetails().setSecondName(teacherEntity.getTeacherSecondname());
+		teacher.getDetails().setLastName(teacherEntity.getTeacherLastname());
+		teacher.getDetails().setBirthDate(teacherEntity.getTeacherBirthdate());
+		teacher.getDetails().setPhoneNumber(teacherEntity.getTeacherPhone());
+		
+		teacher.getDetails().setTitle(teacherEntity.getTeacherTitle());
+		teacher.getDetails().setWebsite(teacherEntity.getTeacherWebsite());
+		teacher.getDetails().setRoom(teacherEntity.getTeacherRoom());
+		
+		Address address = new AddressService().findOneById(teacherEntity.getAddressId());
+		Department dept = new DepartmentService().findDepartmentNameById(teacherEntity.getDepartmentId());
+		Institute institute = new InstituteService().findInstituteNameById(teacherEntity.getInstituteId());
+		
+		teacher.getDetails().setAddress(address);
+		teacher.getDetails().setDepartment(dept);
+		teacher.getDetails().setInstitute(institute);
+	}
+	
+	public Teacher findById(Integer id) {
+		Teacher teacher = new Teacher();
+		
+		createFromEntity(dao().findById(id), teacher);
+		
+		return teacher;
 	}
 	
 	
 	
+	public Teacher createTeacher(String userLogin) {
+		Teacher teacher = new Teacher();
+		model.entity.Teacher entity = new TeacherService().getDao().findByLogin(userLogin);
+		
+		createFromEntity(entity, teacher);
+		
+		return teacher;
+	}
 	
 	
 	private void createAddress(Teacher teacher, model.entity.Teacher teacherEntity) {

@@ -4,6 +4,7 @@
 <!-- Generated 2017-01-08 19:33:58 by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="model.entity.Users" table="st_users" catalog="Student_Tool" optimistic-lock="version">
+    
         <id name="login" type="string">
             <column name="login" length="5" />
             <generator class="assigned" />

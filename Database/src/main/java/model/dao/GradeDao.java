@@ -32,6 +32,7 @@ public class GradeDao extends GenericDao<Grade, GradeId> implements IGradeDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -53,6 +54,7 @@ public class GradeDao extends GenericDao<Grade, GradeId> implements IGradeDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -70,6 +72,25 @@ public class GradeDao extends GenericDao<Grade, GradeId> implements IGradeDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return list;
+	}
+	public List<Grade> findByStudentIdAndCourseId(Integer student, Integer course) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Grade> list = new ArrayList<Grade>();
+		
+		try {
+			criteria = session.createCriteria(Grade.class);
+			criteria.add(Restrictions.and(Restrictions.eq("id.studentId", student), Restrictions.eq("id.courseId", course)));
+			list = criteria.list();
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -87,6 +108,7 @@ public class GradeDao extends GenericDao<Grade, GradeId> implements IGradeDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		
@@ -106,6 +128,7 @@ public class GradeDao extends GenericDao<Grade, GradeId> implements IGradeDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 		

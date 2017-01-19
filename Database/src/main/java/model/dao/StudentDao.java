@@ -35,6 +35,7 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 		
@@ -52,6 +53,7 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 		
@@ -69,6 +71,7 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 		
@@ -77,14 +80,14 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 	public Student findByAlbum(String album) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
-		
 		try {
 			criteria = session.createCriteria(Student.class);
-			criteria.add(Restrictions.eq("studentAlbum", album));
+			criteria.add(Restrictions.eq("studentAlbum", Long.valueOf(album)));
 			studentEntity = (Student)criteria.list().get(0);
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 
@@ -105,6 +108,7 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 
@@ -128,6 +132,7 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 		
@@ -147,6 +152,7 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 		
@@ -166,6 +172,7 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 		
@@ -182,6 +189,28 @@ public class StudentDao extends GenericDao<Student, StudentId> implements IStude
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
+			session.close();
+		}
+
+		if(studentEntity != null) {
+			return studentEntity;
+		} else {
+			return null;
+		}
+	}
+	public Student findById(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		
+		try {
+			criteria = session.createCriteria(Student.class);
+			criteria.add(Restrictions.eq("id.studentId", id));
+			studentEntity = (Student)criteria.list().get(0);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 

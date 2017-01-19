@@ -9,4 +9,6 @@ public interface ITeacherDao extends IGenericDao<Teacher, TeacherId> {
 	List<Teacher> findByInstituteId(Integer id);
 	Teacher findByName(String firstName, String lastName);
 	Teacher findByUserId(Integer id);
+	Teacher findByLogin(String userLogin);
+	Teacher findById(Integer id);
 }

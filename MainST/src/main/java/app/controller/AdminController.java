@@ -1,5 +1,6 @@
 package app.controller;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import app.services.CourseService;
 import app.services.DepartmentService;
@@ -175,6 +179,46 @@ public class AdminController {
 			return "redirect:/admin/user/addstudent?error";
 		}
 	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="/addstudentsdb", method=RequestMethod.POST)
+	public String addStudentsToDb(@RequestParam("file") MultipartFile file, Model model) {
+		try {
+			studentService.createStudentsFromExcel(file.getInputStream());
+			
+			
+			
+			
+			
+			/*String content = new String(file.getBytes());
+			model.addAttribute("fileName", file.getOriginalFilename());
+			model.addAttribute("content", content);*/
+            //return "file name:" + file.getOriginalFilename() + "<br> content:" + content;
+			//System.out.println("Nazwa: " + file.getOriginalFilename() + ". Tresc: " + content);
+			return "redirect:/admin/user/addstudents?success";
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "redirect:/admin/user/addstudents?error";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="/addteacherdb", method=RequestMethod.POST)
 	public String addTeacherToDb(@ModelAttribute(value="userform") User user, @ModelAttribute(value="teacherform") Teacher teacher) {
 		try {

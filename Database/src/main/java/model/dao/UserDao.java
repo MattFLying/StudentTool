@@ -31,6 +31,7 @@ public class UserDao extends GenericDao<Users, Integer> implements IUserDao {
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 

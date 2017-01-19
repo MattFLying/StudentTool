@@ -22,18 +22,6 @@ public class MainController {
 		getUserLogin(session);
 
 		return "admin/index";
-	}
-	@RequestMapping(value="/student/index")
-	public String student(HttpSession session){
-		getUserLogin(session);
-		
-		return "student/index";
-	}
-	@RequestMapping(value="/teacher/index")
-	public String teacher(HttpSession session){
-		getUserLogin(session);
-		
-		return "teacher/index";
 	}	
 	@RequestMapping(value={"/login"})
 	public String login() {

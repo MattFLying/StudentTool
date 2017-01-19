@@ -30,6 +30,7 @@ public abstract class GenericDao<T, ID extends Serializable> implements IGeneric
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		} 
 	}
@@ -43,6 +44,7 @@ public abstract class GenericDao<T, ID extends Serializable> implements IGeneric
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		} 
 	}
@@ -56,6 +58,7 @@ public abstract class GenericDao<T, ID extends Serializable> implements IGeneric
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		} 
 	}
@@ -71,6 +74,7 @@ public abstract class GenericDao<T, ID extends Serializable> implements IGeneric
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		} 
 	}

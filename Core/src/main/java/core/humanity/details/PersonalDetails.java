@@ -26,6 +26,7 @@ public class PersonalDetails extends Details {
 		this.pesel = null;
 		this.address = new Address();
 		this.phoneNumber = null;
+		this.title = null;
 	}
 	public String getFirstName() {
 		return firstName;

@@ -4,6 +4,7 @@
 HEAD  
 -->
 <head>
+	<meta charset="utf-8" />
 	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
 	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
 	<link rel="stylesheet" href="/css/mainST.css" />
@@ -18,12 +19,79 @@ BODY
 	<div id="bodyContainer">
 	   <div id="header"></div>
 	   <div id="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu studenckiego o identyfikatorze użytkownika: </span>
+					
+					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
+					
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Wyloguj" />
+					</form></center>
+				</div>
+			</div>
+		</div>
 
-			<h1 style="color:blue">Witaj Studencie!</h1>
-			<form th:action="@{/logout}" method="post">
-				<input type="submit" value="Wyloguj"/>
-			</form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Witaj, <span style="font-weight:bold" th:text="${student.getDetails().firstName} + ' ' + ${student.getDetails().lastName}"></span>! </div>
+			<div class="panel-body">
+			
+			
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Dane personalne</th>
+							<th>Dane studenta</th>
+						</tr>
+					</thead>
 
+					<tbody>
+						<tr>
+							<td>
+								<h1>Imie: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().firstName}"></span></em> <br />
+								Drugie imie: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().secondName}"></span></em><br />
+								Nazwisko: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().lastName}"></span></em><br />
+								Data urodzenia: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().birthDate}"></span></em><br />
+								Pesel: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().pesel}"></span></em><br />
+								
+								Adres: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().address.streetFullAddress} + ', ' + ${student.getDetails().address.city} + ', ' + ${student.getDetails().address.postalCode}"></span></em><br />
+								Numer telefonu: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().phoneNumber}"></span></em><br />
+								Tytuł: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().title.name}"></span></em><br />
+								Numer konta: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().bankNumber}"></span></em></h1>
+							</td>
+							<td>
+								<h1>Album: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().albumNumber}"></span></em> <br />
+								Wydział: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().department.getDetails().departmentFullName}"></span></em><br />
+								Kierunek: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().fieldOfStudy.getDetails().fieldOfStudyName}"></span></em><br />
+								Specjalizacja: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().specialization.getDetails().specializationName}"></span></em><br />
+								Grupa: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().group.getDetails().groupName}"></span></em><br />
+								
+								Forma studiów: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().formOfStudy.name}"></span></em><br />
+								System studiów: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().studySystem.name}"></span></em><br />
+								Semestr: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().currentTermNumber}"></span></em><br />
+								Początek: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().startStudyDate}"></span></em><br />
+								Koniec: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().endStudyDate}"></span></em></h1>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<div class="btn-group btn-group-justified">
+					<a href="/student/changepwd.html" class="btn btn-primary">Zmień hasło</a> 
+					<a href="/student/studentindex.html" class="btn btn-primary">Indeks</a> 
+				</div>
+
+
+
+
+			</div>
+			
+			
+			
+			
 		</div>
 	   <div id="footer"></div>
 	</div>

@@ -4,6 +4,7 @@
 <!-- Generated 2017-01-08 19:33:58 by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="model.entity.UserDetails" table="st_user_details" catalog="Student_Tool" optimistic-lock="version">
+    
         <id name="userRoleId" type="java.lang.Integer">
             <column name="user_role_id" />
             <generator class="identity" />
@@ -13,12 +14,6 @@
         </property>
         <property name="role" type="string">
             <column name="role" length="20" not-null="true" />
-        </property>
-        <property name="salt" type="string">
-            <column name="salt" length="200" />
-        </property>
-        <property name="iterations" type="java.lang.Integer">
-            <column name="iterations" />
         </property>
     </class>
 </hibernate-mapping>

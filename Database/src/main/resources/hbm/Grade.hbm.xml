@@ -15,9 +15,6 @@
             <key-property name="courseId" type="int">
                 <column name="course_id" />
             </key-property>
-            <key-property name="courseFormId" type="int">
-                <column name="course_form_id" />
-            </key-property>
         </composite-id>
         <property name="teacherId" type="java.lang.Integer">
             <column name="teacher_id" />

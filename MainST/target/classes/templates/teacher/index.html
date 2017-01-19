@@ -4,6 +4,7 @@
 HEAD  
 -->
 <head>
+	<meta charset="utf-8" />
 	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
 	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
 	<link rel="stylesheet" href="/css/mainST.css" />
@@ -18,12 +19,70 @@ BODY
 	<div id="bodyContainer">
 	   <div id="header"></div>
 	   <div id="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<center>
+					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu nauczycielskiego o identyfikatorze użytkownika: </span>
+					
+					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
+					
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Wyloguj" />
+					</form></center>
+				</div>
+			</div>
+		</div>
 
-			<h1 style="color:blue">Witaj Nauczycielu!</h1>
-			<form th:action="@{/logout}" method="post">
-				<input type="submit" value="Wyloguj"/>
-			</form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Witaj, <span style="font-weight:bold" th:text="${teacher.getDetails().firstName} + ' ' + ${teacher.getDetails().lastName}"></span>! </div>
+			<div class="panel-body">
+			
+			
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Dane personalne</th>
+							<th>Dane nauczyciela</th>
+						</tr>
+					</thead>
 
+					<tbody>
+						<tr>
+							<td>
+								<h1>Imie: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().firstName}"></span></em> <br />
+								Drugie imie: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().secondName}"></span></em><br />
+								Nazwisko: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().lastName}"></span></em><br />
+								Data urodzenia: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().birthDate}"></span></em><br />
+								
+								Adres: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().address.streetFullAddress} + ', ' + ${teacher.getDetails().address.city} + ', ' + ${teacher.getDetails().address.postalCode}"></span></em><br />
+								Numer telefonu: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().phoneNumber}"></span></em><br />
+								Tytuł: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().title.name}"></span></em><br /></h1>
+							</td>
+							<td>
+								<h1>Wydział: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().department.getDetails().departmentFullName}"></span></em><br />
+								Instytut: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().institute.getDetails().instituteFullName}"></span></em><br />
+								Pokój: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().room}"></span></em><br />
+								Strona: <em><span class="label" style="font-weight:bold; color:green" th:text="${teacher.getDetails().website}"></span></em><br /></h1>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<div class="btn-group btn-group-justified">
+					<a href="/teacher/changepwd.html" class="btn btn-primary">Zmień hasło</a> 
+					<a href="/teacher/changepwd.html" class="btn btn-primary">Zmień hasło</a> 
+				</div>
+
+
+
+
+			</div>
+			
+			
+			
+			
 		</div>
 	   <div id="footer"></div>
 	</div>

@@ -1,7 +1,7 @@
 package core.study.details;
 
 public enum StudySystem {
-	FULL_TIME("Dzienne"), HALF_TIME("Zaoczne");
+	NONE("brak"), FULL_TIME("Dzienne"), HALF_TIME("Zaoczne");
 	
 	
 	private String name;

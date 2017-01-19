@@ -6,6 +6,7 @@ import model.entity.SpecializationId;
 
 public interface ISpecializationDao extends IGenericDao<Specialization, SpecializationId> {
 	Specialization findByName(String name);
+	Specialization findById(Integer id);
 	List<Specialization> findByFieldOfStudyId(Integer id);
 	List<Specialization> findByFieldOfStudyName(String name);
 	public List<Specialization> findSpecsByDepartmentId(Integer id);

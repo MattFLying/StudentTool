@@ -41,6 +41,12 @@ public class GradeDetails extends StudyDetails {
 	public void setGradeType(GradeType gradeType) {
 		this.gradeType = gradeType;
 	}
+	public void setGradeType(String gradeType) {
+		if(gradeType.equals(GradeType.NORMAL.getName()))
+			this.gradeType = GradeType.NORMAL;
+		if(gradeType.equals(GradeType.SEMESTRAL.getName()))
+			this.gradeType = GradeType.SEMESTRAL;
+	}
 	public String getDescription() {
 		return description;
 	}

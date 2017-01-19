@@ -33,6 +33,7 @@ public class DepartmentDao extends GenericDao<Department, Integer> implements ID
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -53,6 +54,7 @@ public class DepartmentDao extends GenericDao<Department, Integer> implements ID
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -78,6 +80,7 @@ public class DepartmentDao extends GenericDao<Department, Integer> implements ID
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
@@ -95,7 +98,7 @@ public class DepartmentDao extends GenericDao<Department, Integer> implements ID
 			List results = session.createCriteria(Department.class)
 					.add(Restrictions.eq("departmentId", id))
 					.setProjection( Projections.projectionList()
-					.add( Projections.property("departmentDescription"), "departmentDescription") )
+					.add( Projections.property("departmentDescription"), "departmentDescription").add( Projections.property("departmentId"), "departmentId") )
 					.setResultTransformer(Transformers.aliasToBean(Department.class))
 					.list();
 
@@ -103,6 +106,7 @@ public class DepartmentDao extends GenericDao<Department, Integer> implements ID
 		} catch( Exception e ) {
 			e.getStackTrace();
 		} finally {
+			session.clear();
 			session.close();
 		}
 
