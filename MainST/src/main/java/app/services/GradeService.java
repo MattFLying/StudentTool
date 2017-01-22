@@ -10,6 +10,7 @@ import core.humanity.details.BankAccount;
 import core.humanity.student.Student;
 import core.humanity.teacher.Teacher;
 import core.study.course.Course;
+import core.study.details.GradeType;
 import core.study.fieldofstudy.FieldOfStudy;
 import core.study.grade.Grade;
 import model.dao.interfaces.IGradeDao;
@@ -48,11 +49,53 @@ public class GradeService extends DaoService<IGradeDao> {
 		gradeEntity.getId().setStudentId(student.getId().getStudentId());
 	}
 	
+	public void createGrade(Grade grade) {
+		model.entity.Grade gradeEntity = new model.entity.Grade();
+		model.entity.GradeId gradeEntityId = new model.entity.GradeId();
+		
+		gradeEntity.setId(gradeEntityId);
+		
+		gradeEntity.setGradeValue(grade.getDetails().getValue());
+		gradeEntity.setGradeDescription(grade.getDetails().getDescription());
+		gradeEntity.setGradeType(grade.getDetails().getGradeType().getName());
+		
+		gradeEntity.setTeacherId(grade.getDetails().getTeacher().getDetails().getId());
+		gradeEntity.getId().setCourseId(grade.getDetails().getCourse().getDetails().getId());
+		gradeEntity.getId().setStudentId(grade.getDetails().getStudent().getDetails().getId());
+		
+		dao().save(gradeEntity);
+	}
+	public void updateGrade(Grade grade) {
+		model.entity.Grade gradeEntity = new model.entity.Grade();
+		model.entity.GradeId gradeEntityId = new model.entity.GradeId();
+		
+		gradeEntity.setId(gradeEntityId);
+		
+		gradeEntity.setGradeValue(grade.getDetails().getValue());
+		gradeEntity.setGradeDescription(grade.getDetails().getDescription());
+		gradeEntity.setGradeType(grade.getDetails().getGradeType().getName());
+		
+		gradeEntity.setTeacherId(grade.getDetails().getTeacher().getDetails().getId());
+		gradeEntity.getId().setCourseId(grade.getDetails().getCourse().getDetails().getId());
+		gradeEntity.getId().setStudentId(grade.getDetails().getStudent().getDetails().getId());
+		gradeEntity.getId().setGradeId(grade.getDetails().getId());
+		
+		dao().update(gradeEntity);
+	}
 	
-	public List<Grade> findByStudentIdAndCourseId(Integer course, Integer student) {
+	public List<Grade> findByStudentIdAndCourseIdAndGradeType(Integer course, Integer student, String gradeType) {
 		List<Grade> list = new ArrayList<Grade>();
 		
-		dao().findByStudentIdAndCourseId(student, course).forEach( (x) -> {
+		dao().findByStudentIdAndCourseIdAndGradeType(student, course, gradeType).forEach( (x) -> {
+			list.add(createFromEntity(new Grade(), x));
+		});
+		
+		return list;
+	}
+	public List<Grade> findByStudentIdAndCourseIdAndTeacherIdAndGradeType(Integer course, Integer student, Integer teacher, String gradeType) {
+		List<Grade> list = new ArrayList<Grade>();
+		
+		dao().findByStudentIdAndCourseIdAndTeacherIdAndGradeType(course, student, teacher, gradeType).forEach( (x) -> {
 			list.add(createFromEntity(new Grade(), x));
 		});
 		
@@ -65,6 +108,8 @@ public class GradeService extends DaoService<IGradeDao> {
 		
 		return field;
 	}
+	
+	
 	
 	@Override
 	protected void createFromEntity(Entity entity, Object base) {

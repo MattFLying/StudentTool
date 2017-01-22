@@ -32,22 +32,44 @@ BODY
 					</form></center>
 				</div>
 			</div>
-				<a href="/student/index.html" class="btn btn-primary">Wróć</a>
+			<a href="/teacher/index.html" class="btn btn-primary">Wróć</a> 
 		</div>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading">Witaj w swoim Indeksie!</div>
+			<div class="panel-heading">Wybierz wydział i kierunek</div>
 			<div class="panel-body">
-			
-			<center>
-				<table>
-					<tbody th:each="term : ${#numbers.sequence(1, studentSemester)}">
+
+				<form action="#" th:action="@{/deptsfields}" th:object="${field}" method="post">
+					<table>
+
 						<tr>
-							<a th:href="@{/student/grades(term=${term})}"><span style="font-weight:bold" th:text="' | Semestr ' + ${term}"></span></a> 	
+
+							<th>Wydział</th>
+
+							<th>Kierunek</th>
+
 						</tr>
-					</tbody>
-				</table>
-			</center>
+
+						<tr th:each="entry : ${deptsfields}">
+
+							<td th:text="${entry.getKey().details.departmentFullName}"
+								th:value="${entry.getKey().details.departmentFullName}"></td>
+
+							<td><select id="fieldslist" class="form-control"
+								th:field="*{details.fieldOfStudyName}">
+									<option selected="selected" value="">Wybierz...</option>
+									<option th:each="field : ${entry.getValue()}"
+										th:value="${field.details.fieldOfStudyName}"
+										th:text="${field.details.fieldOfStudyName}"></option>
+							</select></td>
+
+						</tr>
+					</table>
+					
+					<input type="submit" class="btn btn-info text-center center-block" value="Dalej..." />
+				</form>
+
+
 
 			</div>
 			

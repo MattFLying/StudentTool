@@ -25,9 +25,9 @@ public class GradeDetails extends StudyDetails {
 		this.value = null;
 		this.gradeType = null;
 		this.description = null;
-		this.course = null;
-		this.student = null;
-		this.teacher = null;
+		this.course = new Course();
+		this.student = new Student();
+		this.teacher = new Teacher();
 	}
 	public Float getValue() {
 		return value;

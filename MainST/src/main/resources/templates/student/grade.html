@@ -46,7 +46,8 @@ BODY
 						</tr>
 						<tr>
 							<td>Prowadzący: </td>
-							<td th:text="${grade.getDetails().teacher.getDetails().title.name} + ' ' + ${grade.getDetails().teacher.getDetails().firstName} + ' ' + ${grade.getDetails().teacher.getDetails().lastName}"></td>
+							<td><a th:href="@{/student/teacher(teacherid=${grade.getDetails().teacher.getDetails().id})}" th:text="${grade.getDetails().teacher.getDetails().title.name} + ' ' + ${grade.getDetails().teacher.getDetails().firstName} + ' ' + ${grade.getDetails().teacher.getDetails().lastName}"></a> 								
+							</td>
 						</tr>					
 						<tr>
 							<td>Ocena: </td>

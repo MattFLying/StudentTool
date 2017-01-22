@@ -10,5 +10,6 @@ public interface IGradeDao extends IGenericDao<Grade, GradeId> {
 	List<Grade> findByStudentId(Integer id);
 	List<Grade> findByGradeType(String type);
 	List<Grade> findByStudentAlbum(String album);
-	List<Grade> findByStudentIdAndCourseId(Integer student, Integer course);
+	List<Grade> findByStudentIdAndCourseIdAndGradeType(Integer student, Integer course, String gradeType);
+	List<Grade> findByStudentIdAndCourseIdAndTeacherIdAndGradeType(Integer course, Integer student, Integer teacher, String gradeType);
 }

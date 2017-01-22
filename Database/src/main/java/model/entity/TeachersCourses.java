@@ -13,8 +13,8 @@ public class TeachersCourses extends Entity {
 	public TeachersCourses(TeachersCoursesId id) {
 		this.id = id;
 	}
-	public TeachersCourses(int teacherId, int courseId, int courseFormId) {
-		this.id = new TeachersCoursesId(teacherId, courseId, courseFormId);
+	public TeachersCourses(int teacherId, int courseId) {
+		this.id = new TeachersCoursesId(teacherId, courseId);
 	}
 
 	

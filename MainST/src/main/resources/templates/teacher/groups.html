@@ -32,22 +32,53 @@ BODY
 					</form></center>
 				</div>
 			</div>
-				<a href="/student/index.html" class="btn btn-primary">Wróć</a>
+			<a href="/teacher/index.html" class="btn btn-primary">Wróć</a> 
 		</div>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading">Witaj w swoim Indeksie!</div>
+			<div class="panel-heading">Wybierz grupe</div>
 			<div class="panel-body">
-			
-			<center>
-				<table>
-					<tbody th:each="term : ${#numbers.sequence(1, studentSemester)}">
+
+				<form action="#" th:action="@{/grades}" th:object="${group}"
+					method="post">
+					<table>
+
 						<tr>
-							<a th:href="@{/student/grades(term=${term})}"><span style="font-weight:bold" th:text="' | Semestr ' + ${term}"></span></a> 	
+
+							<th>Grupa</th>
+
+							<th>Przedmiot</th>
+
 						</tr>
-					</tbody>
-				</table>
-			</center>
+
+						<tr>
+							<td><select id="groupslist" class="form-control"
+								th:field="*{details.groupName}">
+									<option selected="selected" value="">Wybierz...</option>
+									<option th:each="groupEntry : ${groupService.findByFieldOfStudyName(param.field[0])}"
+										th:value="${groupEntry.details.groupName}"
+										th:text="${groupEntry.details.groupName}"></option>
+							</select></td>
+							<td><select id="courseslist" class="form-control"
+								th:field="${course.details.courseName}">
+									<option selected="selected" value="">Wybierz...</option>
+									<option th:each="course : ${courseService.findTeacherCoursesById(session.id)}"
+										th:value="${course.details.courseName} + ' - ' + ${course.details.courseForm.name}"
+										th:text="${course.details.courseName} + ' - ' + ${course.details.courseForm.name}"></option>
+							</select></td>
+						</tr>
+					</table>
+
+					<input type="submit" class="btn btn-info text-center center-block"
+						value="Dalej..." />
+				</form>
+
+
+
+				
+
+
+
 
 			</div>
 			

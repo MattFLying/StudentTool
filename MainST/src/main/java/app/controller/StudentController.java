@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import app.services.GradeService;
 import app.services.StudentService;
+import app.services.TeacherService;
 import app.services.UsersService;
 import core.humanity.student.Student;
+import core.study.details.GradeType;
+import core.study.grade.Grade;
 import core.user.User;
 
 @Controller
@@ -25,6 +28,8 @@ import core.user.User;
 public class StudentController {
 	@Autowired
 	private StudentService studentService = new StudentService();
+	@Autowired
+	private TeacherService teacherService = new TeacherService();
 	@Autowired
 	private GradeService gradeService = new GradeService();
 	private Student student;
@@ -67,6 +72,12 @@ public class StudentController {
 		model.addAttribute("grade", gradeService);
 		
 		return "student/grade";
+	}
+	@RequestMapping(value="/student/teacher", method=RequestMethod.GET)
+	public String teacher(Model model) {
+		model.addAttribute("teacher", teacherService);
+		
+		return "student/teacher";
 	}
 	@RequestMapping(value="changepwd", method=RequestMethod.POST)
 	public String changePasswordStudent(HttpSession session, @ModelAttribute(value="userform") User user) {

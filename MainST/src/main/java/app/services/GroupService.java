@@ -43,6 +43,7 @@ public class GroupService extends DaoService<IGroupDao> {
 		group.getDetails().setDescription(groupEntity.getGroupDescription());
 		group.getDetails().setGroupName(groupEntity.getGroupName());
 		group.getDetails().setFieldOfStudy(field);
+		group.getDetails().setId(groupEntity.getGroupId());
 	}
 	private Group createFromEntity(Group base, model.entity.Group entity) {
 		Group field = new Group();

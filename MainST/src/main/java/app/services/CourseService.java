@@ -9,6 +9,7 @@ import app.services.factory.DaoFactory;
 import core.study.course.Course;
 import core.study.details.CourseForm;
 import core.study.fieldofstudy.FieldOfStudy;
+import model.dao.TeachersCoursesDao;
 import model.dao.interfaces.ICourseDao;
 import model.entity.Entity;
 @Service
@@ -79,6 +80,23 @@ public class CourseService extends DaoService<ICourseDao> {
 		
 		return list;
 	}
+	
+	
+	
+	public List<Course> findTeacherCoursesById(Integer teacherId){
+		List<Course> list = new ArrayList<Course>();
+		
+		new TeachersCoursesDao().findByTeacherId(teacherId).forEach( (x) -> {
+			list.add(createFromEntity(new Course(), x));
+		});	
+		
+		return list;
+	}
+	
+	
+	
+	
+	
 	public List<Course> findByTermAndFieldOfStudy(Integer term, String name) {
 		List<Course> list = new ArrayList<Course>();
 		

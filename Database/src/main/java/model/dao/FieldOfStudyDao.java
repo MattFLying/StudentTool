@@ -211,7 +211,8 @@ public class FieldOfStudyDao extends GenericDao<FieldOfStudy, Integer> implement
 			List results = session.createCriteria(FieldOfStudy.class)
 					.add(Restrictions.eq("fieldOfStudyId", id))
 					.setProjection( Projections.projectionList()
-					.add( Projections.property("fieldOfStudyName"), "fieldOfStudyName") )
+					.add( Projections.property("fieldOfStudyName"), "fieldOfStudyName")
+					.add( Projections.property("fieldOfStudyId"), "fieldOfStudyId") )
 					.setResultTransformer(Transformers.aliasToBean(FieldOfStudy.class))
 					.list();
 

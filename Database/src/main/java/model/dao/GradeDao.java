@@ -78,14 +78,37 @@ public class GradeDao extends GenericDao<Grade, GradeId> implements IGradeDao {
 		
 		return list;
 	}
-	public List<Grade> findByStudentIdAndCourseId(Integer student, Integer course) {
+	public List<Grade> findByStudentIdAndCourseIdAndGradeType(Integer student, Integer course, String gradeType) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		List<Grade> list = new ArrayList<Grade>();
 		
 		try {
 			criteria = session.createCriteria(Grade.class);
-			criteria.add(Restrictions.and(Restrictions.eq("id.studentId", student), Restrictions.eq("id.courseId", course)));
+			criteria.add(Restrictions.and(Restrictions.and(Restrictions.eq("id.studentId", student), Restrictions.eq("id.courseId", course)), Restrictions.eq("gradeType", gradeType)));
+			list = criteria.list();
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			session.clear();
+			session.close();
+		}
+		
+		return list;
+	}
+	public List<Grade> findByStudentIdAndCourseIdAndTeacherIdAndGradeType(Integer course, Integer student, Integer teacher, String gradeType) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+		List<Grade> list = new ArrayList<Grade>();
+		
+		try {
+			criteria = session.createCriteria(Grade.class);
+			criteria.add(Restrictions.and(
+					Restrictions.and(
+							Restrictions.and(
+									Restrictions.eq("id.studentId", student), 
+									Restrictions.eq("id.courseId", course)), 
+							Restrictions.eq("gradeType", gradeType)), Restrictions.eq("teacherId", teacher)));
 			list = criteria.list();
 		} catch( Exception e ) {
 			e.getStackTrace();

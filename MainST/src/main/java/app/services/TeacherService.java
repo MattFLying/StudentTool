@@ -1,20 +1,29 @@
 package app.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import app.services.factory.DaoFactory;
 import core.humanity.details.Address;
 import core.humanity.student.Student;
 import core.humanity.teacher.Teacher;
+import core.study.course.Course;
 import core.study.department.Department;
 import core.study.department.Institute;
 import core.user.User;
+import model.dao.TeachersCoursesDao;
 import model.dao.interfaces.ITeacherDao;
 import model.entity.Entity;
 @Service
 public class TeacherService extends DaoService<ITeacherDao> {
+	private TeachersCoursesDao teachersCoursesDao;
+	
 	public TeacherService() {
 		super(DaoFactory.Dao.TEACHER);
+		
+		this.teachersCoursesDao = new TeachersCoursesDao();
 	}
 	
 	
@@ -50,6 +59,8 @@ public class TeacherService extends DaoService<ITeacherDao> {
 	protected void createFromEntity(Entity entity, Object base) {
 		model.entity.Teacher teacherEntity = (model.entity.Teacher)entity;
 		Teacher teacher = (Teacher)base;
+		
+		teacher.getDetails().setId(teacherEntity.getId().getTeacherId());
 		
 		teacher.getDetails().setFirstName(teacherEntity.getTeacherFirstname());
 		teacher.getDetails().setSecondName(teacherEntity.getTeacherSecondname());
@@ -88,6 +99,10 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		
 		return teacher;
 	}
+	
+	
+	
+	
 	
 	
 	private void createAddress(Teacher teacher, model.entity.Teacher teacherEntity) {

@@ -68,6 +68,7 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		
 		FieldOfStudy field = new FieldOfStudy();
 		field.getDetails().setFieldOfStudyName(entity.getFieldOfStudyName());
+		field.getDetails().setId(entity.getFieldOfStudyId());
 		
 		return field;
 	}

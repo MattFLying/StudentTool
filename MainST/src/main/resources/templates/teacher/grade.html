@@ -32,32 +32,42 @@ BODY
 					</form></center>
 				</div>
 			</div>
-				<a href="/student/studentindex.html" class="btn btn-primary">Wróć</a>
 		</div>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading">Oto zestawienie przedmiotów oraz ocen dla semestru <span style="font-weight:bold; color:red" th:text="${param.term[0]}"></span> !</div>
+			<div class="panel-heading">Informacje o ocenie !</div>
 			<div class="panel-body">
 			
 				<table class="table">
-					<tbody th:each="course : ${terms.findCoursesForStudentTerm(param.term[0], student.getDetails().fieldOfStudy.getDetails().fieldOfStudyName)}">
+					<tbody th:each="grade : ${grade.findGrade(param.gradeid[0])}">
 						<tr>
-							<td>
-								<span style="font-weight:bold; color:green" th:text="${course.getDetails().courseName}"></span>
+							<td>Przedmiot: </td>
+							<td th:text="${grade.getDetails().course.getDetails().courseName}  + ' - ' + ${grade.getDetails().course.getDetails().courseForm.name}"></td>
+						</tr>
+						<tr>
+							<td>Student: </td>
+							<td><a th:href="@{/teacher/student(studentid=${grade.getDetails().student.getDetails().id})}" th:text="${grade.getDetails().student.getDetails().firstName} + ' ' + ${grade.getDetails().student.getDetails().lastName}"></a> 								
 							</td>
-							<td>
-								<span style="font-weight:bold; color:green" th:text="${course.getDetails().courseForm.name}"></span>
-							</td>
-							<td th:each="grade : ${grades.findByStudentIdAndCourseIdAndGradeType(course.getDetails().id, student.getDetails().id, T(core.study.details.GradeType).NORMAL.name)}">
-								<a th:href="@{/student/grade(gradeid=${grade.getDetails().id})}"><span class="text-left" style="font-weight:bold; color:orange" th:text="${grade.getDetails().value}"></span></a> 								
-							</td>
-							<td th:each="grade : ${grades.findByStudentIdAndCourseIdAndGradeType(course.getDetails().id, student.getDetails().id, T(core.study.details.GradeType).SEMESTRAL.name)}">
-								<a th:href="@{/student/grade(gradeid=${grade.getDetails().id})}"><span class="text-left" style="font-weight:bold; color:red" th:text="${grade.getDetails().value}"></span></a> 								
-							</td>
+						</tr>					
+						<tr>
+							<td>Ocena: </td>
+							<td th:text="${grade.getDetails().value}"></td>
+						</tr>			
+						<tr>
+							<td>Rodzaj oceny: </td>
+							<td th:text="${grade.getDetails().gradeType.name}"></td>
+						</tr>		
+						<tr>
+							<td>Informacje: </td>
+							<td th:text="${grade.getDetails().description}"></td>
+						</tr>	
+						<tr>
+							<td><a th:href="@{/teacher/editgrade(student=${grade.getDetails().student.getDetails().id}, course=${grade.getDetails().course.getDetails().id}, grade=${param.gradeid[0]})}" class="btn btn-primary">Edytuj ocene</a></td>
 						</tr>
 					</tbody>
 				</table>
-
+			
+							
 			</div>
 			
 			

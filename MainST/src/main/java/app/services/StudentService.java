@@ -168,7 +168,13 @@ public class StudentService extends DaoService<IStudentDao> {
 		student.getDetails().setSpecialization(spec);
 		student.getDetails().setDepartment(dept);
 	}
-
+	private Student createFromEntity(Student base, model.entity.Student entity) {
+		Student student = new Student();
+		
+		createFromEntity(entity, student);
+		
+		return student;
+	}
 	public Student findById(Integer id) {
 		Student student = new Student();
 		
@@ -203,7 +209,15 @@ public class StudentService extends DaoService<IStudentDao> {
 		return list;
 	}
 	
-	
+	public List<Student> findAllByGroupId(Integer groupId) {
+		List<Student> list = new ArrayList<Student>();
+		
+		dao().findByGroupId(groupId).forEach((x) -> {
+			list.add(createFromEntity(new Student(), x));
+		});
+		
+		return list;
+	}
 	
 	private List<Student> getStudentsFromExcel(InputStream inputStream) {
 		try {

@@ -32,23 +32,29 @@ BODY
 					</form></center>
 				</div>
 			</div>
-				<a href="/student/index.html" class="btn btn-primary">Wróć</a>
 		</div>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading">Witaj w swoim Indeksie!</div>
+			<div class="panel-heading">Informacje o Studencie !</div>
 			<div class="panel-body">
 			
-			<center>
-				<table>
-					<tbody th:each="term : ${#numbers.sequence(1, studentSemester)}">
+				<table class="table">
+					<tbody th:each="student : ${student.findById(param.studentid[0])}">
 						<tr>
-							<a th:href="@{/student/grades(term=${term})}"><span style="font-weight:bold" th:text="' | Semestr ' + ${term}"></span></a> 	
+							<td>Nazwisko studenta: </td>
+							<td th:text="${student.getDetails().firstName} + ' ' + ${student.getDetails().lastName}"></td>
+						</tr>
+						<tr>
+							<td>Numer telefonu: </td>
+							<td th:text="${student.getDetails().phoneNumber}"></td>
+						</tr>
+						<tr>
+							<td>Wydział: </td>
+							<td th:text="${student.getDetails().department.getDetails().departmentFullName}"></td>
 						</tr>
 					</tbody>
 				</table>
-			</center>
-
+			
 			</div>
 			
 			
