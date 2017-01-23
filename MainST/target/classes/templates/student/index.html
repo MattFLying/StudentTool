@@ -19,79 +19,277 @@ BODY
 	<div id="bodyContainer">
 	   <div id="header"></div>
 	   <div id="body">
-			<div class="panel panel-default">
+	   		<div class="panel panel-primary">
 				<div class="panel-heading">
-					<center>
-					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu studenckiego o identyfikatorze użytkownika: </span>
-					
-					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
-					
+					<span style="font-size: 12; font-weight: bold; color: black">
+						Zostałeś zalogowany do Panelu studenckiego o identyfikatorze
+						użytkownika: </span> <span style="font-weight: bold; color: #cc0000"
+						th:text="${session.username}"></span>
+
 					<form th:action="@{/logout}" method="post">
-						<input type="submit" class="btn btn-info text-center center-block"
+						<input type="submit" class="btn btn-default pull-right"
 							value="Wyloguj" />
-					</form></center>
+					</form>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="/student/index.html">Strona
+								Główna</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj kontem<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/student/changepwd.html">Zmień hasło</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Indeks<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/student/studentindex.html">Indeks studencki</a></li>
+							</ul></li>
+							<li><a href="http://www.uz.zgora.pl">Strona
+								uczelni</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Wydziały<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="http://www.wa.uz.zgora.pl/">Wydział
+										Artystyczny</a></li>
+								<li><a href="http://www.wbais.uz.zgora.pl/">Wydział
+										Budownictwa, Architektury i Inżynierii Środowiska</a></li>
+								<li><a href="http://www.wez.uz.zgora.pl/">Wydział
+										Ekonomii i Zarządzania</a></li>
+								<li><a href="http://www.wfa.uz.zgora.pl/">Wydział
+										Fizyki i Astronomii</a></li>
+								<li><a href="http://www.wh.uz.zgora.pl/">Wydział
+										Humanistyczny</a></li>
+								<li><a href="https://www.wiea.uz.zgora.pl/">Wydział
+										Informatyki, Elektrotechniki i Automatyki</a></li>
+								<li><a href="https://wlnz.uz.zgora.pl/">Wydział
+										Lekarski i Nauk o Zdrowiu</a></li>
+								<li><a href="http://www.wmie.uz.zgora.pl/">Wydział
+										Matematyki, Informatyki i Ekonometrii</a></li>
+								<li><a href="http://www.wm.uz.zgora.pl/">Wydział
+										Mechaniczny</a></li>
+								<li><a href="http://www.wnb.uz.zgora.pl/">Wydział Nauk
+										Biologicznych</a></li>
+								<li><a href="http://www.wpps.uz.zgora.pl/">Wydział
+										Pedagogiki, Psychologii i Socjologii</a></li>
+								<li><a href="http://www.wpa.uz.zgora.pl/">Wydział Prawa
+										i Administracji</a></li>
+							</ul></li>
+						<li><a href="http://plan.uz.zgora.pl/">Plan
+								zajec</a></li>
+					</ul>
+				</div>
+				<div class="jumbotron">
+					<h1>Witaj, <span style="font-weight:bold" th:text="${student.getDetails().firstName} + ' ' + ${student.getDetails().lastName}"></span>! </h1>
+					<div class="row">
+						<div class="col-sm-6">
+							<table class="table table-striped">
+								<tbody>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Tytuł:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().title.name}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Imie:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().firstName}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Drugie imie:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().secondName}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Nazwisko:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().lastName}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Data urodzenia:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().birthDate}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Pesel:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().pesel}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Adres:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().address.streetFullAddress} + ', ' + ${student.getDetails().address.city} + ', ' + ${student.getDetails().address.postalCode}"></span></em><br />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Numer telefonu:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().phoneNumber}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Numer konta:</span>
+										</td>
+										<td>
+											<em><span class="label"
+													style="font-weight: bold; color: green; font-size: 13pt"
+													th:text="${student.getDetails().bankNumber}"></span></em>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-sm-6">
+							<table class="table table-striped">
+								<tbody>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Album:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().albumNumber}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Wydział:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().department.getDetails().departmentFullName}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Kierunek:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().fieldOfStudy.getDetails().fieldOfStudyName}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Specjalizacja:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().specialization.getDetails().specializationName}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Grupa:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().group.getDetails().groupName}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Forma studiów:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().formOfStudy.name}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">System studiów:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().studySystem.name}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Semestr:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().currentTermNumber}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Początek:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().startStudyDate}"></span></em>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label" style="font-weight: bold; font-size: 13pt; color: black">Koniec:</span>
+										</td>
+										<td>
+											<em><span class="label"
+												style="font-weight: bold; color: green; font-size: 13pt"
+												th:text="${student.getDetails().endStudyDate}"></span></em>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="panel panel-primary">
-			<div class="panel-heading">Witaj, <span style="font-weight:bold" th:text="${student.getDetails().firstName} + ' ' + ${student.getDetails().lastName}"></span>! </div>
-			<div class="panel-body">
-			
-			
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Dane personalne</th>
-							<th>Dane studenta</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr>
-							<td>
-								<h1>Imie: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().firstName}"></span></em> <br />
-								Drugie imie: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().secondName}"></span></em><br />
-								Nazwisko: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().lastName}"></span></em><br />
-								Data urodzenia: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().birthDate}"></span></em><br />
-								Pesel: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().pesel}"></span></em><br />
-								
-								Adres: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().address.streetFullAddress} + ', ' + ${student.getDetails().address.city} + ', ' + ${student.getDetails().address.postalCode}"></span></em><br />
-								Numer telefonu: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().phoneNumber}"></span></em><br />
-								Tytuł: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().title.name}"></span></em><br />
-								Numer konta: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().bankNumber}"></span></em></h1>
-							</td>
-							<td>
-								<h1>Album: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().albumNumber}"></span></em> <br />
-								Wydział: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().department.getDetails().departmentFullName}"></span></em><br />
-								Kierunek: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().fieldOfStudy.getDetails().fieldOfStudyName}"></span></em><br />
-								Specjalizacja: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().specialization.getDetails().specializationName}"></span></em><br />
-								Grupa: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().group.getDetails().groupName}"></span></em><br />
-								
-								Forma studiów: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().formOfStudy.name}"></span></em><br />
-								System studiów: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().studySystem.name}"></span></em><br />
-								Semestr: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().currentTermNumber}"></span></em><br />
-								Początek: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().startStudyDate}"></span></em><br />
-								Koniec: <em><span class="label" style="font-weight:bold; color:green" th:text="${student.getDetails().endStudyDate}"></span></em></h1>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-
-
-				<div class="btn-group btn-group-justified">
-					<a href="/student/changepwd.html" class="btn btn-primary">Zmień hasło</a> 
-					<a href="/student/studentindex.html" class="btn btn-primary">Indeks</a> 
-				</div>
-
-
-
-
-			</div>
-			
-			
-			
-			
 		</div>
 	   <div id="footer"></div>
 	</div>

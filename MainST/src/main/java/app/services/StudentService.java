@@ -159,6 +159,7 @@ public class StudentService extends DaoService<IStudentDao> {
 		student.getDetails().setStudySystem(studentEntity.getStudentStudySystem());	
 		student.getDetails().setId(studentEntity.getId().getStudentId());
 		
+		
 		Address address = new AddressService().findOneById(studentEntity.getAddressId());
 		Group group = new GroupService().findOneByGroupId(studentEntity.getGroupId());
 		FieldOfStudy field = new FieldOfStudyService().findOneByFieldId(studentEntity.getFieldOfStudyId());

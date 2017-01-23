@@ -1,26 +1,21 @@
 package app.controller;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import app.services.GradeService;
 import app.services.StudentService;
 import app.services.TeacherService;
 import app.services.UsersService;
 import core.humanity.student.Student;
-import core.study.details.GradeType;
-import core.study.grade.Grade;
 import core.user.User;
 
 @Controller
@@ -33,6 +28,8 @@ public class StudentController {
 	@Autowired
 	private GradeService gradeService = new GradeService();
 	private Student student;
+	
+	
 	
 	@RequestMapping(value="/student/index", method=RequestMethod.GET)
 	public String studentDetails(HttpSession session, Model model) {
@@ -80,18 +77,18 @@ public class StudentController {
 		return "student/teacher";
 	}
 	@RequestMapping(value="changepwd", method=RequestMethod.POST)
-	public String changePasswordStudent(HttpSession session, @ModelAttribute(value="userform") User user) {
+	public String changePasswordStudent(HttpSession session, @ModelAttribute(value="userform") User user, RedirectAttributes redirectAttributes) {
 		try {
 			user.setLogin((String)session.getAttribute("username"));
 			
 			new UsersService().changePassword(user);
+			redirectAttributes.addAttribute("success", true);
 			
-			return "redirect:/student/changepwd?success";
+			return "redirect:/student/changepwd";
 		} catch(Exception e) {
-			e.printStackTrace();
+			redirectAttributes.addAttribute("error", true);
+			
 			return "redirect:/student/changepwd?error";
 		}
 	}
-	
-	
 }

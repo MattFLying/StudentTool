@@ -5,6 +5,7 @@
 HEAD  
 -->
 <head>
+	<meta charset="utf-8" />
 	<title>>Logowanie do Systemu Studenckiego</title>
 	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
 	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
@@ -23,26 +24,44 @@ BODY
 			<div class="loginPanel panel-default center-block">
 				<div class="panel-body">
 					<div>
-						<div th:if="${param.error}">
-							<center><h1 style="color:red">Login lub haslo sa niepoprawne!</h1></center>
+						<div class="alert alert-success" th:if="${param.logout}">
+							<center>
+								<span
+									style="font-size: 12; font-weight: bold; color: orange">
+									<br />Zostałeś pomyślnie wylogowany.
+								</span>
+							</center>
 						</div>
-						<div th:if="${param.logout}">
-							<center><h1 style="color:blue">Zostales wylogowany!</h1></center>
+						<div class="alert alert-danger" th:if="${param.error}">
+							<center>
+								 <span
+									style="font-size: 12; font-weight: bold; color: orange">
+									<br />Login lub hasło nieprawidłowe!
+								</span>
+							</center>
 						</div>
+						
+						
+						
 						<form th:action="@{/login}" method="post">
-							<center><h1>Panel logowania</h1></center>
+							<center>
+								<h1>Panel logowania</h1>
+							</center>
 							<div class="loginPanelInputFields">
 								<span class="input-group-addon" id="sizing-addon1">Login</span>
-								<input type="text" id="username" name="username" class="form-control" placeholder="login..." aria-describedby="sizing-addon1" />
+								<input type="text" id="username" name="username"
+									class="form-control" placeholder="login..."
+									aria-describedby="sizing-addon1" />
 							</div>
 							<br />
 							<div class="loginPanelInputFields">
 								<span class="input-group-addon" id="sizing-addon1">Haslo</span>
-								<input type="password" id="password" name="password" class="form-control" placeholder="haslo..." aria-describedby="sizing-addon1" />
+								<input type="password" id="password" name="password"
+									class="form-control" placeholder="haslo..."
+									aria-describedby="sizing-addon1" />
 							</div>
-							<br /> 
-							<br /> 
-							<input type="submit" class="btn btn-info text-center center-block" value="Zaloguj" />
+							<br /> <br /> <input type="submit"
+								class="btn btn-info text-center center-block" value="Zaloguj" />
 						</form>
 					</div>
 				</div>

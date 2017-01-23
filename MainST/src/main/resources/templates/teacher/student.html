@@ -19,47 +19,101 @@ BODY
 	<div id="bodyContainer">
 	   <div id="header"></div>
 	   <div id="body">
-			<div class="panel panel-default">
+	   		<div class="panel panel-primary">
 				<div class="panel-heading">
-					<center>
-					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu studenckiego o identyfikatorze użytkownika: </span>
-					
-					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
-					
+					<span style="font-size: 12; font-weight: bold; color: black">
+						Zostałeś zalogowany do Panelu nauczycielskim o identyfikatorze
+						użytkownika: </span> <span style="font-weight: bold; color: #cc0000"
+						th:text="${session.username}"></span>
+
 					<form th:action="@{/logout}" method="post">
-						<input type="submit" class="btn btn-info text-center center-block"
+						<input type="submit" class="btn btn-default pull-right"
 							value="Wyloguj" />
-					</form></center>
+					</form>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="/teacher/index.html">Strona
+								Główna</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj kontem<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/teacher/changepwd.html">Zmień hasło</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Oceny<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/teacher/depts.html">Wystaw ocene</a></li>
+							</ul></li>
+							<li><a href="http://www.uz.zgora.pl">Strona
+								uczelni</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Wydziały<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="http://www.wa.uz.zgora.pl/">Wydział
+										Artystyczny</a></li>
+								<li><a href="http://www.wbais.uz.zgora.pl/">Wydział
+										Budownictwa, Architektury i Inżynierii Środowiska</a></li>
+								<li><a href="http://www.wez.uz.zgora.pl/">Wydział
+										Ekonomii i Zarządzania</a></li>
+								<li><a href="http://www.wfa.uz.zgora.pl/">Wydział
+										Fizyki i Astronomii</a></li>
+								<li><a href="http://www.wh.uz.zgora.pl/">Wydział
+										Humanistyczny</a></li>
+								<li><a href="https://www.wiea.uz.zgora.pl/">Wydział
+										Informatyki, Elektrotechniki i Automatyki</a></li>
+								<li><a href="https://wlnz.uz.zgora.pl/">Wydział
+										Lekarski i Nauk o Zdrowiu</a></li>
+								<li><a href="http://www.wmie.uz.zgora.pl/">Wydział
+										Matematyki, Informatyki i Ekonometrii</a></li>
+								<li><a href="http://www.wm.uz.zgora.pl/">Wydział
+										Mechaniczny</a></li>
+								<li><a href="http://www.wnb.uz.zgora.pl/">Wydział Nauk
+										Biologicznych</a></li>
+								<li><a href="http://www.wpps.uz.zgora.pl/">Wydział
+										Pedagogiki, Psychologii i Socjologii</a></li>
+								<li><a href="http://www.wpa.uz.zgora.pl/">Wydział Prawa
+										i Administracji</a></li>
+							</ul></li>
+						<li><a href="http://plan.uz.zgora.pl/">Plan
+								zajec</a></li>
+					</ul>
+				</div>
+				<div class="jumbotron">
+					<table class="table table-striped">
+						<tbody th:each="student : ${student.findById(param.studentid[0])}">
+							<tr>
+								<td><span class="label"
+									style="font-weight: bold; font-size: 13pt; color: black">Nazwisko
+										studenta:</span></td>
+								<td><span class="label"
+									style="font-weight: bold; color: green; font-size: 13pt"
+									th:text="${student.getDetails().firstName} + ' ' + ${student.getDetails().lastName}">
+								</span></td>
+							</tr>
+							<tr>
+								<td><span class="label"
+									style="font-weight: bold; font-size: 13pt; color: black">Numer
+										telefonu:</span></td>
+								<td><span class="label"
+									style="font-weight: bold; color: green; font-size: 13pt"
+									th:text="${student.getDetails().phoneNumber}"> </span></td>
+							</tr>
+							<tr>
+								<td><span class="label"
+									style="font-weight: bold; font-size: 13pt; color: black">Wydział:</span></td>
+								<td><span class="label"
+									style="font-weight: bold; color: green; font-size: 13pt"
+									th:text="${student.getDetails().department.getDetails().departmentFullName}">
+								</span></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
-		</div>
-
-		<div class="panel panel-primary">
-			<div class="panel-heading">Informacje o Studencie !</div>
-			<div class="panel-body">
-			
-				<table class="table">
-					<tbody th:each="student : ${student.findById(param.studentid[0])}">
-						<tr>
-							<td>Nazwisko studenta: </td>
-							<td th:text="${student.getDetails().firstName} + ' ' + ${student.getDetails().lastName}"></td>
-						</tr>
-						<tr>
-							<td>Numer telefonu: </td>
-							<td th:text="${student.getDetails().phoneNumber}"></td>
-						</tr>
-						<tr>
-							<td>Wydział: </td>
-							<td th:text="${student.getDetails().department.getDetails().departmentFullName}"></td>
-						</tr>
-					</tbody>
-				</table>
-			
-			</div>
-			
-			
-			
-			
 		</div>
 	   <div id="footer"></div>
 	</div>

@@ -1,7 +1,10 @@
 package app.controller;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,7 +56,15 @@ public class AdminController {
 	
 	
 	
-	
+
+	@RequestMapping(value="/admin/index", method = RequestMethod.GET)
+	public String admin(HttpSession session) {	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName(); 
+		session.setAttribute("username", username);
+
+		return "admin/index";
+	}	
 	@RequestMapping(value="/admin/user/adduser", method=RequestMethod.GET)
 	public String addUser(Model model) {
 		User user = new User();

@@ -1,8 +1,6 @@
 package app.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -14,19 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import app.services.CourseService;
-import app.services.DepartmentService;
 import app.services.FieldOfStudyService;
 import app.services.GradeService;
 import app.services.GroupService;
 import app.services.StudentService;
 import app.services.TeacherService;
 import app.services.UsersService;
-import core.humanity.student.Student;
 import core.humanity.teacher.Teacher;
 import core.study.course.Course;
-import core.study.department.Department;
 import core.study.fieldofstudy.FieldOfStudy;
 import core.study.grade.Grade;
 import core.study.group.Group;
@@ -80,7 +74,6 @@ public class TeacherController {
 		
 		return "teacher/student";
 	}
-	
 	@RequestMapping(value="/teacher/grading", method=RequestMethod.GET)
 	public String grading(Model model, @RequestParam("student") int student, @RequestParam("course") int course) {
 		Grade grade = new Grade();
@@ -122,20 +115,19 @@ public class TeacherController {
 		
 		return "teacher/grades";
 	}
-	
-	
-	
 	@RequestMapping(value="changepwd_teacher", method=RequestMethod.POST)
-	public String changePasswordTeacher(HttpSession session, @ModelAttribute(value="userform") User user) {
+	public String changePasswordTeacher(HttpSession session, @ModelAttribute(value="userform") User user, RedirectAttributes redirectAttributes) {
 		try {
 			user.setLogin((String)session.getAttribute("username"));
 			
 			new UsersService().changePassword(user);
+			redirectAttributes.addAttribute("success", true);
 			
-			return "redirect:/teacher/changepwd?success";
+			return "redirect:/teacher/changepwd";
 		} catch(Exception e) {
-			e.printStackTrace();
-			return "redirect:/teacher/changepwd?error";
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/teacher/changepwd";
 		}
 	}
 	@RequestMapping(value="/deptsfields", method=RequestMethod.POST)
@@ -145,8 +137,9 @@ public class TeacherController {
 			
 			return "redirect:/teacher/groups";
 		} catch(Exception e) {
-			e.printStackTrace();
-			return "redirect:/teacher/depts?error";
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/teacher/groups";
 		}
 	}
 	@RequestMapping(value="/grades", method=RequestMethod.POST)
@@ -160,20 +153,21 @@ public class TeacherController {
 			course = new CourseService().findByNameAndForm(course.getDetails().getCourseName(), course.getDetails().getCourseForm().getName());
 			group = groupService.findOneByName(group.getDetails().getGroupName());
 			
-			if(group.getDetails().getFieldOfStudy().getDetails().getId() ==
-					course.getDetails().getFieldOfStudy().getDetails().getId()) {
-				System.out.println("trololololo");
+			if(group.getDetails().getFieldOfStudy().getDetails().getId() == course.getDetails().getFieldOfStudy().getDetails().getId()) {
 				
 				redirectAttributes.addAttribute("course", course.getDetails().getId());
 				redirectAttributes.addAttribute("group", group.getDetails().getId());
 				
 				return "redirect:/teacher/grades";
 			} else {
-				return "redirect:/teacher/grades?error";
+				redirectAttributes.addAttribute("error", true);
+				
+				return "redirect:/teacher/grades";
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
-			return "redirect:/teacher/grades?error";
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/teacher/grades";
 		}
 	}
 	@RequestMapping(value="/grading", method=RequestMethod.POST)
@@ -189,7 +183,6 @@ public class TeacherController {
 			
 			return "redirect:/teacher/grading";
 		} catch(Exception e) {
-			e.printStackTrace();
 			redirectAttributes.addAttribute("student", grade.getDetails().getStudent().getDetails().getId());
 			redirectAttributes.addAttribute("course", grade.getDetails().getCourse().getDetails().getId());
 			redirectAttributes.addAttribute("error", true);
@@ -206,19 +199,17 @@ public class TeacherController {
 			
 			redirectAttributes.addAttribute("student", grade.getDetails().getStudent().getDetails().getId());
 			redirectAttributes.addAttribute("course", grade.getDetails().getCourse().getDetails().getId());
+			redirectAttributes.addAttribute("grade", grade.getDetails().getId());
 			redirectAttributes.addAttribute("success", true);
 			
-			return "redirect:/teacher/grading";
+			return "redirect:/teacher/editgrade";
 		} catch(Exception e) {
-			e.printStackTrace();
 			redirectAttributes.addAttribute("student", grade.getDetails().getStudent().getDetails().getId());
 			redirectAttributes.addAttribute("course", grade.getDetails().getCourse().getDetails().getId());
+			redirectAttributes.addAttribute("grade", grade.getDetails().getId());
 			redirectAttributes.addAttribute("error", true);
 			
-			return "redirect:/teacher/grading";
+			return "redirect:/teacher/editgrade";
 		}
 	}
-	
-	
-	
 }
