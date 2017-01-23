@@ -1,9 +1,5 @@
 package app.controller;
 
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -12,9 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import app.services.CourseService;
 import app.services.DepartmentService;
 import app.services.FieldOfStudyService;
@@ -40,15 +35,15 @@ public class AdminController {
 	@Autowired
 	private UsersService userService = new UsersService();
 	@Autowired
-	private DepartmentService departmentService = new DepartmentService();
-	@Autowired
-	private InstituteService instituteService = new InstituteService();
-	@Autowired
 	private FieldOfStudyService fieldOfStudyService = new FieldOfStudyService();
+	@Autowired
+	private GroupService groupService = new GroupService();
 	@Autowired
 	private SpecializationService specializationService = new SpecializationService();
 	@Autowired
-	private GroupService groupService = new GroupService();
+	private InstituteService instituteService = new InstituteService();
+	@Autowired
+	private DepartmentService departmentService = new DepartmentService();
 	@Autowired
 	private CourseService courseService = new CourseService();
 	@Autowired
@@ -56,13 +51,28 @@ public class AdminController {
 	@Autowired
 	private TeacherService teacherService = new TeacherService();
 	
+	
+	
+	
 	@RequestMapping(value="/admin/user/adduser", method=RequestMethod.GET)
 	public String addUser(Model model) {
 		User user = new User();
-
 		model.addAttribute("userform", user);
 		
 		return "admin/user/adduser";
+	}
+	@RequestMapping(value="/adduserdb", method=RequestMethod.POST)
+	public String addUserToDb(@ModelAttribute(value="userform") User user, RedirectAttributes redirectAttributes) {
+		try {
+			userService.createBasicUser(user);	
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/user/adduser";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/user/adduser";
+		}
 	}
 	@RequestMapping(value={"/admin/user/addstudent"})
 	public String addStudent(Model model) {
@@ -71,16 +81,41 @@ public class AdminController {
 		
 		model.addAttribute("userform", user);
 		model.addAttribute("studentform", student);
-		model.addAttribute("fieldsdepts", fieldOfStudyService.findAllFieldsForAllDepartments());
-		
+		model.addAttribute("fieldsdepts", fieldOfStudyService.findAllFieldsForAllDepartments());		
 		model.addAttribute("groupService", groupService);
 		model.addAttribute("specializationService", specializationService);
 		
 		return "admin/user/addstudent";
 	}
+	@RequestMapping(value="/addstudentdb", method=RequestMethod.POST)
+	public String addStudentToDb(@ModelAttribute(value="userform") User user, @ModelAttribute(value="studentform") Student student, RedirectAttributes redirectAttributes) {
+		try {
+			studentService.save(student, user);			
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/user/addstudent";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/user/addstudent";
+		}
+	}
 	@RequestMapping(value={"/admin/user/addstudents"})
 	public String addStudents() {
 		return "admin/user/addstudents";
+	}
+	@RequestMapping(value="/addstudentsdb", method=RequestMethod.POST)
+	public String addStudentsToDb(@RequestParam("file") MultipartFile file, Model model, RedirectAttributes redirectAttributes) {
+		try {
+			studentService.createStudentsFromExcel(file.getInputStream());
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/user/addstudents";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/user/addstudents";
+		}
 	}
 	@RequestMapping(value={"/admin/user/addteacher"})
 	public String addTeacher(Model model) {
@@ -93,7 +128,19 @@ public class AdminController {
 		
 		return "admin/user/addteacher";
 	}
-	
+	@RequestMapping(value="/addteacherdb", method=RequestMethod.POST)
+	public String addTeacherToDb(@ModelAttribute(value="userform") User user, @ModelAttribute(value="teacherform") Teacher teacher, RedirectAttributes redirectAttributes) {
+		try {
+			teacherService.save(teacher, user);
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/user/addteacher";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/user/addteacher";
+		}
+	}
 	@RequestMapping(value={"/admin/dept/adddepartment"})
 	public String addDepartment(Model model) {
 		Department department = new Department();
@@ -101,6 +148,19 @@ public class AdminController {
 		model.addAttribute("departmentform", department);
 		
 		return "admin/dept/adddepartment";
+	}
+	@RequestMapping(value="/adddepartmentdb", method=RequestMethod.POST)
+	public String addDepartmentToDb(@ModelAttribute(value="departmentform") Department department, RedirectAttributes redirectAttributes) {
+		try {
+			departmentService.save(department);
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/dept/adddepartment";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/dept/adddepartment";
+		}
 	}
 	@RequestMapping(value={"/admin/dept/addinstitute"})
 	public String addInstitute(Model model) {
@@ -110,6 +170,19 @@ public class AdminController {
 		model.addAttribute("departments", departmentService.findAll());
 		
 		return "admin/dept/addinstitute";
+	}
+	@RequestMapping(value="/addinstitutedb", method=RequestMethod.POST)
+	public String addInstituteToDb(@ModelAttribute(value="instituteform") Institute institute, RedirectAttributes redirectAttributes) {
+		try {
+			instituteService.save(institute);
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/dept/addinstitute";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/dept/addinstitute";
+		}
 	}
 	@RequestMapping(value={"/admin/dept/addspecialization"})
 	public String addSpecialization(Model model) {
@@ -122,6 +195,19 @@ public class AdminController {
 		
 		return "admin/dept/addspecialization";
 	}
+	@RequestMapping(value="/addspecializationdb", method=RequestMethod.POST)
+	public String addSpecializationToDb(@ModelAttribute(value="specializationform") Specialization specialization, RedirectAttributes redirectAttributes) {
+		try {
+			specializationService.save(specialization);
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/dept/addspecialization";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/dept/addspecialization";
+		}
+	}
 	@RequestMapping(value={"/admin/field/addfieldofstudy"})
 	public String addFieldofstudy(Model model) {
 		FieldOfStudy fieldOfStudy = new FieldOfStudy();
@@ -130,6 +216,19 @@ public class AdminController {
 		model.addAttribute("departments", departmentService.findAll());
 		
 		return "admin/field/addfieldofstudy";
+	}
+	@RequestMapping(value="/addfieldofstudydb", method=RequestMethod.POST)
+	public String addFieldOfStudyToDb(@ModelAttribute(value="fieldofstudyform") FieldOfStudy fieldOfStudy, RedirectAttributes redirectAttributes) {
+		try {
+			fieldOfStudyService.save(fieldOfStudy);
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/field/addfieldofstudy";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/field/addfieldofstudy";
+		}
 	}
 	@RequestMapping(value={"/admin/field/addgroup"})
 	public String addGroup(Model model) {
@@ -141,7 +240,19 @@ public class AdminController {
 		
 		return "admin/field/addgroup";
 	}
-	
+	@RequestMapping(value="/addgroupdb", method=RequestMethod.POST)
+	public String addGroupToDb(@ModelAttribute(value="groupform") Group group, RedirectAttributes redirectAttributes) {
+		try {
+			groupService.save(group);
+			redirectAttributes.addAttribute("success", true);
+			
+			return "redirect:/admin/field/addgroup";
+		} catch(Exception e) {
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/field/addgroup";
+		}
+	}
 	@RequestMapping(value={"/admin/course/addcourse"})
 	public String addCourse(Model model) {
 		Course course = new Course();
@@ -151,156 +262,17 @@ public class AdminController {
 		
 		return "admin/course/addcourse";
 	}
-	@RequestMapping(value={"/admin/course/addgrade"})
-	public String addGrade() {
-		return "admin/course/addgrade";
-	}
-	
-	
-	
-	@RequestMapping(value="/adduserdb", method=RequestMethod.POST)
-	public String addUserToDb(@ModelAttribute(value="userform") User user) {
-		try {
-			userService.createBasicUser(user);
-			
-			return "redirect:/admin/user/adduser?success";
-		} catch(Exception e) {
-			return "redirect:/admin/user/adduser?error";
-		}
-	}
-	@RequestMapping(value="/addstudentdb", method=RequestMethod.POST)
-	public String addStudentToDb(@ModelAttribute(value="userform") User user, @ModelAttribute(value="studentform") Student student) {
-		try {
-			studentService.save(student, user);
-			
-			return "redirect:/admin/user/addstudent?success";
-		} catch(Exception e) {
-			e.printStackTrace();
-			return "redirect:/admin/user/addstudent?error";
-		}
-	}
-	
-	
-	
-	
-	
-	
-	@RequestMapping(value="/addstudentsdb", method=RequestMethod.POST)
-	public String addStudentsToDb(@RequestParam("file") MultipartFile file, Model model) {
-		try {
-			studentService.createStudentsFromExcel(file.getInputStream());
-			
-			
-			
-			
-			
-			/*String content = new String(file.getBytes());
-			model.addAttribute("fileName", file.getOriginalFilename());
-			model.addAttribute("content", content);*/
-            //return "file name:" + file.getOriginalFilename() + "<br> content:" + content;
-			//System.out.println("Nazwa: " + file.getOriginalFilename() + ". Tresc: " + content);
-			return "redirect:/admin/user/addstudents?success";
-		} catch(Exception e) {
-			e.printStackTrace();
-			return "redirect:/admin/user/addstudents?error";
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping(value="/addteacherdb", method=RequestMethod.POST)
-	public String addTeacherToDb(@ModelAttribute(value="userform") User user, @ModelAttribute(value="teacherform") Teacher teacher) {
-		try {
-			teacherService.save(teacher, user);
-			
-			return "redirect:/admin/user/addteacher?success";
-		} catch(Exception e) {
-			e.printStackTrace();
-			return "redirect:/admin/user/addteacher?error";
-		}
-	}
-	
-	
-	
-	@RequestMapping(value="/adddepartmentdb", method=RequestMethod.POST)
-	public String addDepartmentToDb(@ModelAttribute(value="departmentform") Department department) {
-		try {
-			departmentService.save(department);
-			
-			return "redirect:/admin/dept/adddepartment?success";
-		} catch(Exception e) {
-			return "redirect:/admin/dept/adddepartment?error";
-		}
-	}
-	@RequestMapping(value="/addinstitutedb", method=RequestMethod.POST)
-	public String addInstituteToDb(@ModelAttribute(value="instituteform") Institute institute) {
-		try {
-			instituteService.save(institute);
-			
-			return "redirect:/admin/dept/addinstitute?success";
-		} catch(Exception e) {
-			return "redirect:/admin/dept/addinstitute?error";
-		}
-	}
-	@RequestMapping(value="/addfieldofstudydb", method=RequestMethod.POST)
-	public String addFieldOfStudyToDb(@ModelAttribute(value="fieldofstudyform") FieldOfStudy fieldOfStudy) {
-		try {
-			fieldOfStudyService.save(fieldOfStudy);
-			
-			return "redirect:/admin/field/addfieldofstudy?success";
-		} catch(Exception e) {
-			return "redirect:/admin/field/addfieldofstudy?error";
-		}
-	}
-	@RequestMapping(value="/addspecializationdb", method=RequestMethod.POST)
-	public String addSpecializationToDb(@ModelAttribute(value="specializationform") Specialization specialization) {
-		try {
-			specializationService.save(specialization);
-			
-			return "redirect:/admin/dept/addspecialization?success";
-		} catch(Exception e) {
-			return "redirect:/admin/dept/addspecialization?error";
-		}
-	}
-	@RequestMapping(value="/addgroupdb", method=RequestMethod.POST)
-	public String addGroupToDb(@ModelAttribute(value="groupform") Group group) {
-		try {
-			groupService.save(group);
-			
-			return "redirect:/admin/field/addgroup?success";
-		} catch(Exception e) {
-			return "redirect:/admin/field/addgroup?error";
-		}
-	}
 	@RequestMapping(value="/addcoursedb", method=RequestMethod.POST)
-	public String addGroupToDb(@ModelAttribute(value="courseform") Course course) {
+	public String addCourseToDb(@ModelAttribute(value="courseform") Course course, RedirectAttributes redirectAttributes) {
 		try {
 			courseService.save(course);
+			redirectAttributes.addAttribute("success", true);
 			
-			return "redirect:/admin/course/addcourse?success";
+			return "redirect:/admin/course/addcourse";
 		} catch(Exception e) {
-			return "redirect:/admin/course/addcourse?error";
+			redirectAttributes.addAttribute("error", true);
+			
+			return "redirect:/admin/course/addcourse";
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

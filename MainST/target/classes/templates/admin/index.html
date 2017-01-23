@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -19,66 +20,68 @@ BODY
 	<div id="bodyContainer">
 		<div id="header"></div>
 		<div id="body">
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<center>
-					<span style="font-size:12; font-weight:bold; color:black">Zostałeś zalogowany do Panelu administracyjnego o identyfikatorze użytkownika: </span>
-					
-					<span style="font-weight:bold; color:red" th:text="${session.username}"></span>
-					
+					<span style="font-size: 12; font-weight: bold; color: black">
+						Zostałeś zalogowany do Panelu administracyjnego o identyfikatorze
+						użytkownika: </span> <span style="font-weight: bold; color: #cc0000"
+						th:text="${session.username}"></span>
+
 					<form th:action="@{/logout}" method="post">
-						<input type="submit" class="btn btn-info text-center center-block"
+						<input type="submit" class="btn btn-default pull-right"
 							value="Wyloguj" />
-					</form></center>
+					</form>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="/admin/index.html">Strona
+								Główna</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj użytkownikami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/user/adduser.html">Dodaj
+										użytkownika systemu</a></li>
+								<li><a href="/admin/user/addstudent.html">Dodaj
+										studenta</a></li>
+								<li><a href="/admin/user/addstudents.html">Dodaj
+										studentów z pliku Excel (.xls)</a></li>
+								<li><a href="/admin/user/addteacher.html">Dodaj
+										prowadzącego zajęcia</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj wydziałami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/dept/adddepartment.html">Dodaj
+										wydział akademicki</a></li>
+								<li><a href="/admin/dept/addinstitute.html">Dodaj
+										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/addspecialization.html">Dodaj
+										specjalizacje kierunkową</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj kierunkami studiów<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/field/addfieldofstudy.html">Dodaj
+										kierunek studiów</a></li>
+								<li><a href="/admin/field/addgroup.html">Dodaj grupę
+										akademicką</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<div class="jumbotron">
+					<h1>Panel Administracyjny...</h1>
+					<p>
+						W panelu administracyjnym możesz zarządzać podstawowymi elementami systemu. W powyższej nawigacji są dostępne różne narzędzia, z których możesz korzystać.
+						Pamiętaj o uzupełnianiu formularzy prawdziwymi danymi i wypełnianiu wszystkich wymaganych pól co jest niezbędne do poprawnego funkcjonowania Twoich narzędzi.
+					</p>
 				</div>
 			</div>
 		</div>
-
-		<div class="panel panel-primary">
-			<div class="panel-heading">Narzędzia administracyjne</div>
-			<div class="panel-body">
-
-				<ul class="list-group">
-					<li class="list-group-item">
-						<center><span style="font-size: 14; font-weight: bold; color: green">Zarządzanie Użytkownikami</span></center>
-						<div class="btn-group btn-group-justified">
-							<a href="/admin/user/adduser.html" class="btn btn-primary">Dodaj użytkownika</a> 
-							<a href="/admin/user/addstudent.html" class="btn btn-primary">Dodaj studenta</a> 
-							<a href="/admin/user/addteacher.html" class="btn btn-primary">Dodaj prowadzącego</a>
-							<a href="/admin/user/addstudents.html" class="btn btn-primary">Dodaj kilku studentów</a>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<center><span style="font-size: 14; font-weight: bold; color: green">Zarządzanie Wydziałami</span></center>
-						<div class="btn-group btn-group-justified">
-							<a href="/admin/dept/adddepartment.html" class="btn btn-primary">Dodaj wydział</a> 
-							<a href="/admin/dept/addinstitute.html" class="btn btn-primary">Dodaj instytut</a> 
-							<a href="/admin/dept/addspecialization.html" class="btn btn-primary">Dodaj specjalizacja</a>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<center><span style="font-size: 14; font-weight: bold; color: green">Zarządzanie Kierunkami</span></center>
-						<div class="btn-group btn-group-justified">
-							<a href="/admin/field/addfieldofstudy.html" class="btn btn-primary">Dodaj Kierunek Studiów</a> 
-							<a href="/admin/field/addgroup.html" class="btn btn-primary">Dodaj Grupe Studencką</a> 
-						</div>
-					</li>
-					<li class="list-group-item">
-						<center><span style="font-size: 14; font-weight: bold; color: green">Zarządzanie Przedmiotami i Ocenami</span></center>
-						<div class="btn-group btn-group-justified">
-							<a href="/admin/course/addcourse.html" class="btn btn-primary">Dodaj Przedmiot</a> 
-							<a href="/admin/dept/addgrade.html" class="btn btn-primary">Dodaj Ocene</a> 
-						</div>
-					</li>
-				</ul>
-
-			</div>
-		</div>
-
-
-
-
-
 		<div id="footer"></div>
 	</div>
 </body>

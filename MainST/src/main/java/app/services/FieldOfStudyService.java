@@ -1,11 +1,14 @@
 package app.services;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
 
 import app.services.factory.DaoFactory;

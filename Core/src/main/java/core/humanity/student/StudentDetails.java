@@ -113,6 +113,8 @@ public class StudentDetails extends PersonalDetails {
 		this.formOfStudy = formOfStudy;
 	}
 	public void setFormOfStudy(String formOfStudy) {
+		if(formOfStudy.equals(FormOfStudy.NONE.getName()))
+			this.formOfStudy = FormOfStudy.NONE;
 		if(formOfStudy.equals(FormOfStudy.FIRST_CYCLE_ENGINEER.getName()))
 			this.formOfStudy = FormOfStudy.FIRST_CYCLE_ENGINEER;
 		if(formOfStudy.equals(FormOfStudy.FIRST_CYCLE_LICENTIATE.getName()))

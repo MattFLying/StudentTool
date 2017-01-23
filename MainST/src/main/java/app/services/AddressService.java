@@ -1,5 +1,10 @@
 package app.services;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+
+import org.hibernate.JDBCException;
+
 import app.services.factory.DaoFactory;
 import core.humanity.details.Address;
 import model.dao.interfaces.IAddressDao;

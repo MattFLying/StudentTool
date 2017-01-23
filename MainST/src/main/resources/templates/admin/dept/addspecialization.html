@@ -19,96 +19,113 @@ BODY
 	<div id="bodyContainer">
 		<div id="header"></div>
 		<div id="body">
-
-
-			<!-- -->
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<center>
-						<span style="font-size: 12; font-weight: bold; color: black">Zostałeś
-							zalogowany do Panelu administracyjnego o identyfikatorze
-							użytkownika: </span> <span style="font-weight: bold; color: red"
-							th:text="${session.username}"></span>
+					<span style="font-size: 12; font-weight: bold; color: black">
+						Zostałeś zalogowany do Panelu administracyjnego o identyfikatorze
+						użytkownika: </span> <span style="font-weight: bold; color: #cc0000"
+						th:text="${session.username}"></span>
 
-						<form th:action="@{/logout}" method="post">
-							<input type="submit"
-								class="btn btn-info text-center center-block" value="Wyloguj" />
-						</form>
-					</center>
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" class="btn btn-default pull-right"
+							value="Wyloguj" />
+					</form>
+					<div class="clearfix"></div>
 				</div>
-			</div>
-			<!-- -->
-
-
-			<!-- -->
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<center>
-						<span style="font-size: 14; font-weight: bold; color: green">Dodaj
-							Specjalizacje</span>
-					</center>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="/admin/index.html">Strona
+								Główna</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj użytkownikami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/user/adduser.html">Dodaj
+										użytkownika systemu</a></li>
+								<li><a href="/admin/user/addstudent.html">Dodaj
+										studenta</a></li>
+								<li><a href="/admin/user/addstudents.html">Dodaj
+										studentów z pliku Excel (.xls)</a></li>
+								<li><a href="/admin/user/addteacher.html">Dodaj
+										prowadzącego zajęcia</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj wydziałami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/dept/adddepartment.html">Dodaj
+										wydział akademicki</a></li>
+								<li><a href="/admin/dept/addinstitute.html">Dodaj
+										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/addspecialization.html">Dodaj
+										specjalizacje kierunkową</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj kierunkami studiów<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/field/addfieldofstudy.html">Dodaj
+										kierunek studiów</a></li>
+								<li><a href="/admin/field/addgroup.html">Dodaj grupę
+										akademicką</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
+							</ul></li>
+					</ul>
 				</div>
-				<!-- -->
-				<form action="#" th:action="@{/addspecializationdb}"
-					th:object="${specializationform}" method="post">
-					<!-- -->
-					<div class="panel-body">
-						<div th:if="${param.success}">
-							<center>
-								<span style="font-size: 12; font-weight: bold; color: orange">Specjalizacja
-									dodany!</span>
-							</center>
-						</div>
-						<div th:if="${param.error}">
-							<center>
-								<span style="font-size: 12; font-weight: bold; color: orange">Coś
-									poszło nie tak, upewnij się, że podałeś właściwe dane!</span>
-							</center>
-						</div>
+				<div class="jumbotron">
+					<form action="#" th:action="@{/addspecializationdb}"
+						th:object="${specializationform}" method="post">
 						<!-- -->
-						<div>
-							<div class="col-xs-3">
-								<label for="fullName">Pełna nazwa:</label> <input
-									class="form-control" id="fullName" type="text"
-									th:field="*{details.specializationName}" />
+						<div class="panel-body">
+							<div class="alert alert-success" th:if="${param.success}">
+								<center>
+									<strong>Operacja zakończona sukcesem!</strong> <span
+										style="font-size: 12; font-weight: bold; color: orange">
+										<br />Specjalizacja została pomyślnie dodana!
+									</span>
+								</center>
 							</div>
-							<table>
+							<div class="alert alert-danger" th:if="${param.error}">
+								<center>
+									<strong>Operacja nie powiodła się!</strong> <span
+										style="font-size: 12; font-weight: bold; color: orange">
+										<br />Coś poszło nie tak, upewnij się, że podałeś właściwe
+										dane!
+									</span>
+								</center>
+							</div>
 
-								<tr>
+							<div>
+								<div class="col-xs-3">
+									<label for="fullName">Pełna nazwa:</label> <input
+										class="form-control" id="fullName" type="text"
+										th:field="*{details.specializationName}" />
+								</div>
+								<table>
+									<tr>
+										<th>Wydział</th>
+										<th>Kierunek</th>
+									</tr>
+									<tr th:each="entry : ${fieldsdepts}">
+										<td th:text="${entry.getKey().details.departmentFullName}" th:value="${entry.getKey().details.departmentFullName}"></td>
+										<td>
+											<select id="fieldslist" class="form-control" th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
+												<option selected="selected" value="">Wybierz...</option>
+												<option th:each="field : ${entry.getValue()}" th:value="${field.details.fieldOfStudyName}"
+													th:text="${field.details.fieldOfStudyName}">
+												</option>
+											</select>
+										</td>
+									</tr>
 
-									<th>Wydział</th>
-
-									<th>Kierunek</th>
-
-								</tr>
-
-								<tr th:each="entry : ${fieldsdepts}">
-
-									<td th:text="${entry.getKey().details.departmentFullName}" th:value="${entry.getKey().details.departmentFullName}"></td>
-
-									<td>
-										<select id="fieldslist" class="form-control" th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
-											<option selected="selected" value="">Wybierz...</option>
-											<option th:each="field : ${entry.getValue()}" 
-												th:value="${field.details.fieldOfStudyName}" 
-												th:text="${field.details.fieldOfStudyName}">
-											</option>
-										</select>
-									</td>
-
-								</tr>
-
-							</table>
+								</table>
+							</div>
+							<br /> <br />
 						</div>
-						<!-- -->
-						<br /> <br />
-					</div>
-					<!-- -->
-					<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
-				</form>
-				<!-- -->
+						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+					</form>
+				</div>
 			</div>
-			<!-- -->
 		</div>
 		<div id="footer"></div>
 	</div>

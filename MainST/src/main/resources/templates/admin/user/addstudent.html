@@ -21,264 +21,245 @@ BODY
 		<div id="header"></div>
 		<div id="body">
 
-
-
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<center>
-						<span style="font-size: 12; font-weight: bold; color: black">Zostałeś
-							zalogowany do Panelu administracyjnego o identyfikatorze
-							użytkownika: </span> <span style="font-weight: bold; color: red"
-							th:text="${session.username}"></span>
+					<span style="font-size: 12; font-weight: bold; color: black">
+						Zostałeś zalogowany do Panelu administracyjnego o identyfikatorze
+						użytkownika: </span> <span style="font-weight: bold; color: #cc0000"
+						th:text="${session.username}"></span>
 
-						<form th:action="@{/logout}" method="post">
-							<input type="submit"
-								class="btn btn-info text-center center-block" value="Wyloguj" />
-						</form>
-					</center>
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" class="btn btn-default pull-right"
+							value="Wyloguj" />
+					</form>
+					<div class="clearfix"></div>
 				</div>
-			</div>
-
-
-
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<center>
-						<span style="font-size: 14; font-weight: bold; color: green">Dodaj
-							Studenta</span>
-					</center>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="/admin/index.html">Strona
+								Główna</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj użytkownikami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/user/adduser.html">Dodaj
+										użytkownika systemu</a></li>
+								<li><a href="/admin/user/addstudent.html">Dodaj
+										studenta</a></li>
+								<li><a href="/admin/user/addstudents.html">Dodaj
+										studentów z pliku Excel (.xls)</a></li>
+								<li><a href="/admin/user/addteacher.html">Dodaj
+										prowadzącego zajęcia</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj wydziałami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/dept/adddepartment.html">Dodaj
+										wydział akademicki</a></li>
+								<li><a href="/admin/dept/addinstitute.html">Dodaj
+										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/addspecialization.html">Dodaj
+										specjalizacje kierunkową</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj kierunkami studiów<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/field/addfieldofstudy.html">Dodaj
+										kierunek studiów</a></li>
+								<li><a href="/admin/field/addgroup.html">Dodaj grupę
+										akademicką</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
+							</ul></li>
+					</ul>
 				</div>
-				<form action="#" th:action="@{/addstudentdb}" th:object="${studentform}" method="post">
-					<div class="panel-body">
+				<div class="jumbotron">
+					<form action="#" th:action="@{/addstudentdb}" th:object="${studentform}" method="post">
+						<div class="panel-body">
+							<div class="alert alert-success" th:if="${param.success}">
+								<center>
+									<strong>Operacja zakończona sukcesem!</strong> <span
+										style="font-size: 12; font-weight: bold; color: orange">
+										<br />Student został pomyślnie dodany!
+									</span>
+								</center>
+							</div>
+							<div class="alert alert-danger" th:if="${param.error}">
+								<center>
+									<strong>Operacja nie powiodła się!</strong> <span
+										style="font-size: 12; font-weight: bold; color: orange">
+										<br />Coś poszło nie tak, upewnij się, że podałeś właściwe
+										dane!
+									</span>
+								</center>
+							</div>
 
-						<div th:if="${param.success}">
-							<center>
-								<span style="font-size: 12; font-weight: bold; color: orange">Student
-									dodany!</span>
-							</center>
-						</div>
-						<div th:if="${param.error}">
-							<center>
-								<span style="font-size: 12; font-weight: bold; color: orange">Coś
-									poszło nie tak, upewnij się, że podałeś właściwe dane!</span>
-							</center>
-						</div>
-						<div>
-							<div class="col-xs-3">
-								<label for="password">Hasło:</label> <input class="form-control"
-									id="password" name="password" type="text" th:value="${userform.password}" />
-							</div>
-						</div>
 
-						<br /> <br /> <br /> <br /> 
-
-						<br />
-						<div>
-						
 							<div>
-								<div class="col-xs-3">
-								<label for="usr">Imie:</label> <input class="form-control"
-									id="details.firstName" name="details.firstName" type="text"
-									th:value="${studentform.details.firstName}" />
+								<div class="col-xs-2">
+									<label for="details.albumNumber">Numer albumu:</label> <input
+										class="form-control" id="details.albumNumber"
+										name="details.albumNumber" type="text"
+										th:value="${studentform.details.albumNumber}" />
 								</div>
-								<div class="col-xs-3">
-									<label for="pwd">Drugie imie:</label> <input
-										class="form-control" id="details.secondName"
-										name="details.secondName" type="text"
-										th:value="${studentform.details.secondName}" />
-								</div>
-								<div class="col-xs-3">
-									<label for="pwd">Nazwisko:</label> <input class="form-control"
-										id="details.lastName" name="details.lastName" type="text"
-										th:value="${studentform.details.lastName}" />
-								</div>
-								<div class="col-xs-3">
-									<label for="pwd">Pesel:</label> <input class="form-control"
-										id="details.pesel" name="details.pesel" type="text"
-										th:value="${studentform.details.pesel}" />
+								<div class="col-xs-2">
+									<label for="password">Hasło:</label> <input
+										class="form-control" id="password" name="password" type="text"
+										th:value="${userform.password}" />
 								</div>
 							</div>
-						
-						
+							<br /> <br /> <br /> <br />
 							<div>
-								<div class="col-xs-3">
-								<label for="pwd">Data urodzenia:</label> <input
-									class="form-control" id="details.birthDate"
-									name="details.birthDate" type="text"
-									th:value="${studentform.details.birthDate}" />
-								</div>
-								<div class="col-xs-3">
-									<label for="pwd">Telefon:</label> <input class="form-control"
-										id="details.phoneNumber" name="details.phoneNumber" type="text"
-										th:value="${studentform.details.phoneNumber}" />
-								</div>
-								<div class="col-xs-3">
-									<label for="pwd">Numer konta:</label> <input
-										class="form-control" id="details.bankNumber"
-										name="details.bankNumber" type="text"
-										th:value="${studentform.details.bankNumber}" />
-								</div>
-								<div class="col-xs-3">
-								<label for="pwd">Numer albumu:</label> <input
-									class="form-control" id="details.albumNumber"
-									name="details.albumNumber" type="text"
-									th:value="${studentform.details.albumNumber}" />
-								</div>
-							</div>
-						
-							<div>
-								<div class="col-xs-3">
-								<label for="pwd">Semestr:</label> <input class="form-control"
-									id="details.currentTermNumber" name="details.currentTermNumber"
-									type="text" th:value="${studentform.details.currentTermNumber}" />
-								</div>
-								<div class="form-group col-xs-3">
-								<label for="sel1">System studiów:</label> <select
-									class="form-control"
-									th:field="${studentform.details.studySystem}">
-									<option
-										th:each="system : ${T(core.study.details.StudySystem).values()}"
-										th:value="${system}" th:text="${system.name}"></option>
-								</select>
-							</div>
-							<div class="form-group col-xs-3">
-								<label for="sel1">Forma studiów:</label> <select
-									class="form-control"
-									th:field="${studentform.details.formOfStudy}">
-									<option
-										th:each="form : ${T(core.study.details.FormOfStudy).values()}"
-										th:value="${form}" th:text="${form.name}"></option>
-								</select>
-								</div>
-								<div class="col-xs-3">
-									<label for="pwd">Początek studiów:</label> <input
-										class="form-control" id="details.startStudyDate"
-										name="details.startStudyDate" type="text"
-										th:value="${studentform.details.startStudyDate}" />
-								</div>
-							</div>
-						
-							<div>
-								<div class="col-xs-3">
-									<label for="pwd">Koniec studiów:</label> <input
-										class="form-control" id="details.endStudyDate"
-										name="details.endStudyDate" type="text"
-										th:value="${studentform.details.endStudyDate}" />
-								</div>
-								<div class="form-group col-xs-3">
-									<label for="sel1">Tytuł:</label> 
-									<select
-										class="form-control"
+								<div class="col-xs-2">
+									<label>Tytuł:</label> <select class="form-control"
 										th:field="${studentform.details.title}">
 										<option
 											th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
 											th:value="${title}" th:text="${title.name}"></option>
 									</select>
-									
-									<table>
-									<tr>
-
-										<th>Adres</th>
-
-									</tr>
-								
-									<tr>
-
-										<td>
-											<label for="pwd">Miasto:</label>
-											<input class="form-control" id="details.address.city" name="details.address.city" type="text" 
-												th:value="${studentform.details.address.city}" />
-										</td>
-										<td>
-											<label for="pwd">Kod pocztowy:</label>
-											<input class="form-control" id="details.address.postalCode" name="details.address.postalCode" type="text" 
-												th:value="${studentform.details.address.postalCode}" />
-										</td>
-										<td>
-											<label for="pwd">Ulica:</label>
-											<input class="form-control" id="details.address.streetFullAddress" name="details.address.streetFullAddress" type="text" 
-												th:value="${studentform.details.address.streetFullAddress}" />
-										</td>
-
-									</tr>
-								
-								</table>
 								</div>
-								
-								
-								
-								
-								
-								
-								
-								
-
+								<div class="col-xs-2">
+									<label for="details.firstName">Imie:</label> <input
+										class="form-control" id="details.firstName"
+										name="details.firstName" type="text"
+										th:value="${studentform.details.firstName}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.secondName">Drugie imie:</label> <input
+										class="form-control" id="details.secondName"
+										name="details.secondName" type="text"
+										th:value="${studentform.details.secondName}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.lastName">Nazwisko:</label> <input
+										class="form-control" id="details.lastName"
+										name="details.lastName" type="text"
+										th:value="${studentform.details.lastName}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.pesel">Pesel:</label> <input
+										class="form-control" id="details.pesel" name="details.pesel"
+										type="text" th:value="${studentform.details.pesel}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.birthDate">Data urodzenia:</label> <input
+										class="form-control" id="details.birthDate"
+										name="details.birthDate" type="text"
+										th:value="${studentform.details.birthDate}" />
+								</div>
+							</div>
+							<div>
+								<div class="col-xs-2">
+									<label for="details.phoneNumber">Telefon:</label> <input
+										class="form-control" id="details.phoneNumber"
+										name="details.phoneNumber" type="text"
+										th:value="${studentform.details.phoneNumber}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.bankNumber">Numer konta:</label> <input
+										class="form-control" id="details.bankNumber"
+										name="details.bankNumber" type="text"
+										th:value="${studentform.details.bankNumber}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.startStudyDate">Początek studiów:</label> <input
+										class="form-control" id="details.startStudyDate"
+										name="details.startStudyDate" type="text"
+										th:value="${studentform.details.startStudyDate}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.endStudyDate">Koniec studiów:</label> <input
+										class="form-control" id="details.endStudyDate"
+										name="details.endStudyDate" type="text"
+										th:value="${studentform.details.endStudyDate}" />
+								</div>
+								<div class="col-xs-1">
+									<label for="details.currentTermNumber">Semestr:</label> <input
+										class="form-control" id="details.currentTermNumber"
+										name="details.currentTermNumber" type="text"
+										th:value="${studentform.details.currentTermNumber}" />
+								</div>
+								<div class="form-group col-xs-1">
+									<label>System studiów:</label> <select class="form-control"
+										th:field="${studentform.details.studySystem}">
+										<option
+											th:each="system : ${T(core.study.details.StudySystem).values()}"
+											th:value="${system}" th:text="${system.name}"></option>
+									</select>
+								</div>
+								<div class="form-group col-xs-2">
+									<label>Forma studiów:</label> <select class="form-control"
+										th:field="${studentform.details.formOfStudy}">
+										<option
+											th:each="form : ${T(core.study.details.FormOfStudy).values()}"
+											th:value="${form}" th:text="${form.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div>
 								<table>
-
 									<tr>
-
-										<th>Wydział</th>
-
-										<th>Kierunek</th>
-
-										<th>Specjalizacja</th>
-
-										<th>Grupa</th>
-
+										<td class="form-group col-xs-1"><label for="details.address.city">Miasto:</label> <input
+											class="form-control" id="details.address.city"
+											name="details.address.city" type="text"
+											th:value="${studentform.details.address.city}" /></td>
+										<td class="form-group col-xs-1"><label for="details.address.postalCode">Kod
+												pocztowy:</label> <input class="form-control"
+											id="details.address.postalCode"
+											name="details.address.postalCode" type="text"
+											th:value="${studentform.details.address.postalCode}" /></td>
+										<td class="form-group col-xs-2"><label for="details.address.streetFullAddress">Ulica:</label>
+											<input class="form-control"
+											id="details.address.streetFullAddress"
+											name="details.address.streetFullAddress" type="text"
+											th:value="${studentform.details.address.streetFullAddress}" />
+										</td>
 									</tr>
-
+								</table>
+								<br />
+								<br />
+								<table>
+									<tr>
+										<th>Wydział</th>
+										<th>Kierunek</th>
+										<th>Specjalizacja</th>
+										<th>Grupa</th>
+									</tr>
 									<tr th:each="entry : ${fieldsdepts}">
-
 										<td th:text="${entry.getKey().details.departmentFullName}"
 											th:value="${entry.getKey().details.departmentFullName}"></td>
-
-										<td>
-											<select id="fieldslist" class="form-control" th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
+										<td><select id="fieldslist" class="form-control"
+											th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
 												<option selected="selected" value="">Wybierz...</option>
 												<option th:each="field : ${entry.getValue()}"
 													th:value="${field.details.fieldOfStudyName}"
 													th:text="${field.details.fieldOfStudyName}"></option>
-											</select>
-										</td>
-										
-										<td>
-											<select id="specslist" class="form-control" th:field="*{details.specialization.details.specializationName}">
+										</select></td>
+										<td><select id="specslist" class="form-control"
+											th:field="*{details.specialization.details.specializationName}">
 												<option selected="selected" value="">Wybierz...</option>
-												<option th:each="spec : ${specializationService.findSpecsByDepartmentId(entry.getKey().details.id)}"
+												<option
+													th:each="spec : ${specializationService.findSpecsByDepartmentId(entry.getKey().details.id)}"
 													th:value="${spec.details.specializationName}"
 													th:text="${spec.details.specializationName}"></option>
-											</select>
-										</td>
-										
-										<td>
-											<select id="groupslist" class="form-control" th:field="*{details.group.details.groupName}">
+										</select></td>
+										<td><select id="groupslist" class="form-control"
+											th:field="*{details.group.details.groupName}">
 												<option selected="selected" value="">Wybierz...</option>
-												<option th:each="group : ${groupService.findGroupsByDepartmentId(entry.getKey().details.id)}"
+												<option
+													th:each="group : ${groupService.findGroupsByDepartmentId(entry.getKey().details.id)}"
 													th:value="${group.details.groupName}"
 													th:text="${group.details.groupName}"></option>
-											</select>
-										</td>
-
+										</select></td>
 									</tr>
-
 								</table>
-
-
-
 							</div>
-						
 						</div>
-
-					</div>
-					<input type="submit" class="btn btn-info text-center center-block"
-						value="Dodaj" />
-				</form>
+						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+					</form>
+				</div>
 			</div>
-
-
-
-
 		</div>
 		<div id="footer"></div>
 	</div>

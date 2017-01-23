@@ -4,11 +4,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
 
 import app.services.factory.DaoFactory;
@@ -84,10 +87,10 @@ public class StudentService extends DaoService<IStudentDao> {
 		}
 	}
 	private void createFormOfStudy(Student student, model.entity.Student studentEntity) {
-		if(student.getDetails().getStudySystem() == null) {
-			studentEntity.setStudentStudySystem(student.getDetails().getStudySystem().NONE.getName());
+		if(student.getDetails().getFormOfStudy() == null) {
+			studentEntity.setStudentFormOfStudy(student.getDetails().getFormOfStudy().NONE.getName());
 		} else {
-			studentEntity.setStudentStudySystem(student.getDetails().getStudySystem().getName());
+			studentEntity.setStudentFormOfStudy(student.getDetails().getFormOfStudy().getName());
 		}
 	}
 	private void createStudySystem(Student student, model.entity.Student studentEntity) {
