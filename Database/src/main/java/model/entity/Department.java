@@ -11,36 +11,43 @@ public class Department extends Entity {
 	private String departmentBuilding;
 	private String departmentDescription;
 
-	
-	public Department() {}
+	public Department() {
+	}
+
 	public Department(String departmentName, String departmentBuilding, String departmentDescription) {
 		this.departmentName = departmentName;
 		this.departmentBuilding = departmentBuilding;
 		this.departmentDescription = departmentDescription;
 	}
 
-	
 	public Integer getDepartmentId() {
 		return this.departmentId;
 	}
+
 	public void setDepartmentId(Integer departmentId) {
 		this.departmentId = departmentId;
 	}
+
 	public String getDepartmentName() {
 		return this.departmentName;
 	}
+
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+
 	public String getDepartmentBuilding() {
 		return this.departmentBuilding;
 	}
+
 	public void setDepartmentBuilding(String departmentBuilding) {
 		this.departmentBuilding = departmentBuilding;
 	}
+
 	public String getDepartmentDescription() {
 		return this.departmentDescription;
 	}
+
 	public void setDepartmentDescription(String departmentDescription) {
 		this.departmentDescription = departmentDescription;
 	}

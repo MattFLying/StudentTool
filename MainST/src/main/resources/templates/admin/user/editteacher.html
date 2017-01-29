@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<!-- 
+HEAD  
+-->
+<head>
+	<meta charset="utf-8" />
+	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+	<link rel="stylesheet" href="/css/mainST.css" />
+</head>
+<!-- 
+/HEAD  
+-->
+<!-- 
+BODY  
+-->
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+	<div id="bodyContainer">
+		<div id="header"></div>
+		<div id="body">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span style="font-size: 12; font-weight: bold; color: black">
+						Zostałeś zalogowany do Panelu administracyjnego o identyfikatorze
+						użytkownika: </span> <span style="font-weight: bold; color: #cc0000"
+						th:text="${session.username}"></span>
+
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" class="btn btn-default pull-right"
+							value="Wyloguj" />
+					</form>
+					<div class="clearfix"></div>
+				</div>
+				<div class="panel-body">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="/admin/index.html">Strona
+								Główna</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj użytkownikami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/user/adduser.html">Dodaj
+										użytkownika systemu</a></li>
+								<li><a href="/admin/user/finduser.html">Edytuj
+										użytkownika systemu</a></li>
+								<li><a href="/admin/user/addstudent.html">Dodaj
+										studenta</a></li>
+								<li><a href="/admin/user/findstudent.html">Edytuj
+										studenta</a></li>
+								<li><a href="/admin/user/addstudents.html">Dodaj
+										studentów z pliku Excel (.xls)</a></li>
+								<li><a href="/admin/user/addteacher.html">Dodaj
+										prowadzącego zajęcia</a></li>
+								<li><a href="/admin/user/findteacher.html">Edytuj
+										prowadzącego zajęcia</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj wydziałami<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/dept/adddepartment.html">Dodaj
+										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj
+										wydział akademicki</a></li>
+								<li><a href="/admin/dept/addinstitute.html">Dodaj
+										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/findinstitute.html">Edytuj
+										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/addspecialization.html">Dodaj
+										specjalizacje kierunkową</a></li>
+								<li><a href="/admin/dept/findspecialization.html">Edytuj
+										specjalizacje kierunkową</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Zarządzaj kierunkami studiów<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/field/addfieldofstudy.html">Dodaj
+										kierunek studiów</a></li>
+								<li><a href="/admin/field/findfield.html">Edytuj
+										kierunek studiów</a></li>
+								<li><a href="/admin/field/addgroup.html">Dodaj grupę
+										akademicką</a></li>
+								<li><a href="/admin/field/findgroup.html">Edytuj grupę
+										akademicką</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<div class="jumbotron">
+					<form action="#" th:action="@{/editteacherdb}"
+						th:object="${teacherform}" method="post">
+						<div class="panel-body">
+							<div class="alert alert-success" th:if="${param.edited}">
+								<center>
+									<strong>Operacja zakończona sukcesem!</strong> <span
+										style="font-size: 12; font-weight: bold; color: orange">
+										<br />Prowadzący zajęcia został pomyślnie zmieniony!
+									</span>
+								</center>
+							</div>
+							
+							<div>
+								<div class="col-xs-2">
+									<label>Tytuł:</label> <select class="form-control"
+										th:field="${teacherform.details.title}">
+										<option
+											th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
+											th:value="${title}" th:text="${title.name}"></option>
+									</select>
+								</div>
+								<div class="col-xs-2">
+									<label for="details.firstName">Imie:</label> <input
+										class="form-control" id="details.firstName"
+										name="details.firstName" type="text"
+										th:value="${teacherform.details.firstName}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.secondName">Drugie imie:</label> <input
+										class="form-control" id="details.secondName"
+										name="details.secondName" type="text"
+										th:value="${teacherform.details.secondName}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.lastName">Nazwisko:</label> <input
+										class="form-control" id="details.lastName"
+										name="details.lastName" type="text"
+										th:value="${teacherform.details.lastName}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.birthDate">Data urodzenia:</label> <input
+										class="form-control" id="details.birthDate"
+										name="details.birthDate" type="text"
+										th:value="${teacherform.details.birthDate}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.phoneNumber">Telefon:</label> <input
+										class="form-control" id="details.phoneNumber"
+										name="details.phoneNumber" type="text"
+										th:value="${teacherform.details.phoneNumber}" />
+								</div>
+							</div>
+							<div>
+								<div class="col-xs-2">
+									<label for="details.room">Pokój:</label> <input
+										class="form-control" id="details.room" name="details.room"
+										type="text" th:value="${teacherform.details.room}" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.website">Strona internetowa:</label> <input
+										class="form-control" id="details.website"
+										name="details.website" type="text"
+										th:value="${teacherform.details.website}" />
+								</div>
+								<table>
+									<tr>
+										<td class="form-group col-xs-1"><label
+											for="details.address.city">Miasto:</label> <input
+											class="form-control" id="details.address.city"
+											name="details.address.city" type="text"
+											th:value="${teacherform.details.address.city}" /></td>
+										<td class="form-group col-xs-1"><label
+											for="details.address.postalCode">Kod pocztowy:</label> <input
+											class="form-control" id="details.address.postalCode"
+											name="details.address.postalCode" type="text"
+											th:value="${teacherform.details.address.postalCode}" /></td>
+										<td class="form-group col-xs-2"><label
+											for="details.address.streetFullAddress">Ulica:</label> <input
+											class="form-control" id="details.address.streetFullAddress"
+											name="details.address.streetFullAddress" type="text"
+											th:value="${teacherform.details.address.streetFullAddress}" />
+										</td>
+									</tr>
+								</table>
+								<br /> <br />
+								<table>
+									<tr>
+										<th>Wydział</th>
+										<th>Instytut</th>
+									</tr>
+									<tr th:each="entry : ${institutesdepts}">
+										<td th:text="${entry.getKey().details.departmentFullName}"
+											th:value="${entry.getKey().details.departmentFullName}"></td>
+										<td><select id="fieldslist" class="form-control"
+											th:field="*{details.institute.details.instituteFullName}">
+												<option selected="selected" value="">Wybierz...</option>
+												<option th:each="institute : ${entry.getValue()}"
+													th:value="${institute.details.instituteFullName}"
+													th:text="${institute.details.instituteFullName}"></option>
+										</select></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Edytuj" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</body>
+<!-- 
+/BODY  
+-->
+<script>
+	$(function() {
+		$("#header").load("/core/header/header.html");
+
+	});
+</script>
+<script>
+	$(function() {
+		$("#footer").load("/core/footer/footer.html");
+
+	});
+</script>
+</html>

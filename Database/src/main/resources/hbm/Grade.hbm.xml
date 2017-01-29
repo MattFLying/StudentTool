@@ -3,32 +3,33 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-12-08 01:23:58 by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    <class name="model.entity.Grade" table="st_grade" catalog="Student_Tool" optimistic-lock="version">
-    
-        <composite-id name="id" class="model.entity.GradeId">
-            <key-property name="gradeId" type="int">
-                <column name="grade_id" />
-            </key-property>
-            <key-property name="studentId" type="int">
-                <column name="student_id" />
-            </key-property>
-            <key-property name="courseId" type="int">
-                <column name="course_id" />
-            </key-property>
-        </composite-id>
-        <property name="teacherId" type="java.lang.Integer">
-            <column name="teacher_id" />
-        </property>
-        <property name="gradeValue" type="java.lang.Float">
-            <column name="grade_value" precision="12" scale="0" />
-        </property>
-        <property name="gradeType" type="string">
-            <column name="grade_type" length="30" />
-        </property>
-        <property name="gradeDescription" type="string">
-            <column name="grade_description" length="150" />
-        </property>
-        
-    </class>
-    
+	<class name="model.entity.Grade" table="st_grade" catalog="Student_Tool"
+		optimistic-lock="version">
+
+		<composite-id name="id" class="model.entity.GradeId">
+			<key-property name="gradeId" type="int">
+				<column name="grade_id" />
+			</key-property>
+			<key-property name="studentId" type="int">
+				<column name="student_id" />
+			</key-property>
+			<key-property name="courseId" type="int">
+				<column name="course_id" />
+			</key-property>
+		</composite-id>
+		<property name="teacherId" type="java.lang.Integer">
+			<column name="teacher_id" />
+		</property>
+		<property name="gradeValue" type="java.lang.Float">
+			<column name="grade_value" precision="12" scale="0" />
+		</property>
+		<property name="gradeType" type="string">
+			<column name="grade_type" length="30" />
+		</property>
+		<property name="gradeDescription" type="string">
+			<column name="grade_description" length="150" />
+		</property>
+
+	</class>
+
 </hibernate-mapping>

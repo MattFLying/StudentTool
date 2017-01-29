@@ -4,25 +4,26 @@
 <!-- Generated 2016-12-08 01:23:58 by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
 
-    <class name="model.entity.Course" table="st_course" catalog="Student_Tool" optimistic-lock="version">
-    
-        <id name="courseId" type="java.lang.Integer">
-            <column name="course_id" />
-            <generator class="identity" />
-        </id>
-        <property name="fieldOfStudyId" type="java.lang.Integer">
-            <column name="field_of_study_id" />
-        </property>
-        <property name="courseName" type="string">
-            <column name="course_name" length="200" />
-        </property>
-        <property name="courseForm" type="string">
-            <column name="course_form" length="45" />
-        </property>
-        <property name="courseTerm" type="java.lang.Integer">
-            <column name="course_term" />
-        </property>
-        
-    </class>
-    
+	<class name="model.entity.Course" table="st_course" catalog="Student_Tool"
+		optimistic-lock="version">
+
+		<id name="courseId" type="java.lang.Integer">
+			<column name="course_id" />
+			<generator class="identity" />
+		</id>
+		<property name="fieldOfStudyId" type="java.lang.Integer">
+			<column name="field_of_study_id" />
+		</property>
+		<property name="courseName" type="string">
+			<column name="course_name" length="200" />
+		</property>
+		<property name="courseForm" type="string">
+			<column name="course_form" length="45" />
+		</property>
+		<property name="courseTerm" type="java.lang.Integer">
+			<column name="course_term" />
+		</property>
+
+	</class>
+
 </hibernate-mapping>

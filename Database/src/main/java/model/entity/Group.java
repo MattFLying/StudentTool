@@ -9,39 +9,56 @@ public class Group extends Entity {
 	private Integer groupId;
 	private String groupName;
 	private String groupDescription;
+	private String groupYear;
 	private Integer fieldOfStudyId;
 
-	
-	public Group() {}
-	public Group(String groupName, String groupDescription, Integer fieldOfStudyId) {
+	public Group() {
+	}
+
+	public Group(String groupName, String groupDescription, String groupYear, Integer fieldOfStudyId) {
 		this.groupName = groupName;
 		this.groupDescription = groupDescription;
+		this.groupYear = groupYear;
 		this.fieldOfStudyId = fieldOfStudyId;
 	}
 
-	
 	public Integer getGroupId() {
 		return this.groupId;
 	}
+
 	public void setGroupId(Integer groupId) {
 		this.groupId = groupId;
 	}
+
 	public String getGroupName() {
 		return this.groupName;
 	}
+
 	public void setGroupName(String groupName) {
 		this.groupName = groupName.replaceAll(",", "");
 	}
+
 	public String getGroupDescription() {
 		return this.groupDescription;
 	}
+
 	public void setGroupDescription(String groupDescription) {
 		this.groupDescription = groupDescription;
 	}
+
 	public Integer getFieldOfStudyId() {
 		return this.fieldOfStudyId;
 	}
+
 	public void setFieldOfStudyId(Integer fieldOfStudyId) {
 		this.fieldOfStudyId = fieldOfStudyId;
+	}
+
+	public String getGroupYear() {
+		return groupYear;
+	}
+
+	public void setGroupYear(String groupYear) {
+		this.groupYear = groupYear;
 	}
 }

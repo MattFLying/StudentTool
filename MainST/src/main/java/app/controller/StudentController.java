@@ -33,14 +33,19 @@ public class StudentController {
 	
 	@RequestMapping(value="/student/index", method=RequestMethod.GET)
 	public String studentDetails(HttpSession session, Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName(); 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		String username = authentication.getName(); 
 		session.setAttribute("username", username);
 		
 		student = studentService.createStudent(username);
 		model.addAttribute("student", student);
 		
 		return "student/index";
+	}	
+	@RequestMapping(value="/student/failed", method = RequestMethod.GET)
+	public String operationFailed() {	
+		return "student/failed";
 	}
 	@RequestMapping(value="/student/changepwd", method=RequestMethod.GET)
 	public String changePasswordStudent(Model model) {
@@ -88,7 +93,7 @@ public class StudentController {
 		} catch(Exception e) {
 			redirectAttributes.addAttribute("error", true);
 			
-			return "redirect:/student/changepwd?error";
+			return "redirect:/student/failed";
 		}
 	}
 }

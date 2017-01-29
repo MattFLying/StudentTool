@@ -10,33 +10,39 @@ public class GradeId extends Entity {
 	private int studentId;
 	private int courseId;
 
-	
-	public GradeId() {}
+	public GradeId() {
+	}
+
 	public GradeId(int gradeId, int studentId, int courseId) {
 		this.gradeId = gradeId;
 		this.studentId = studentId;
 		this.courseId = courseId;
 	}
 
-	
 	public int getGradeId() {
 		return this.gradeId;
 	}
+
 	public void setGradeId(int gradeId) {
 		this.gradeId = gradeId;
 	}
+
 	public int getStudentId() {
 		return this.studentId;
 	}
+
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
+
 	public int getCourseId() {
 		return this.courseId;
 	}
+
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -49,6 +55,7 @@ public class GradeId extends Entity {
 		return (this.getGradeId() == castOther.getGradeId()) && (this.getStudentId() == castOther.getStudentId())
 				&& (this.getCourseId() == castOther.getCourseId());
 	}
+
 	public int hashCode() {
 		int result = 17;
 

@@ -1,13 +1,8 @@
 package app.services;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
-
 import app.services.factory.DaoFactory;
 import core.study.course.Course;
 import core.study.details.CourseForm;
@@ -15,6 +10,7 @@ import core.study.fieldofstudy.FieldOfStudy;
 import model.dao.TeachersCoursesDao;
 import model.dao.interfaces.ICourseDao;
 import model.entity.Entity;
+
 @Service
 public class CourseService extends DaoService<ICourseDao> {
 	public CourseService() {
@@ -83,9 +79,6 @@ public class CourseService extends DaoService<ICourseDao> {
 		
 		return list;
 	}
-	
-	
-	
 	public List<Course> findTeacherCoursesById(Integer teacherId){
 		List<Course> list = new ArrayList<Course>();
 		
@@ -95,11 +88,23 @@ public class CourseService extends DaoService<ICourseDao> {
 		
 		return list;
 	}
-	
-	
-	
-	
-	
+	public void updateCourse(Course course) throws Exception {
+		model.entity.Course entity = new model.entity.Course();	
+		
+		model.entity.FieldOfStudy field = new FieldOfStudyService().getDao().findFieldOfStudyIdByName(course.getDetails().getFieldOfStudy().getDetails().getFieldOfStudyName());
+		
+		entity.setCourseName(course.getDetails().getCourseName());
+		entity.setCourseTerm(course.getDetails().getTerm());
+		entity.setFieldOfStudyId(field.getFieldOfStudyId());
+		entity.setCourseForm(course.getDetails().getCourseForm().getName());
+		entity.setCourseId(course.getDetails().getId());
+		
+		
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
 	public List<Course> findByTermAndFieldOfStudy(Integer term, String name) {
 		List<Course> list = new ArrayList<Course>();
 		
@@ -118,14 +123,18 @@ public class CourseService extends DaoService<ICourseDao> {
 		
 		return list;
 	}
-	public void save(Course course) {
+	public void save(Course course) throws Exception {
 		model.entity.Course entity = new model.entity.Course();	
 		
 		for(CourseForm form : course.getDetails().getCourseForms()) {
 			course.getDetails().setCourseForm(form);
 			
 			createEntity(course, entity);
-			dao().save(entity);
+
+			int success = dao().save(entity);
+			if(success == 0) {
+				throw new Exception();
+			}
 		}
 	}
 	public void update(Course course) {

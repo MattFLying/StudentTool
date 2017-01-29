@@ -1,24 +1,14 @@
 package app.services;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
-
 import app.services.factory.DaoFactory;
 import core.excel.StudentsExcel;
 import core.humanity.details.Address;
 import core.humanity.student.Student;
-import core.humanity.teacher.Teacher;
 import core.study.course.Course;
 import core.study.department.Department;
 import core.study.fieldofstudy.FieldOfStudy;
@@ -28,6 +18,7 @@ import core.study.group.Group;
 import core.user.User;
 import model.dao.interfaces.IStudentDao;
 import model.entity.Entity;
+
 @Service
 public class StudentService extends DaoService<IStudentDao> {
 	public StudentService() {
@@ -54,6 +45,7 @@ public class StudentService extends DaoService<IStudentDao> {
 		studentEntity.setStudentBirthdate(student.getDetails().getBirthDate());
 		studentEntity.setStudentPhone(student.getDetails().getPhoneNumber());
 		studentEntity.setStudentBankNumber(student.getDetails().getBankNumber());
+		studentEntity.setStudentEmail(student.getDetails().getEmail());
 		
 		studentEntity.setStudentAlbum(student.getDetails().getAlbumNumber());
 		studentEntity.setStudentCurrentTerm(student.getDetails().getCurrentTermNumber());
@@ -148,6 +140,7 @@ public class StudentService extends DaoService<IStudentDao> {
 		student.getDetails().setBirthDate(studentEntity.getStudentBirthdate());
 		student.getDetails().setPhoneNumber(studentEntity.getStudentPhone());
 		student.getDetails().setBankNumber(studentEntity.getStudentBankNumber());
+		student.getDetails().setEmail(studentEntity.getStudentEmail());
 		
 		student.getDetails().setAlbumNumber(studentEntity.getStudentAlbum());
 		student.getDetails().setCurrentTermNumber(studentEntity.getStudentCurrentTerm());
@@ -186,7 +179,6 @@ public class StudentService extends DaoService<IStudentDao> {
 		
 		return student;
 	}
-	
 	public Student createStudent(String album) {
 		Student student = new Student();
 		model.entity.Student entity = new StudentService().getDao().findByAlbum(album);
@@ -195,8 +187,6 @@ public class StudentService extends DaoService<IStudentDao> {
 		
 		return student;
 	}
-	
-	
 	public List<Course> findCoursesForStudentTerm(Integer term, String field) {
 		List<Course> list = new ArrayList<Course>();
 		
@@ -204,15 +194,11 @@ public class StudentService extends DaoService<IStudentDao> {
 		
 		return list;
 	}
-	
 	public List<Grade> findGradesForStudent(Integer course, Integer student) {
 		List<Grade> list = new ArrayList<Grade>();
 		
-		
-		
 		return list;
 	}
-	
 	public List<Student> findAllByGroupId(Integer groupId) {
 		List<Student> list = new ArrayList<Student>();
 		
@@ -221,8 +207,7 @@ public class StudentService extends DaoService<IStudentDao> {
 		});
 		
 		return list;
-	}
-	
+	}	
 	private List<Student> getStudentsFromExcel(InputStream inputStream) {
 		try {
 			return new StudentsExcel().readStudentsFromExcel(inputStream);
@@ -230,10 +215,8 @@ public class StudentService extends DaoService<IStudentDao> {
 			e.printStackTrace();
 			return null;
 		}		
-	}
-	
-	
-	public void createStudentsFromExcel(InputStream inputStream) {
+	}	
+	public void createStudentsFromExcel(InputStream inputStream) throws Exception {
 		List<Student> list = getStudentsFromExcel(inputStream);
 		
 		for(Student student : list) {
@@ -243,13 +226,7 @@ public class StudentService extends DaoService<IStudentDao> {
 			save(student, user);
 		}
 	}
-	
-	
-	
-	
-	
-	
-	public void save(Student student, User user) {
+	public void save(Student student, User user) throws Exception {
 		UsersService userService = new UsersService();
 		
 		user.setRole(User.Role.STUDENT);
@@ -261,39 +238,43 @@ public class StudentService extends DaoService<IStudentDao> {
 		
 		entity.getId().setUserLogin(student.getDetails().getAlbumNumber().toString());
 		
-		
-		dao().save(entity);
+		int success = dao().save(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public void save(Student student) {
+	public void updateStudent(Student student, String albumTemp) throws Exception {
+		UsersService userService = new UsersService();
+		model.entity.Student entity = new model.entity.Student();
+		
+		createEntity(student, entity);
+		entity.getId().setStudentId(student.getDetails().getId());
+		
+		userService.updateUserLogin(albumTemp, student.getDetails().getAlbumNumber().toString());
+		entity.getId().setUserLogin(student.getDetails().getAlbumNumber().toString());
+		
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
+	public void save(Student student) throws Exception {
 		model.entity.Student entity = new model.entity.Student();	
 		createEntity(student, entity);
 		
-		dao().save(entity);
+		int success = dao().save(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
-	public void update(Student student) {
+	public void update(Student student) throws Exception {
 		model.entity.Student entity = new model.entity.Student();	
 		createEntity(student, entity);
 		
-		dao().update(entity);
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
 	public void delete(Student student) {
 		model.entity.Student entity = new model.entity.Student();	

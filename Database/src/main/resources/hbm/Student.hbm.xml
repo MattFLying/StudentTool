@@ -3,72 +3,76 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-12-09 16:03:21 by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    
-    <class name="model.entity.Student" table="st_student" catalog="Student_Tool" optimistic-lock="version">
-    
-        <composite-id name="id" class="model.entity.StudentId">
-            <key-property name="studentId" type="int">
-                <column name="student_id" />
-            </key-property>
-            <key-property name="userLogin" type="string">
-                <column name="user_login" length="5" />
-            </key-property>
-        </composite-id>
-        <property name="groupId" type="java.lang.Integer">
-            <column name="group_id" />
-        </property>
-        <property name="addressId" type="java.lang.Integer">
-            <column name="address_id" />
-        </property>
-        <property name="fieldOfStudyId" type="java.lang.Integer">
-            <column name="field_of_study_id" />
-        </property>
-        <property name="specializationId" type="java.lang.Integer">
-            <column name="specialization_id" />
-        </property>
-        <property name="studentTitle" type="string">
-            <column name="student_title" length="75" />
-        </property>
-        <property name="studentFirstname" type="string">
-            <column name="student_firstname" length="100" />
-        </property>
-        <property name="studentSecondname" type="string">
-            <column name="student_secondname" length="100" />
-        </property>
-        <property name="studentLastname" type="string">
-            <column name="student_lastname" length="100" />
-        </property>
-        <property name="studentPesel" type="java.lang.Long">
-            <column name="student_pesel" />
-        </property>
-        <property name="studentBirthdate" type="string">
-            <column name="student_birthdate" length="10" />
-        </property>
-        <property name="studentPhone" type="string">
-            <column name="student_phone" length="20" />
-        </property>
-        <property name="studentAlbum" type="java.lang.Long">
-            <column name="student_album" />
-        </property>
-        <property name="studentStudySystem" type="string">
-            <column name="student_study_system" length="45" />
-        </property>
-        <property name="studentCurrentTerm" type="java.lang.Integer">
-            <column name="student_current_term" />
-        </property>
-        <property name="studentFormOfStudy" type="string">
-            <column name="student_form_of_study" length="45" />
-        </property>
-        <property name="studentStartDate" type="string">
-            <column name="student_start_date" length="45" />
-        </property>
-        <property name="studentEndDate" type="string">
-            <column name="student_end_date" length="45" />
-        </property>
-        <property name="studentBankNumber" type="string">
-            <column name="student_bank_number" length="26" />
-        </property>
-        
-    </class>
-    
+
+	<class name="model.entity.Student" table="st_student" catalog="Student_Tool"
+		optimistic-lock="version">
+
+		<composite-id name="id" class="model.entity.StudentId">
+			<key-property name="studentId" type="int">
+				<column name="student_id" />
+			</key-property>
+			<key-property name="userLogin" type="string">
+				<column name="user_login" length="5" />
+			</key-property>
+		</composite-id>
+		<property name="groupId" type="java.lang.Integer">
+			<column name="group_id" />
+		</property>
+		<property name="addressId" type="java.lang.Integer">
+			<column name="address_id" />
+		</property>
+		<property name="fieldOfStudyId" type="java.lang.Integer">
+			<column name="field_of_study_id" />
+		</property>
+		<property name="specializationId" type="java.lang.Integer">
+			<column name="specialization_id" />
+		</property>
+		<property name="studentTitle" type="string">
+			<column name="student_title" length="75" />
+		</property>
+		<property name="studentFirstname" type="string">
+			<column name="student_firstname" length="100" />
+		</property>
+		<property name="studentSecondname" type="string">
+			<column name="student_secondname" length="100" />
+		</property>
+		<property name="studentLastname" type="string">
+			<column name="student_lastname" length="100" />
+		</property>
+		<property name="studentPesel" type="java.lang.Long">
+			<column name="student_pesel" />
+		</property>
+		<property name="studentBirthdate" type="string">
+			<column name="student_birthdate" length="10" />
+		</property>
+		<property name="studentPhone" type="string">
+			<column name="student_phone" length="20" />
+		</property>
+		<property name="studentAlbum" type="java.lang.Long">
+			<column name="student_album" />
+		</property>
+		<property name="studentStudySystem" type="string">
+			<column name="student_study_system" length="45" />
+		</property>
+		<property name="studentCurrentTerm" type="java.lang.Integer">
+			<column name="student_current_term" />
+		</property>
+		<property name="studentFormOfStudy" type="string">
+			<column name="student_form_of_study" length="45" />
+		</property>
+		<property name="studentStartDate" type="string">
+			<column name="student_start_date" length="45" />
+		</property>
+		<property name="studentEndDate" type="string">
+			<column name="student_end_date" length="45" />
+		</property>
+		<property name="studentBankNumber" type="string">
+			<column name="student_bank_number" length="26" />
+		</property>
+		<property name="studentEmail" type="string">
+			<column name="student_email" length="100" />
+		</property>
+
+	</class>
+
 </hibernate-mapping>

@@ -83,7 +83,7 @@ BODY
 					</ul>
 				</div>
 				<div class="jumbotron">
-					<form action="#" th:action="@{/grading}" th:object="${gradeform}" method="post">
+					<form action="#" th:action="@{/grading}" th:object="${gradeform}" method="post" enctype="multipart/form-data">
 					<!-- -->
 					<div class="panel-body">
 						<div class="alert alert-success" th:if="${param.success}">
@@ -107,7 +107,7 @@ BODY
 						<div>
 
 
-							<div class="col-xs-3">
+							<div class="col-xs-1">
 								<label for="fullName">Ocena:</label> 
 								<select id="fieldslist" class="form-control"
 									th:field="*{details.value}">
@@ -117,7 +117,7 @@ BODY
 										th:text="${grade.value}"></option>
 								</select>
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-1">
 								<label for="fullName">Typ oceny:</label>
 								<select id="fieldslist" class="form-control"
 									th:field="*{details.gradeType}">
@@ -134,7 +134,13 @@ BODY
 								<textarea maxlength="150" th:field="*{details.description}" class="form-control" id="exampleTextarea" rows="3"></textarea>
 							</div>
 												
-							
+							<div class="col-xs-1">
+								<label class="control-label">Ładuj certyfikat</label> 
+								<input id="file" name="file" type="file" class="file" data-show-preview="false" />
+								
+								<label for="fullName">Hasło:</label> 
+								<input class="form-control" id="fullName" type="password" th:field="${temp.value}" />
+							</div>
 							
 							
 							<input type="hidden" name="std" th:field="*{details.student.details.id}" th:value="${param.student[0]}" />

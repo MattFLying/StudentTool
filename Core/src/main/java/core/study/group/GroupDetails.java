@@ -4,7 +4,7 @@ import core.study.details.StudyDetails;
 import core.study.fieldofstudy.FieldOfStudy;
 
 public class GroupDetails extends StudyDetails {
-	private String groupName, description;
+	private String groupName, description, year;
 	private FieldOfStudy fieldOfStudy;
 	
 	
@@ -18,6 +18,7 @@ public class GroupDetails extends StudyDetails {
 		this.groupName = null;
 		this.description = null;
 		this.fieldOfStudy = null;
+		this.year = null;
 	}
 	public String getGroupName() {
 		return groupName;
@@ -36,5 +37,11 @@ public class GroupDetails extends StudyDetails {
 	}
 	public void setFieldOfStudy(FieldOfStudy fieldOfStudy) {
 		this.fieldOfStudy = fieldOfStudy;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
 	}
 }

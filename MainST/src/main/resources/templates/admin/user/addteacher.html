@@ -42,11 +42,17 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/user/adduser.html">Dodaj
 										użytkownika systemu</a></li>
+								<li><a href="/admin/user/finduser.html">Edytuj
+										użytkownika systemu</a></li>
 								<li><a href="/admin/user/addstudent.html">Dodaj
+										studenta</a></li>
+								<li><a href="/admin/user/findstudent.html">Edytuj
 										studenta</a></li>
 								<li><a href="/admin/user/addstudents.html">Dodaj
 										studentów z pliku Excel (.xls)</a></li>
 								<li><a href="/admin/user/addteacher.html">Dodaj
+										prowadzącego zajęcia</a></li>
+								<li><a href="/admin/user/findteacher.html">Edytuj
 										prowadzącego zajęcia</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -55,9 +61,15 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj
+										wydział akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/findinstitute.html">Edytuj
+										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/addspecialization.html">Dodaj
+										specjalizacje kierunkową</a></li>
+								<li><a href="/admin/dept/findspecialization.html">Edytuj
 										specjalizacje kierunkową</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -66,9 +78,14 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/field/addfieldofstudy.html">Dodaj
 										kierunek studiów</a></li>
+								<li><a href="/admin/field/findfield.html">Edytuj
+										kierunek studiów</a></li>
 								<li><a href="/admin/field/addgroup.html">Dodaj grupę
 										akademicką</a></li>
+								<li><a href="/admin/field/findgroup.html">Edytuj grupę
+										akademicką</a></li>
 								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -83,27 +100,19 @@ BODY
 									</span>
 								</center>
 							</div>
-							<div class="alert alert-danger" th:if="${param.error}">
-								<center>
-									<strong>Operacja nie powiodła się!</strong> <span
-										style="font-size: 12; font-weight: bold; color: orange">
-										<br />Coś poszło nie tak, upewnij się, że podałeś właściwe
-										dane!
-									</span>
-								</center>
-							</div>
+
 							<div>
 								<div class="col-xs-3">
 									<label for="password">Hasło:</label> 
 									<input class="form-control" id="password" name="password" type="text"
-										th:value="${userform.password}" />
+										th:value="${userform.password}" required="required" />
 								</div>
 							</div>
 							<br /> <br /> <br /> <br /> <br />
 							<div>
 								<div class="col-xs-2">
 									<label>Tytuł:</label> 
-									<select class="form-control" th:field="${teacherform.details.title}">
+									<select class="form-control" th:field="${teacherform.details.title}" required="required">
 										<option th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
 											th:value="${title}" th:text="${title.name}">
 										</option>
@@ -112,7 +121,7 @@ BODY
 								<div class="col-xs-2">
 									<label for="details.firstName">Imie:</label> 
 									<input class="form-control" id="details.firstName" name="details.firstName" type="text"
-										th:value="${teacherform.details.firstName}" />
+										th:value="${teacherform.details.firstName}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.secondName">Drugie imie:</label> 
@@ -122,44 +131,44 @@ BODY
 								<div class="col-xs-2">
 									<label for="details.lastName">Nazwisko:</label> 
 									<input class="form-control" id="details.lastName" name="details.lastName" type="text"
-										th:value="${teacherform.details.lastName}" />
+										th:value="${teacherform.details.lastName}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.birthDate">Data urodzenia:</label> 
 									<input class="form-control" id="details.birthDate" name="details.birthDate" type="text"
-										th:value="${teacherform.details.birthDate}" />
+										th:value="${teacherform.details.birthDate}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.phoneNumber">Telefon:</label> 
 									<input class="form-control" id="details.phoneNumber" name="details.phoneNumber"
-										type="text" th:value="${teacherform.details.phoneNumber}" />
+										type="text" th:value="${teacherform.details.phoneNumber}" required="required" />
 								</div>
 							</div>
 							<div>
 								<div class="col-xs-2">
 									<label for="details.room">Pokój:</label> 
 									<input class="form-control" id="details.room" name="details.room" type="text"
-										th:value="${teacherform.details.room}" />
+										th:value="${teacherform.details.room}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.website">Strona internetowa:</label> 
 									<input class="form-control" id="details.website" name="details.website" type="text"
-										th:value="${teacherform.details.website}" />
+										th:value="${teacherform.details.website}" required="required" />
 								</div>
 								<table>
 									<tr>
 										<td class="form-group col-xs-1"><label for="details.address.city">Miasto:</label> <input
 											class="form-control" id="details.address.city"
 											name="details.address.city" type="text"
-											th:value="${teacherform.details.address.city}" /></td>
+											th:value="${teacherform.details.address.city}" required="required" /></td>
 										<td class="form-group col-xs-1"><label for="details.address.postalCode">Kod pocztowy:</label> <input
 											class="form-control" id="details.address.postalCode"
 											name="details.address.postalCode" type="text"
-											th:value="${teacherform.details.address.postalCode}" /></td>
+											th:value="${teacherform.details.address.postalCode}" required="required" /></td>
 										<td class="form-group col-xs-2"><label for="details.address.streetFullAddress">Ulica:</label> <input
 											class="form-control" id="details.address.streetFullAddress"
 											name="details.address.streetFullAddress" type="text"
-											th:value="${teacherform.details.address.streetFullAddress}" />
+											th:value="${teacherform.details.address.streetFullAddress}" required="required" />
 										</td>
 									</tr>
 								</table>

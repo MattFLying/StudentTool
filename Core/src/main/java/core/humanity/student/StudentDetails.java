@@ -14,7 +14,7 @@ import core.study.group.Group;
 public class StudentDetails extends PersonalDetails {
 	private Long albumNumber;
 	private String startStudyDate, endStudyDate;
-	private String termTitle, diplomaTitle, bankNumber;
+	private String termTitle, diplomaTitle, bankNumber, email;
 	private Integer currentTermNumber;
 	private FormOfStudy formOfStudy;
 	private StudySystem studySystem;
@@ -45,6 +45,7 @@ public class StudentDetails extends PersonalDetails {
 		this.formOfStudy = null;
 		this.studySystem = null;
 		this.bankNumber = null;
+		this.setEmail(null);
 	}
 	public Long getAlbumNumber() {
 		return albumNumber;
@@ -141,5 +142,11 @@ public class StudentDetails extends PersonalDetails {
 	}
 	public void setBankNumber(String bankNumber) {
 		this.bankNumber = bankNumber;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

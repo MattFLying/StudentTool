@@ -42,11 +42,17 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/user/adduser.html">Dodaj
 										użytkownika systemu</a></li>
+								<li><a href="/admin/user/finduser.html">Edytuj
+										użytkownika systemu</a></li>
 								<li><a href="/admin/user/addstudent.html">Dodaj
+										studenta</a></li>
+								<li><a href="/admin/user/findstudent.html">Edytuj
 										studenta</a></li>
 								<li><a href="/admin/user/addstudents.html">Dodaj
 										studentów z pliku Excel (.xls)</a></li>
 								<li><a href="/admin/user/addteacher.html">Dodaj
+										prowadzącego zajęcia</a></li>
+								<li><a href="/admin/user/findteacher.html">Edytuj
 										prowadzącego zajęcia</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -55,9 +61,15 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj
+										wydział akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/findinstitute.html">Edytuj
+										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/addspecialization.html">Dodaj
+										specjalizacje kierunkową</a></li>
+								<li><a href="/admin/dept/findspecialization.html">Edytuj
 										specjalizacje kierunkową</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -66,9 +78,14 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/field/addfieldofstudy.html">Dodaj
 										kierunek studiów</a></li>
+								<li><a href="/admin/field/findfield.html">Edytuj
+										kierunek studiów</a></li>
 								<li><a href="/admin/field/addgroup.html">Dodaj grupę
 										akademicką</a></li>
+								<li><a href="/admin/field/findgroup.html">Edytuj grupę
+										akademicką</a></li>
 								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -83,32 +100,24 @@ BODY
 									</span>
 								</center>
 							</div>
-							<div class="alert alert-danger" th:if="${param.error}">
-								<center>
-									<strong>Operacja nie powiodła się!</strong> <span
-										style="font-size: 12; font-weight: bold; color: orange">
-										<br />Coś poszło nie tak, upewnij się, że podałeś właściwe
-										dane!
-									</span>
-								</center>
-							</div>
+
 							<div>
 								<div class="col-xs-3">
-									<label for="fullName">Nazwa przedmiotu:</label> <input
+									<label for="fullName">Pełna nazwa przedmiotu:</label> <input
 										class="form-control" id="fullName" type="text"
-										th:field="*{details.courseName}" />
+										th:field="*{details.courseName}" required="required" />
 								</div>
 								<div class="col-xs-1">
-									<label for="fullName">Semestr:</label> <input
+									<label for="fullName">Semestr prowadzenia przedmiotu:</label> <input
 										class="form-control" id="fullName" type="text"
-										th:field="*{details.term}" />
+										th:field="*{details.term}" required="required" />
 								</div>
 								<div class="col-xs-2">
-									<label for="fullName">Forma:</label>
+									<label for="fullName">Forma przedmiotu:</label>
 									<div
 										th:each="form : ${T(core.study.details.CourseForm).values()}">
 										<input type="checkbox" th:field="*{details.courseForms}"
-											th:value="${form}" /> <label th:text="${form.name}"></label>
+											th:value="${form}" required="required" /> <label th:text="${form.name}"></label>
 									</div>
 								</div>
 								<table>
@@ -145,13 +154,11 @@ BODY
 <script>
 	$(function() {
 		$("#header").load("/core/header/header.html");
-
 	});
 </script>
 <script>
 	$(function() {
 		$("#footer").load("/core/footer/footer.html");
-
 	});
 </script>
 </html>

@@ -1,4 +1,4 @@
-package model.security.certificate;
+package core.security.certificate;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -52,7 +52,7 @@ public abstract class CertificateAbstract {
 		keyStore.load(null, null);
 		keyStore.setKeyEntry(alias, key, password.toCharArray(), new java.security.cert.Certificate[] { cert });
 		
-		File file = new File(".", fileName);
+		File file = new File(fileName);
 		keyStore.store(new FileOutputStream(file), password.toCharArray());
 	}
 	protected static KeyPair getKey() {
@@ -94,7 +94,7 @@ public abstract class CertificateAbstract {
 	
 	private static class Root {
 		private static final String CERTIFICATE_NAME = "CN=University Employee, L=Zielona Góra, C=PL, OU=Uniwersytet Zielonogórski";
-		private static final String CERTIFICATE_FILE_NAME = "root_cert.uzcrt";
+		private static final String CERTIFICATE_FILE_NAME = "F://GitHub/Engineering_Work/StudentTool/Core/root_cert.uzcrt";
 		private static final String CERTIFICATE_FILE_ALIAS = "root_uz_cert";
 		private static final String CERTIFICATE_FILE_PASSWORD = "UZ_Cert_Root";
 		private static final long CERTIFICATE_VALIDITY = 365 * 24 * 60 * 60 * 10;

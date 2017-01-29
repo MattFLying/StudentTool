@@ -1,27 +1,22 @@
 package app.services;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
-
 import app.services.factory.DaoFactory;
 import core.humanity.details.Address;
-import core.humanity.student.Student;
 import core.humanity.teacher.Teacher;
-import core.study.course.Course;
+import core.security.certificate.Certificate;
 import core.study.department.Department;
 import core.study.department.Institute;
 import core.user.User;
 import model.dao.TeachersCoursesDao;
 import model.dao.interfaces.ITeacherDao;
 import model.entity.Entity;
+
 @Service
 public class TeacherService extends DaoService<ITeacherDao> {
+	private static final int CERTIFICATE_VALIDITY_YEARS = 5;
 	private TeachersCoursesDao teachersCoursesDao;
+	
 	
 	public TeacherService() {
 		super(DaoFactory.Dao.TEACHER);
@@ -34,8 +29,6 @@ public class TeacherService extends DaoService<ITeacherDao> {
 	public ITeacherDao getDao() {
 		return (ITeacherDao)dao;
 	}
-
-
 	@Override
 	protected void createEntity(Object base, Entity entity) {
 		model.entity.Teacher teacherEntity = (model.entity.Teacher)entity;
@@ -48,7 +41,7 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		teacherEntity.setTeacherLastname(teacher.getDetails().getLastName());
 		teacherEntity.setTeacherBirthdate(teacher.getDetails().getBirthDate());
 		teacherEntity.setTeacherPhone(teacher.getDetails().getPhoneNumber());
-		System.out.println(teacher.getDetails().getRoom() + " " + teacher.getDetails().getWebsite());
+		
 		teacherEntity.setTeacherRoom(teacher.getDetails().getRoom());
 		teacherEntity.setTeacherWebsite(teacher.getDetails().getWebsite());
 		teacherEntity.setTeacherTitle(teacher.getDetails().getTitle().getName());
@@ -56,8 +49,6 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		createInstituteDepartment(teacher, teacherEntity);	
 		createAddress(teacher, teacherEntity);
 	}
-
-
 	@Override
 	protected void createFromEntity(Entity entity, Object base) {
 		model.entity.Teacher teacherEntity = (model.entity.Teacher)entity;
@@ -83,7 +74,6 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		teacher.getDetails().setDepartment(dept);
 		teacher.getDetails().setInstitute(institute);
 	}
-	
 	public Teacher findById(Integer id) {
 		Teacher teacher = new Teacher();
 		
@@ -91,9 +81,6 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		
 		return teacher;
 	}
-	
-	
-	
 	public Teacher createTeacher(String userLogin) {
 		Teacher teacher = new Teacher();
 		model.entity.Teacher entity = new TeacherService().getDao().findByLogin(userLogin);
@@ -102,12 +89,31 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		
 		return teacher;
 	}
-	
-	
-	
-	
-	
-	
+	public Teacher findTeacher(String firstName, String lastName) {
+		Teacher teacher = new Teacher();
+		model.entity.Teacher entity = dao().findByName(firstName, lastName);
+		
+		createFromEntity(entity, teacher);
+		
+		return teacher;
+	}
+	public void updateTeacher(Teacher teacher, String login) throws Exception {
+		UsersService userService = new UsersService();
+		model.entity.Teacher teacherEntity = new model.entity.Teacher();
+		model.entity.TeacherId teacherId = new model.entity.TeacherId();
+		teacherEntity.setId(teacherId);
+		
+		createEntity(teacher, teacherEntity);
+		teacherEntity.getId().setTeacherId(teacher.getDetails().getId());
+
+		userService.updateUserLogin(createTeacherLogin(login), createTeacherLogin(teacher));
+		teacherEntity.getId().setUserLogin(createTeacherLogin(teacher));
+		
+		int success = dao().update(teacherEntity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
 	private void createAddress(Teacher teacher, model.entity.Teacher teacherEntity) {
 		Address address = teacher.getDetails().getAddress();
 		
@@ -126,9 +132,7 @@ public class TeacherService extends DaoService<ITeacherDao> {
 			teacherEntity.setDepartmentId(institute.getDepartmentId());
 		}
 	}
-	
-	
-	public void save(Teacher teacher, User user) {
+	public void save(Teacher teacher, User user) throws Exception {
 		UsersService userService = new UsersService();
 		
 		user.setRole(User.Role.TEACHER);
@@ -140,16 +144,25 @@ public class TeacherService extends DaoService<ITeacherDao> {
 		
 		entity.getId().setUserLogin(user.getLogin());
 		
+		int success = dao().save(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 		
-		dao().save(entity);
+		Certificate certificate = new Certificate();
+		certificate.generateCertificate(createTeacherCertificateOwner(teacher), createTeacherCertificateInitials(teacher), CERTIFICATE_VALIDITY_YEARS, user.getPassword());
 	}
-	
-	
 	private String createTeacherLogin(Teacher teacher) {
 		return String.format("%1$s.%2$s", teacher.getDetails().getFirstName().charAt(0), teacher.getDetails().getLastName().substring(0, 3));
 	}
-	
-	
-	
-	
+	private String createTeacherLogin(String teacher) {
+		String[] names = teacher.split(" ");
+		return String.format("%1$s.%2$s", names[0].charAt(0), names[1].substring(0, 3));
+	}
+	private String createTeacherCertificateOwner(Teacher teacher) {
+		return String.format("%1$s %2$s %3$s", teacher.getDetails().getTitle().getName(), teacher.getDetails().getFirstName(), teacher.getDetails().getLastName());
+	}
+	private String createTeacherCertificateInitials(Teacher teacher) {
+		return String.format("%1$s.%2$s.", teacher.getDetails().getFirstName().charAt(0), teacher.getDetails().getLastName().charAt(0));
+	}
 }

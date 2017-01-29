@@ -1,10 +1,5 @@
 package app.services;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-
-import org.hibernate.JDBCException;
-
 import app.services.factory.DaoFactory;
 import core.humanity.details.Address;
 import model.dao.interfaces.IAddressDao;
@@ -46,30 +41,12 @@ public class AddressService extends DaoService<IAddressDao> {
 		
 		return address;
 	}
-	public Integer saveWithId(Address address) {
+	public int saveWithId(Address address) {
 		model.entity.Address entity = new model.entity.Address();	
 		createEntity(address, entity);
 		
 		dao().save(entity);
 		
 		return entity.getAddressId();
-	}
-	public void save(Address address) {
-		model.entity.Address entity = new model.entity.Address();	
-		createEntity(address, entity);
-		
-		dao().save(entity);
-	}
-	public void update(Address address) {
-		model.entity.Address entity = new model.entity.Address();	
-		createEntity(address, entity);
-		
-		dao().update(entity);
-	}
-	public void delete(Address address) {
-		model.entity.Address entity = new model.entity.Address();	
-		createEntity(address, entity);
-		
-		dao().delete(entity);
 	}
 }

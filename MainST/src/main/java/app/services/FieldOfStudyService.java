@@ -1,25 +1,18 @@
 package app.services;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
-
 import app.services.factory.DaoFactory;
 import core.study.department.Department;
 import core.study.fieldofstudy.FieldOfStudy;
 import core.study.fieldofstudy.Specialization;
 import core.study.group.Group;
-import model.dao.FieldOfStudyDao;
-import model.dao.GroupDao;
 import model.dao.interfaces.IFieldOfStudyDao;
 import model.entity.Entity;
+
 @Service
 public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 	public FieldOfStudyService() {
@@ -46,10 +39,12 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		model.entity.FieldOfStudy fieldEntity = (model.entity.FieldOfStudy)entity;
 		FieldOfStudy field = (FieldOfStudy)base;
 		
-		Department dept = new DepartmentService().findDepartmentNameById(fieldEntity.getDepartmentId());	
+		Department dept = new DepartmentService().findDepartmentNameById(
+				fieldEntity.getDepartmentId());	
 		
 		field.getDetails().setFieldOfStudyName(fieldEntity.getFieldOfStudyName());
 		field.getDetails().setDepartment(dept);
+		field.getDetails().setId(fieldEntity.getFieldOfStudyId());
 	}
 	private FieldOfStudy createFromEntity(FieldOfStudy base, model.entity.FieldOfStudy entity) {
 		FieldOfStudy field = new FieldOfStudy();
@@ -101,31 +96,48 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		
 		return list;
 	}
-	public void save(FieldOfStudy field) {
+	public void save(FieldOfStudy field) throws Exception {
 		model.entity.FieldOfStudy entity = new model.entity.FieldOfStudy();	
 		createEntity(field, entity);
 		
-		dao().save(entity);
+		int success = dao().save(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
-	public void update(FieldOfStudy field) {
+	public void update(FieldOfStudy field) throws Exception {
 		model.entity.FieldOfStudy entity = new model.entity.FieldOfStudy();	
 		createEntity(field, entity);
 		
-		dao().update(entity);
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
-	public void delete(FieldOfStudy field) {
+	public void delete(FieldOfStudy field) throws Exception {
 		model.entity.FieldOfStudy entity = new model.entity.FieldOfStudy();	
 		createEntity(field, entity);
 		
-		dao().delete(entity);
+		int success = dao().delete(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
 	
-	
-	
-	
-	
-	
+	public void updateField(FieldOfStudy field) throws Exception {
+		model.entity.FieldOfStudy entity = new model.entity.FieldOfStudy();	
+		
+		model.entity.Department dept = new DepartmentService().getDao().findDepartmentIdByFullName(field.getDetails().getDepartment().getDetails().getDepartmentFullName());
 
+		entity.setFieldOfStudyName(field.getDetails().getFieldOfStudyName());
+		entity.setDepartmentId(dept.getDepartmentId());
+		entity.setFieldOfStudyId(field.getDetails().getId());
+		
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
 	public List<FieldOfStudy> findAll() {
 		List<FieldOfStudy> list = new ArrayList<FieldOfStudy>();
 		
@@ -142,26 +154,6 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		
 		return list;
 	}
-	
-	
-	/*private static FieldOfStudyDao f = new FieldOfStudyDao();
-	public static void main(String[] args) {
-		
-		HashMap<Department, List<FieldOfStudy>> list = findAllFieldsForAllDepartments();
-
-		for (Map.Entry<Department, List<FieldOfStudy>> entry : list.entrySet()) {
-			Department d = entry.getKey();
-			List<FieldOfStudy> f = entry.getValue();
-			
-			System.out.println(d.getDetails().getDepartmentFullName() + ": " + f.size() + " " + f.get(0).getDetails().getFieldOfStudyName());
-		}
-
-
-		
-	}*/
-	
-	
-	
 	public HashMap<Department, List<FieldOfStudy>> findAllFieldsForAllDepartments() {
 		HashMap<model.entity.Department, List<model.entity.FieldOfStudy>> entities = dao().findAllFieldsForAllDepartments();
 		HashMap<Department, List<FieldOfStudy>> list = new HashMap<Department, List<FieldOfStudy>>();
@@ -186,10 +178,6 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		
 		return list;
 	}
-	
-	
-	
-	
 	private Department createDepartment(model.entity.Department entity) {
 		Department department = new Department();
 		
@@ -224,30 +212,5 @@ public class FieldOfStudyService extends DaoService<IFieldOfStudyDao> {
 		specialization.getDetails().setId(entity.getId().getSpecializationId());
 		
 		return specialization;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

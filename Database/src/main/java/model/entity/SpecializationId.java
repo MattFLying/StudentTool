@@ -9,26 +9,30 @@ public class SpecializationId extends Entity {
 	private int specializationId;
 	private int fieldOfStudyId;
 
-	
-	public SpecializationId() {}
+	public SpecializationId() {
+	}
+
 	public SpecializationId(int specializationId, int fieldOfStudyId) {
 		this.specializationId = specializationId;
 		this.fieldOfStudyId = fieldOfStudyId;
 	}
 
-	
 	public int getSpecializationId() {
 		return this.specializationId;
 	}
+
 	public void setSpecializationId(int specializationId) {
 		this.specializationId = specializationId;
 	}
+
 	public int getFieldOfStudyId() {
 		return this.fieldOfStudyId;
 	}
+
 	public void setFieldOfStudyId(int fieldOfStudyId) {
 		this.fieldOfStudyId = fieldOfStudyId;
 	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -41,6 +45,7 @@ public class SpecializationId extends Entity {
 		return (this.getSpecializationId() == castOther.getSpecializationId())
 				&& (this.getFieldOfStudyId() == castOther.getFieldOfStudyId());
 	}
+
 	public int hashCode() {
 		int result = 17;
 

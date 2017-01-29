@@ -1,18 +1,13 @@
 package app.services;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
-
 import app.services.factory.DaoFactory;
 import core.study.department.Department;
-import core.study.fieldofstudy.FieldOfStudy;
 import model.dao.interfaces.IDepartmentDao;
 import model.entity.Entity;
+
 @Service
 public class DepartmentService extends DaoService<IDepartmentDao> {
 	public DepartmentService() {
@@ -24,77 +19,6 @@ public class DepartmentService extends DaoService<IDepartmentDao> {
 	public IDepartmentDao getDao() {
 		return (IDepartmentDao)dao;
 	}
-	
-	public Department findDepartmentNameById(int id) {
-		model.entity.Department entity = dao().findDepartmentNameById(id);
-		
-		Department department = new Department();
-		createFromEntity(entity, department);
-		
-		return department;
-	}
-
-	public Department findDepartmentIdByFullName(String name) {
-		model.entity.Department entity = dao().findDepartmentIdByFullName(name);
-		
-		Department department = new Department();
-		createFromEntity(entity, department);
-		
-		return department;
-	}
-	public Department findOneByDepartmentId(int id) {
-		model.entity.Department entity = dao().findById(id);
-		
-		Department department = new Department();
-		createFromEntity(entity, department);
-		
-		return department;
-	}
-	public Department findOneByShortName(String name) {
-		model.entity.Department entity = dao().findByName(name);
-		
-		Department department = new Department();
-		createFromEntity(entity, department);
-		
-		return department;
-	}
-	public Department findOneByFullName(String name) {
-		model.entity.Department entity = dao().findByFullName(name);
-		
-		Department department = new Department();
-		createFromEntity(entity, department);
-		
-		return department;
-	}
-	public void save(Department department) {
-		model.entity.Department entity = new model.entity.Department();	
-		createEntity(department, entity);
-		
-		dao().save(entity);
-	}
-	public void update(Department department) {
-		model.entity.Department entity = new model.entity.Department();	
-		createEntity(department, entity);
-		
-		dao().update(entity);
-	}
-	public void delete(Department department) {
-		model.entity.Department entity = new model.entity.Department();	
-		createEntity(department, entity);
-		
-		dao().delete(entity);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	protected void createEntity(Object base, Entity entity) {
 		model.entity.Department departmentEntity = (model.entity.Department)entity;
@@ -121,6 +45,68 @@ public class DepartmentService extends DaoService<IDepartmentDao> {
 		
 		return field;
 	}
+	public Department findDepartmentNameById(int id) {
+		model.entity.Department entity = dao().findDepartmentNameById(id);
+		
+		Department department = new Department();
+		createFromEntity(entity, department);
+		
+		return department;
+	}
+	public Department findDepartmentIdByFullName(String name) {
+		model.entity.Department entity = dao().findDepartmentIdByFullName(name);
+		
+		Department department = new Department();
+		createFromEntity(entity, department);
+		
+		return department;
+	}
+	public Department findOneByDepartmentId(int id) {
+		model.entity.Department entity = dao().findById(id);
+		
+		Department department = new Department();
+		createFromEntity(entity, department);
+		
+		return department;
+	}
+	public Department findOneByShortName(String name) {
+		model.entity.Department entity = dao().findByShortName(name);
+		
+		Department department = new Department();
+		createFromEntity(entity, department);
+		
+		return department;
+	}
+	public Department findOneByFullName(String name) {
+		model.entity.Department entity = dao().findByFullName(name);
+		
+		Department department = new Department();
+		createFromEntity(entity, department);
+		
+		return department;
+	}
+	public void save(Department department) throws Exception {
+		model.entity.Department entity = new model.entity.Department();	
+		createEntity(department, entity);
+		
+		int success = dao().save(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
+	public void updateDepartment(Department department) throws Exception {
+		model.entity.Department departmentEntity = new model.entity.Department();
+		
+		departmentEntity.setDepartmentBuilding(department.getDetails().getDepartmentBuilding());
+		departmentEntity.setDepartmentDescription(department.getDetails().getDepartmentFullName());
+		departmentEntity.setDepartmentName(department.getDetails().getDepartmentShortName());
+		departmentEntity.setDepartmentId(department.getDetails().getId());
+		
+		int success = dao().update(departmentEntity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
 	public List<Department> findAll() {
 		List<Department> list = new ArrayList<Department>();
 		
@@ -130,9 +116,4 @@ public class DepartmentService extends DaoService<IDepartmentDao> {
 		
 		return list;
 	}
-	
-	
-	
-	
-	
 }

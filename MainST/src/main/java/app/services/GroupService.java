@@ -1,25 +1,20 @@
 package app.services;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
-
 import app.services.factory.DaoFactory;
 import core.study.fieldofstudy.FieldOfStudy;
-import core.study.fieldofstudy.Specialization;
 import core.study.group.Group;
 import model.dao.interfaces.IGroupDao;
 import model.entity.Entity;
+
 @Service
 public class GroupService extends DaoService<IGroupDao> {
 	public GroupService() {
 		super(DaoFactory.Dao.GROUP);
 	}
-	public String test_1 = new String("tescik haha");
+	
 	
 	@Override
 	public IGroupDao getDao() {
@@ -33,6 +28,7 @@ public class GroupService extends DaoService<IGroupDao> {
 		model.entity.FieldOfStudy field = new FieldOfStudyService().getDao().findFieldOfStudyIdByName(group.getDetails().getFieldOfStudy().getDetails().getFieldOfStudyName());
 		
 		groupEntity.setGroupDescription(group.getDetails().getDescription());
+		groupEntity.setGroupYear(group.getDetails().getYear());
 		groupEntity.setGroupName(group.getDetails().getGroupName());
 		groupEntity.setFieldOfStudyId(field.getFieldOfStudyId());
 	}
@@ -44,6 +40,7 @@ public class GroupService extends DaoService<IGroupDao> {
 		FieldOfStudy field = new FieldOfStudyService().findFieldOfStudyNameById(groupEntity.getFieldOfStudyId());
 		
 		group.getDetails().setDescription(groupEntity.getGroupDescription());
+		group.getDetails().setYear(groupEntity.getGroupYear());
 		group.getDetails().setGroupName(groupEntity.getGroupName());
 		group.getDetails().setFieldOfStudy(field);
 		group.getDetails().setId(groupEntity.getGroupId());
@@ -116,7 +113,7 @@ public class GroupService extends DaoService<IGroupDao> {
 	public List<Group> findGroupsByDepartmentId(Integer id) {
 		List<Group> list = new ArrayList<Group>();		
 		
-		dao().findSpecsByDepartmentId(id).forEach( (x) -> {
+		dao().findGroupsByDepartmentId(id).forEach( (x) -> {
 			Group group = new Group();
 			
 			group.getDetails().setGroupName(x.getGroupName());
@@ -127,17 +124,39 @@ public class GroupService extends DaoService<IGroupDao> {
 		
 		return list;
 	}
-	public void save(Group group) {
+	public void save(Group group) throws Exception {
 		model.entity.Group entity = new model.entity.Group();	
 		createEntity(group, entity);
 		
-		dao().save(entity);
+		int success = dao().save(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
-	public void update(Group group) {
+	public void update(Group group) throws Exception {
 		model.entity.Group entity = new model.entity.Group();	
 		createEntity(group, entity);
 		
-		dao().update(entity);
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
+	public void updateGroup(Group group) throws Exception {
+		model.entity.Group entity = new model.entity.Group();	
+		
+		model.entity.FieldOfStudy field = new FieldOfStudyService().getDao().findFieldOfStudyIdByName(group.getDetails().getFieldOfStudy().getDetails().getFieldOfStudyName());
+		
+		entity.setGroupId(group.getDetails().getId());
+		entity.setGroupDescription(group.getDetails().getDescription());
+		entity.setGroupYear(group.getDetails().getYear());
+		entity.setGroupName(group.getDetails().getGroupName());
+		entity.setFieldOfStudyId(field.getFieldOfStudyId());
+		
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
 	public void delete(Group group) {
 		model.entity.Group entity = new model.entity.Group();	

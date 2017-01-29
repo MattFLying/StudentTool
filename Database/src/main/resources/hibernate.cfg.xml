@@ -27,7 +27,7 @@
 		<mapping resource="hbm/Institute.hbm.xml" />
 		<mapping resource="hbm/Specialization.hbm.xml" />
 		<mapping resource="hbm/Users.hbm.xml" />
-		<mapping resource="hbm/UserDetails.hbm.xml" />	
+		<mapping resource="hbm/UserDetails.hbm.xml" />
 	</session-factory>
-	
+
 </hibernate-configuration>

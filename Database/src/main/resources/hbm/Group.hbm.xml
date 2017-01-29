@@ -4,22 +4,26 @@
 <!-- Generated 2016-12-08 01:23:58 by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
 
-    <class name="model.entity.Group" table="st_group" catalog="Student_Tool" optimistic-lock="version">
-    
-        <id name="groupId" type="java.lang.Integer">
-            <column name="group_id" />
-            <generator class="identity" />
-        </id>
-        <property name="fieldOfStudyId" type="java.lang.Integer">
-            <column name="field_of_study_id" />
-        </property>
-        <property name="groupName" type="string">
-            <column name="group_name" length="20" />
-        </property>
-        <property name="groupDescription" type="string">
-            <column name="group_description" length="100" />
-        </property>
-        
-    </class>
-    
+	<class name="model.entity.Group" table="st_group" catalog="Student_Tool"
+		optimistic-lock="version">
+
+		<id name="groupId" type="java.lang.Integer">
+			<column name="group_id" />
+			<generator class="identity" />
+		</id>
+		<property name="fieldOfStudyId" type="java.lang.Integer">
+			<column name="field_of_study_id" />
+		</property>
+		<property name="groupName" type="string">
+			<column name="group_name" length="20" />
+		</property>
+		<property name="groupDescription" type="string">
+			<column name="group_description" length="100" />
+		</property>
+		<property name="groupYear" type="string">
+			<column name="group_year" length="4" />
+		</property>
+
+	</class>
+
 </hibernate-mapping>

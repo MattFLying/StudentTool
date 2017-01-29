@@ -44,11 +44,17 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/user/adduser.html">Dodaj
 										użytkownika systemu</a></li>
+								<li><a href="/admin/user/finduser.html">Edytuj
+										użytkownika systemu</a></li>
 								<li><a href="/admin/user/addstudent.html">Dodaj
+										studenta</a></li>
+								<li><a href="/admin/user/findstudent.html">Edytuj
 										studenta</a></li>
 								<li><a href="/admin/user/addstudents.html">Dodaj
 										studentów z pliku Excel (.xls)</a></li>
 								<li><a href="/admin/user/addteacher.html">Dodaj
+										prowadzącego zajęcia</a></li>
+								<li><a href="/admin/user/findteacher.html">Edytuj
 										prowadzącego zajęcia</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -57,9 +63,15 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj
+										wydział akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
+								<li><a href="/admin/dept/findinstitute.html">Edytuj
+										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/addspecialization.html">Dodaj
+										specjalizacje kierunkową</a></li>
+								<li><a href="/admin/dept/findspecialization.html">Edytuj
 										specjalizacje kierunkową</a></li>
 							</ul></li>
 						<li class="dropdown"><a class="dropdown-toggle"
@@ -68,9 +80,14 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/field/addfieldofstudy.html">Dodaj
 										kierunek studiów</a></li>
+								<li><a href="/admin/field/findfield.html">Edytuj
+										kierunek studiów</a></li>
 								<li><a href="/admin/field/addgroup.html">Dodaj grupę
 										akademicką</a></li>
+								<li><a href="/admin/field/findgroup.html">Edytuj grupę
+										akademicką</a></li>
 								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -85,15 +102,6 @@ BODY
 									</span>
 								</center>
 							</div>
-							<div class="alert alert-danger" th:if="${param.error}">
-								<center>
-									<strong>Operacja nie powiodła się!</strong> <span
-										style="font-size: 12; font-weight: bold; color: orange">
-										<br />Coś poszło nie tak, upewnij się, że podałeś właściwe
-										dane!
-									</span>
-								</center>
-							</div>
 
 
 							<div>
@@ -101,19 +109,20 @@ BODY
 									<label for="details.albumNumber">Numer albumu:</label> <input
 										class="form-control" id="details.albumNumber"
 										name="details.albumNumber" type="text"
-										th:value="${studentform.details.albumNumber}" />
+										th:value="${studentform.details.albumNumber}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="password">Hasło:</label> <input
 										class="form-control" id="password" name="password" type="text"
-										th:value="${userform.password}" />
+										th:value="${userform.password}" required="required" />
 								</div>
 							</div>
 							<br /> <br /> <br /> <br />
 							<div>
 								<div class="col-xs-2">
 									<label>Tytuł:</label> <select class="form-control"
-										th:field="${studentform.details.title}">
+										th:field="${studentform.details.title}" required="required">
+										<option selected="selected" value="">Wybierz...</option>
 										<option
 											th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
 											th:value="${title}" th:text="${title.name}"></option>
@@ -123,7 +132,7 @@ BODY
 									<label for="details.firstName">Imie:</label> <input
 										class="form-control" id="details.firstName"
 										name="details.firstName" type="text"
-										th:value="${studentform.details.firstName}" />
+										th:value="${studentform.details.firstName}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.secondName">Drugie imie:</label> <input
@@ -135,18 +144,24 @@ BODY
 									<label for="details.lastName">Nazwisko:</label> <input
 										class="form-control" id="details.lastName"
 										name="details.lastName" type="text"
-										th:value="${studentform.details.lastName}" />
+										th:value="${studentform.details.lastName}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.pesel">Pesel:</label> <input
 										class="form-control" id="details.pesel" name="details.pesel"
-										type="text" th:value="${studentform.details.pesel}" />
+										type="text" th:value="${studentform.details.pesel}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.birthDate">Data urodzenia:</label> <input
 										class="form-control" id="details.birthDate"
 										name="details.birthDate" type="text"
-										th:value="${studentform.details.birthDate}" />
+										th:value="${studentform.details.birthDate}" required="required" />
+								</div>
+								<div class="col-xs-2">
+									<label for="details.email">E-mail:</label> <input
+										class="form-control" id="details.email"
+										name="details.email" type="text"
+										th:value="${studentform.details.email}" required="required" />
 								</div>
 							</div>
 							<div>
@@ -154,13 +169,13 @@ BODY
 									<label for="details.phoneNumber">Telefon:</label> <input
 										class="form-control" id="details.phoneNumber"
 										name="details.phoneNumber" type="text"
-										th:value="${studentform.details.phoneNumber}" />
+										th:value="${studentform.details.phoneNumber}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.bankNumber">Numer konta:</label> <input
 										class="form-control" id="details.bankNumber"
 										name="details.bankNumber" type="text"
-										th:value="${studentform.details.bankNumber}" />
+										th:value="${studentform.details.bankNumber}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.startStudyDate">Początek studiów:</label> <input
@@ -182,7 +197,7 @@ BODY
 								</div>
 								<div class="form-group col-xs-1">
 									<label>System studiów:</label> <select class="form-control"
-										th:field="${studentform.details.studySystem}">
+										th:field="${studentform.details.studySystem}" required="required">
 										<option
 											th:each="system : ${T(core.study.details.StudySystem).values()}"
 											th:value="${system}" th:text="${system.name}"></option>
@@ -190,7 +205,7 @@ BODY
 								</div>
 								<div class="form-group col-xs-2">
 									<label>Forma studiów:</label> <select class="form-control"
-										th:field="${studentform.details.formOfStudy}">
+										th:field="${studentform.details.formOfStudy}" required="required">
 										<option
 											th:each="form : ${T(core.study.details.FormOfStudy).values()}"
 											th:value="${form}" th:text="${form.name}"></option>
@@ -203,17 +218,17 @@ BODY
 										<td class="form-group col-xs-1"><label for="details.address.city">Miasto:</label> <input
 											class="form-control" id="details.address.city"
 											name="details.address.city" type="text"
-											th:value="${studentform.details.address.city}" /></td>
+											th:value="${studentform.details.address.city}" required="required" /></td>
 										<td class="form-group col-xs-1"><label for="details.address.postalCode">Kod
 												pocztowy:</label> <input class="form-control"
 											id="details.address.postalCode"
 											name="details.address.postalCode" type="text"
-											th:value="${studentform.details.address.postalCode}" /></td>
+											th:value="${studentform.details.address.postalCode}" required="required" /></td>
 										<td class="form-group col-xs-2"><label for="details.address.streetFullAddress">Ulica:</label>
 											<input class="form-control"
 											id="details.address.streetFullAddress"
 											name="details.address.streetFullAddress" type="text"
-											th:value="${studentform.details.address.streetFullAddress}" />
+											th:value="${studentform.details.address.streetFullAddress}" required="required" />
 										</td>
 									</tr>
 								</table>

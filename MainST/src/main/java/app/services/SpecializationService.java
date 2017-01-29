@@ -1,19 +1,14 @@
 package app.services;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.JDBCException;
 import org.springframework.stereotype.Service;
-
 import app.services.factory.DaoFactory;
 import core.study.fieldofstudy.FieldOfStudy;
 import core.study.fieldofstudy.Specialization;
-import model.dao.SpecializationDao;
 import model.dao.interfaces.ISpecializationDao;
 import model.entity.Entity;
+
 @Service
 public class SpecializationService extends DaoService<ISpecializationDao> {
 	public SpecializationService() {
@@ -47,6 +42,7 @@ public class SpecializationService extends DaoService<ISpecializationDao> {
 		
 		specialization.getDetails().setSpecializationName(groupEntity.getSpecializationName());
 		specialization.getDetails().setFieldOfStudy(field);
+		specialization.getDetails().setId(groupEntity.getId().getSpecializationId());
 	}
 	private Specialization createFromEntity(Specialization base, model.entity.Specialization entity) {
 		Specialization field = new Specialization();
@@ -102,17 +98,23 @@ public class SpecializationService extends DaoService<ISpecializationDao> {
 		
 		return list;
 	}
-	public void save(Specialization specialization) {
+	public void save(Specialization specialization) throws Exception {
 		model.entity.Specialization entity = new model.entity.Specialization();	
 		createEntity(specialization, entity);
 		
-		dao().save(entity);
+		int success = dao().save(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
-	public void update(Specialization specialization) {
+	public void update(Specialization specialization) throws Exception {
 		model.entity.Specialization entity = new model.entity.Specialization();	
 		createEntity(specialization, entity);
 		
-		dao().update(entity);
+		int success = dao().update(entity);
+		if(success == 0) {
+			throw new Exception();
+		}
 	}
 	public void delete(Specialization specialization) {
 		model.entity.Specialization entity = new model.entity.Specialization();	
@@ -120,15 +122,20 @@ public class SpecializationService extends DaoService<ISpecializationDao> {
 		
 		dao().delete(entity);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void updateSpecialization(Specialization specialization) throws Exception {
+		model.entity.Specialization specializationEntity = new model.entity.Specialization();
+		
+		model.entity.SpecializationId id = new model.entity.SpecializationId();
+		model.entity.FieldOfStudy field = new FieldOfStudyService().getDao().findFieldOfStudyIdByName(specialization.getDetails().getFieldOfStudy().getDetails().getFieldOfStudyName());	
+		
+		id.setFieldOfStudyId(field.getFieldOfStudyId());
+		id.setSpecializationId(specialization.getDetails().getId());
+		specializationEntity.setId(id);
+		specializationEntity.setSpecializationName(specialization.getDetails().getSpecializationName());
+		
+		int success = dao().update(specializationEntity);
+		if(success == 0) {
+			throw new Exception();
+		}
+	}
 }

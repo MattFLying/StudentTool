@@ -9,26 +9,30 @@ public class TeachersCoursesId extends Entity {
 	private int teacherId;
 	private int courseId;
 
-	
-	public TeachersCoursesId() {}
+	public TeachersCoursesId() {
+	}
+
 	public TeachersCoursesId(int teacherId, int courseId) {
 		this.teacherId = teacherId;
 		this.courseId = courseId;
 	}
 
-	
 	public int getTeacherId() {
 		return this.teacherId;
 	}
+
 	public void setTeacherId(int teacherId) {
 		this.teacherId = teacherId;
 	}
+
 	public int getCourseId() {
 		return this.courseId;
 	}
+
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -40,6 +44,7 @@ public class TeachersCoursesId extends Entity {
 
 		return (this.getTeacherId() == castOther.getTeacherId()) && (this.getCourseId() == castOther.getCourseId());
 	}
+
 	public int hashCode() {
 		int result = 17;
 
