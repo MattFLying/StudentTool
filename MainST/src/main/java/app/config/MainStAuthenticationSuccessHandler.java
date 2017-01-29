@@ -17,20 +17,40 @@ import org.springframework.stereotype.Component;
 
 import core.user.User;
 
+/***
+ * Class for handling authentication after login and redirect to specific pages.
+ * 
+ * @author Mateusz Mucha
+ *
+ */
 @Component("mainStAuthenticationSuccessHandler")
 public class MainStAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 	protected Log logger = LogFactory.getLog(this.getClass());
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+	/***
+	 * Method is called when user has been successfully authenticated.
+	 */
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException {
 		handle(request, response, authentication);
 		clearAuthenticationAttributes(request);
 	}
-	public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
-		this.redirectStrategy = redirectStrategy;
-	}
-	protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+
+	/***
+	 * Method to handle url
+	 * 
+	 * @param request
+	 *            - request
+	 * @param response
+	 *            - response
+	 * @param authentication
+	 *            - authentication
+	 * @throws IOException
+	 */
+	protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+			throws IOException {
 		String targetUrl = determineTargetUrl(authentication);
 
 		if (response.isCommitted()) {
@@ -40,6 +60,14 @@ public class MainStAuthenticationSuccessHandler implements AuthenticationSuccess
 
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
+
+	/***
+	 * Method to choose url page to redirect when user has specific role type.
+	 * 
+	 * @param authentication
+	 *            - authentication
+	 * @return url to target
+	 */
 	protected String determineTargetUrl(Authentication authentication) {
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		for (GrantedAuthority grantedAuthority : authorities) {
@@ -51,19 +79,42 @@ public class MainStAuthenticationSuccessHandler implements AuthenticationSuccess
 				return "/teacher/index.html";
 			}
 		}
-		
+
 		return null;
 	}
+
+	/**
+	 * Method clears authentication attributes.
+	 * 
+	 * @param request
+	 *            - request
+	 */
 	protected void clearAuthenticationAttributes(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		
+
 		if (session == null) {
 			return;
 		}
-		
+
 		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 	}
+
+	/***
+	 * Method to gets redirect strategy
+	 * 
+	 * @return redirect to supplied url
+	 */
 	protected RedirectStrategy getRedirectStrategy() {
 		return redirectStrategy;
+	}
+
+	/***
+	 * Method to sets redirect strategy
+	 * 
+	 * @param redirectStrategy
+	 *            - redirect to supplied url
+	 */
+	public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
+		this.redirectStrategy = redirectStrategy;
 	}
 }
