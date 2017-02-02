@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -61,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -84,8 +85,10 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -106,8 +109,8 @@ BODY
 							<div>
 								<div class="col-xs-2">
 									<label for="details.albumNumber">Numer albumu:</label> <input
-										class="form-control" id="details.albumNumber"
-										name="details.albumNumber" type="text"
+										class="form-control" id="details.albumNumber" maxlength="5"
+										placeholder="np. 85847" name="details.albumNumber" type="text"
 										th:value="${studentform.details.albumNumber}" />
 								</div>
 							</div>
@@ -123,67 +126,72 @@ BODY
 								</div>
 								<div class="col-xs-2">
 									<label for="details.firstName">Imie:</label> <input
-										class="form-control" id="details.firstName"
-										name="details.firstName" type="text"
+										class="form-control" id="details.firstName" maxlength="100"
+										placeholder="np. Jan" name="details.firstName" type="text"
 										th:value="${studentform.details.firstName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.secondName">Drugie imie:</label> <input
-										class="form-control" id="details.secondName"
-										name="details.secondName" type="text"
+										class="form-control" id="details.secondName" maxlength="100"
+										placeholder="np. Piotr" name="details.secondName" type="text"
 										th:value="${studentform.details.secondName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.lastName">Nazwisko:</label> <input
-										class="form-control" id="details.lastName"
-										name="details.lastName" type="text"
+										class="form-control" id="details.lastName" maxlength="100"
+										placeholder="np. Kowalski" name="details.lastName" type="text"
 										th:value="${studentform.details.lastName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.pesel">Pesel:</label> <input
 										class="form-control" id="details.pesel" name="details.pesel"
-										type="text" th:value="${studentform.details.pesel}" />
+										placeholder="np. 90121112231" maxlength="11" type="text"
+										th:value="${studentform.details.pesel}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.birthDate">Data urodzenia:</label> <input
-										class="form-control" id="details.birthDate"
-										name="details.birthDate" type="text"
-										th:value="${studentform.details.birthDate}" />
+										class="form-control" id="details.birthDate" maxlength="10"
+										placeholder="np. 05-10-1990" name="details.birthDate"
+										type="text" th:value="${studentform.details.birthDate}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.email">E-mail:</label> <input
 										class="form-control" id="details.email" name="details.email"
+										placeholder="np. jan.kowalski@gmail.com" maxlength="100"
 										type="text" th:value="${studentform.details.email}" />
 								</div>
 							</div>
 							<div>
 								<div class="col-xs-2">
 									<label for="details.phoneNumber">Telefon:</label> <input
-										class="form-control" id="details.phoneNumber"
-										name="details.phoneNumber" type="text"
-										th:value="${studentform.details.phoneNumber}" />
+										class="form-control" id="details.phoneNumber" maxlength="20"
+										placeholder="np. 745199871" name="details.phoneNumber"
+										type="text" th:value="${studentform.details.phoneNumber}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.bankNumber">Numer konta:</label> <input
-										class="form-control" id="details.bankNumber"
+										class="form-control" id="details.bankNumber" maxlength="26"
+										placeholder="np. 54789640123458741300000126"
 										name="details.bankNumber" type="text"
 										th:value="${studentform.details.bankNumber}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.startStudyDate">Początek studiów:</label> <input
 										class="form-control" id="details.startStudyDate"
+										placeholder="np. 05-10-2011" maxlength="10"
 										name="details.startStudyDate" type="text"
 										th:value="${studentform.details.startStudyDate}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.endStudyDate">Koniec studiów:</label> <input
-										class="form-control" id="details.endStudyDate"
-										name="details.endStudyDate" type="text"
-										th:value="${studentform.details.endStudyDate}" />
+										class="form-control" id="details.endStudyDate" maxlength="10"
+										placeholder="np. 12-10-2017" name="details.endStudyDate"
+										type="text" th:value="${studentform.details.endStudyDate}" />
 								</div>
 								<div class="col-xs-1">
 									<label for="details.currentTermNumber">Semestr:</label> <input
 										class="form-control" id="details.currentTermNumber"
+										placeholder="np. 5" maxlength="2"
 										name="details.currentTermNumber" type="text"
 										th:value="${studentform.details.currentTermNumber}" />
 								</div>
@@ -209,17 +217,19 @@ BODY
 									<tr>
 										<td class="form-group col-xs-1"><label
 											for="details.address.city">Miasto:</label> <input
-											class="form-control" id="details.address.city"
-											name="details.address.city" type="text"
-											th:value="${studentform.details.address.city}" /></td>
+											class="form-control" id="details.address.city" maxlength="75"
+											placeholder="np. Zielona Góra" name="details.address.city"
+											type="text" th:value="${studentform.details.address.city}" /></td>
 										<td class="form-group col-xs-1"><label
 											for="details.address.postalCode">Kod pocztowy:</label> <input
 											class="form-control" id="details.address.postalCode"
+											placeholder="np. 65-459" maxlength="8"
 											name="details.address.postalCode" type="text"
 											th:value="${studentform.details.address.postalCode}" /></td>
 										<td class="form-group col-xs-2"><label
 											for="details.address.streetFullAddress">Ulica:</label> <input
 											class="form-control" id="details.address.streetFullAddress"
+											placeholder="np. ul. Podgórna 113 A/10" maxlength="150"
 											name="details.address.streetFullAddress" type="text"
 											th:value="${studentform.details.address.streetFullAddress}" />
 										</td>

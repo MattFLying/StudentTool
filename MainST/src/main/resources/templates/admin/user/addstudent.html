@@ -63,8 +63,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -86,13 +86,16 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
-					<form action="#" th:action="@{/addstudentdb}" th:object="${studentform}" method="post">
+					<form action="#" th:action="@{/addstudentdb}"
+						th:object="${studentform}" method="post">
 						<div class="panel-body">
 							<div class="alert alert-success" th:if="${param.success}">
 								<center>
@@ -107,14 +110,16 @@ BODY
 							<div>
 								<div class="col-xs-2">
 									<label for="details.albumNumber">Numer albumu:</label> <input
-										class="form-control" id="details.albumNumber"
-										name="details.albumNumber" type="text"
-										th:value="${studentform.details.albumNumber}" required="required" />
+										class="form-control" id="details.albumNumber" maxlength="5"
+										placeholder="np. 85847" name="details.albumNumber" type="text"
+										th:value="${studentform.details.albumNumber}"
+										required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="password">Hasło:</label> <input
-										class="form-control" id="password" name="password" type="text"
-										th:value="${userform.password}" required="required" />
+										class="form-control" id="password" name="password"
+										type="password" th:value="${userform.password}"
+										required="required" />
 								</div>
 							</div>
 							<br /> <br /> <br /> <br />
@@ -130,74 +135,84 @@ BODY
 								</div>
 								<div class="col-xs-2">
 									<label for="details.firstName">Imie:</label> <input
-										class="form-control" id="details.firstName"
-										name="details.firstName" type="text"
-										th:value="${studentform.details.firstName}" required="required" />
+										class="form-control" id="details.firstName" maxlength="100"
+										placeholder="np. Jan" name="details.firstName" type="text"
+										th:value="${studentform.details.firstName}"
+										required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.secondName">Drugie imie:</label> <input
-										class="form-control" id="details.secondName"
-										name="details.secondName" type="text"
+										class="form-control" id="details.secondName" maxlength="100"
+										placeholder="np. Piotr" name="details.secondName" type="text"
 										th:value="${studentform.details.secondName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.lastName">Nazwisko:</label> <input
-										class="form-control" id="details.lastName"
-										name="details.lastName" type="text"
+										class="form-control" id="details.lastName" maxlength="100"
+										placeholder="np. Kowalski" name="details.lastName" type="text"
 										th:value="${studentform.details.lastName}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.pesel">Pesel:</label> <input
 										class="form-control" id="details.pesel" name="details.pesel"
-										type="text" th:value="${studentform.details.pesel}" required="required" />
+										placeholder="np. 90121112231" maxlength="11" type="text"
+										th:value="${studentform.details.pesel}" required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.birthDate">Data urodzenia:</label> <input
-										class="form-control" id="details.birthDate"
-										name="details.birthDate" type="text"
-										th:value="${studentform.details.birthDate}" required="required" />
+										class="form-control" id="details.birthDate" maxlength="10"
+										placeholder="np. 05-10-1990" name="details.birthDate"
+										type="text" th:value="${studentform.details.birthDate}"
+										required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.email">E-mail:</label> <input
-										class="form-control" id="details.email"
-										name="details.email" type="text"
-										th:value="${studentform.details.email}" required="required" />
+										class="form-control" id="details.email" maxlength="100"
+										placeholder="np. jan.kowalski@gmail.com" name="details.email"
+										type="text" th:value="${studentform.details.email}"
+										required="required" />
 								</div>
 							</div>
 							<div>
 								<div class="col-xs-2">
 									<label for="details.phoneNumber">Telefon:</label> <input
-										class="form-control" id="details.phoneNumber"
-										name="details.phoneNumber" type="text"
-										th:value="${studentform.details.phoneNumber}" required="required" />
+										class="form-control" id="details.phoneNumber" maxlength="20"
+										placeholder="np. 745199871" name="details.phoneNumber"
+										type="text" th:value="${studentform.details.phoneNumber}"
+										required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.bankNumber">Numer konta:</label> <input
-										class="form-control" id="details.bankNumber"
+										class="form-control" id="details.bankNumber" maxlength="26"
+										placeholder="np. 54789640123458741300000126"
 										name="details.bankNumber" type="text"
-										th:value="${studentform.details.bankNumber}" required="required" />
+										th:value="${studentform.details.bankNumber}"
+										required="required" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.startStudyDate">Początek studiów:</label> <input
 										class="form-control" id="details.startStudyDate"
+										placeholder="np. 05-10-2011" maxlength="10"
 										name="details.startStudyDate" type="text"
 										th:value="${studentform.details.startStudyDate}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.endStudyDate">Koniec studiów:</label> <input
-										class="form-control" id="details.endStudyDate"
-										name="details.endStudyDate" type="text"
-										th:value="${studentform.details.endStudyDate}" />
+										class="form-control" id="details.endStudyDate" maxlength="10"
+										placeholder="np. 12-10-2017" name="details.endStudyDate"
+										type="text" th:value="${studentform.details.endStudyDate}" />
 								</div>
 								<div class="col-xs-1">
 									<label for="details.currentTermNumber">Semestr:</label> <input
 										class="form-control" id="details.currentTermNumber"
+										placeholder="np. 5" maxlength="2"
 										name="details.currentTermNumber" type="text"
 										th:value="${studentform.details.currentTermNumber}" />
 								</div>
 								<div class="form-group col-xs-1">
 									<label>System studiów:</label> <select class="form-control"
-										th:field="${studentform.details.studySystem}" required="required">
+										th:field="${studentform.details.studySystem}"
+										required="required">
 										<option
 											th:each="system : ${T(core.study.details.StudySystem).values()}"
 											th:value="${system}" th:text="${system.name}"></option>
@@ -205,7 +220,8 @@ BODY
 								</div>
 								<div class="form-group col-xs-2">
 									<label>Forma studiów:</label> <select class="form-control"
-										th:field="${studentform.details.formOfStudy}" required="required">
+										th:field="${studentform.details.formOfStudy}"
+										required="required">
 										<option
 											th:each="form : ${T(core.study.details.FormOfStudy).values()}"
 											th:value="${form}" th:text="${form.name}"></option>
@@ -215,25 +231,29 @@ BODY
 							<div>
 								<table>
 									<tr>
-										<td class="form-group col-xs-1"><label for="details.address.city">Miasto:</label> <input
-											class="form-control" id="details.address.city"
-											name="details.address.city" type="text"
-											th:value="${studentform.details.address.city}" required="required" /></td>
-										<td class="form-group col-xs-1"><label for="details.address.postalCode">Kod
-												pocztowy:</label> <input class="form-control"
-											id="details.address.postalCode"
+										<td class="form-group col-xs-1"><label
+											for="details.address.city">Miasto:</label> <input
+											class="form-control" id="details.address.city" maxlength="75"
+											placeholder="np. Zielona Góra" name="details.address.city"
+											type="text" th:value="${studentform.details.address.city}"
+											required="required" /></td>
+										<td class="form-group col-xs-1"><label
+											for="details.address.postalCode">Kod pocztowy:</label> <input
+											class="form-control" id="details.address.postalCode"
+											placeholder="np. 65-459" maxlength="8"
 											name="details.address.postalCode" type="text"
-											th:value="${studentform.details.address.postalCode}" required="required" /></td>
-										<td class="form-group col-xs-2"><label for="details.address.streetFullAddress">Ulica:</label>
-											<input class="form-control"
-											id="details.address.streetFullAddress"
+											th:value="${studentform.details.address.postalCode}"
+											required="required" /></td>
+										<td class="form-group col-xs-2"><label
+											for="details.address.streetFullAddress">Ulica:</label> <input
+											class="form-control" id="details.address.streetFullAddress"
+											placeholder="np. ul. Podgórna 113 A/10" maxlength="150"
 											name="details.address.streetFullAddress" type="text"
-											th:value="${studentform.details.address.streetFullAddress}" required="required" />
-										</td>
+											th:value="${studentform.details.address.streetFullAddress}"
+											required="required" /></td>
 									</tr>
 								</table>
-								<br />
-								<br />
+								<br /> <br />
 								<table>
 									<tr>
 										<th>Wydział</th>
@@ -271,7 +291,8 @@ BODY
 								</table>
 							</div>
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Dodaj" />
 					</form>
 				</div>
 			</div>

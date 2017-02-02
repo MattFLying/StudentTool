@@ -62,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -85,8 +85,10 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -94,9 +96,10 @@ BODY
 
 
 
-					
-					
-					<form action="#" th:action="@{/editinstitutedb}" th:object="${instituteform}" method="post">
+
+
+					<form action="#" th:action="@{/editinstitutedb}"
+						th:object="${instituteform}" method="post">
 						<div class="panel-body">
 							<div class="alert alert-success" th:if="${param.edited}">
 								<center>
@@ -106,22 +109,25 @@ BODY
 									</span>
 								</center>
 							</div>
-							
+
 							<div>
 								<div class="col-xs-3">
 									<label for="fullName">Pełna nazwa:</label> <input
-										class="form-control" id="fullName" type="text"
+										class="form-control" id="fullName" maxlength="150" type="text"
+										placeholder="np. Instytut Sterowania i Systemów Informatycznych"
 										th:field="*{details.instituteFullName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="shortName">Skrót instytutu:</label> <input
-										class="form-control" id="shortName" type="text"
+										class="form-control" id="shortName" maxlength="20" type="text"
+										placeholder="np. ISSI"
 										th:field="*{details.instituteShortName}" />
 								</div>
 								<div class="form-group col-xs-3">
 									<label for="sel1">Wydział:</label> <select class="form-control"
 										th:field="*{details.department.details.departmentFullName}">
-										<option selected="selected" th:value="*{details.department.details.departmentFullName}"></option>
+										<option selected="selected"
+											th:value="*{details.department.details.departmentFullName}"></option>
 										<option th:each="dept : ${departments}"
 											th:value="${dept.details.departmentFullName}"
 											th:text="${dept.details.departmentFullName}"></option>
@@ -130,12 +136,13 @@ BODY
 							</div>
 							<br /> <br />
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Edytuj" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Edytuj" />
 					</form>
-					
-					
-					
-					
+
+
+
+
 
 
 

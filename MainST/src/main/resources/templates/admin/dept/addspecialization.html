@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -61,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -84,8 +85,10 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -106,7 +109,8 @@ BODY
 							<div>
 								<div class="col-xs-3">
 									<label for="fullName">Pełna nazwa:</label> <input
-										class="form-control" id="fullName" type="text"
+										class="form-control" id="fullName" maxlength="75" type="text"
+										placeholder="np. Sieciowe systemy informatyczne"
 										th:field="*{details.specializationName}" required="required" />
 								</div>
 								<table>
@@ -115,22 +119,23 @@ BODY
 										<th>Kierunek</th>
 									</tr>
 									<tr th:each="entry : ${fieldsdepts}">
-										<td th:text="${entry.getKey().details.departmentFullName}" th:value="${entry.getKey().details.departmentFullName}"></td>
-										<td>
-											<select id="fieldslist" class="form-control" th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
+										<td th:text="${entry.getKey().details.departmentFullName}"
+											th:value="${entry.getKey().details.departmentFullName}"></td>
+										<td><select id="fieldslist" class="form-control"
+											th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
 												<option selected="selected" value="">Wybierz...</option>
-												<option th:each="field : ${entry.getValue()}" th:value="${field.details.fieldOfStudyName}"
-													th:text="${field.details.fieldOfStudyName}">
-												</option>
-											</select>
-										</td>
+												<option th:each="field : ${entry.getValue()}"
+													th:value="${field.details.fieldOfStudyName}"
+													th:text="${field.details.fieldOfStudyName}"></option>
+										</select></td>
 									</tr>
 
 								</table>
 							</div>
 							<br /> <br />
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Dodaj" />
 					</form>
 				</div>
 			</div>
@@ -146,7 +151,7 @@ BODY
 		$("#deptslist").on('change', function() {
 			$('#fieldslist').empty(); //remove all child nodes
 			var newOption = $('<option value="1">test</option>');
-	        $('#fieldslist').append(newOption);
+			$('#fieldslist').append(newOption);
 			$('#fieldslist').trigger("chosen:updated");
 		});
 	});

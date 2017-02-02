@@ -61,10 +61,10 @@
 			<column name="student_form_of_study" length="45" />
 		</property>
 		<property name="studentStartDate" type="string">
-			<column name="student_start_date" length="45" />
+			<column name="student_start_date" length="10" />
 		</property>
 		<property name="studentEndDate" type="string">
-			<column name="student_end_date" length="45" />
+			<column name="student_end_date" length="10" />
 		</property>
 		<property name="studentBankNumber" type="string">
 			<column name="student_bank_number" length="26" />

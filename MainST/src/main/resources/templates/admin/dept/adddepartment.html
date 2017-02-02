@@ -62,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -85,13 +85,16 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
-					<form action="#" th:action="@{/adddepartmentdb}" th:object="${departmentform}" method="post">
+					<form action="#" th:action="@{/adddepartmentdb}"
+						th:object="${departmentform}" method="post">
 						<div class="panel-body">
 							<div class="alert alert-success" th:if="${param.success}">
 								<center>
@@ -101,24 +104,31 @@ BODY
 									</span>
 								</center>
 							</div>
-							
+
 							<div>
 								<div class="col-xs-3">
-									<label for="fullName">Pełna nazwa:</label> 
-									<input class="form-control" id="fullName" type="text" th:field="*{details.departmentFullName}" required="required" />
+									<label for="fullName">Pełna nazwa:</label> <input
+										class="form-control" id="fullName" maxlength="150" type="text"
+										placeholder="np. Wydział Informatyki Elektrotechniki i Automatyki"
+										th:field="*{details.departmentFullName}" required="required" />
 								</div>
 								<div class="col-xs-2">
-									<label for="shortName">Skrót wydziału:</label> 
-									<input class="form-control" id="shortName" type="text" th:field="*{details.departmentShortName}" required="required" />
+									<label for="shortName">Skrót wydziału:</label> <input
+										class="form-control" id="shortName" maxlength="20" type="text"
+										placeholder="np. WIEA"
+										th:field="*{details.departmentShortName}" required="required" />
 								</div>
 								<div class="col-xs-2">
-									<label for="building">Budynek:</label> 
-									<input class="form-control" id="building" type="text" th:field="*{details.departmentBuilding}" required="required" />
+									<label for="building">Budynek:</label> <input
+										class="form-control" id="building" maxlength="15" type="text"
+										placeholder="np. A-0" th:field="*{details.departmentBuilding}"
+										required="required" />
 								</div>
 							</div>
 							<br /> <br />
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Dodaj" />
 					</form>
 				</div>
 			</div>

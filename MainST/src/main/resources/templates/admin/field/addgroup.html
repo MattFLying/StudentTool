@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -61,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -84,17 +85,19 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
 					<form action="#" th:action="@{/addgroupdb}"
-					th:object="${groupform}" method="post">
-					<!-- -->
-					<div class="panel-body">
-						<div class="alert alert-success" th:if="${param.success}">
+						th:object="${groupform}" method="post">
+						<!-- -->
+						<div class="panel-body">
+							<div class="alert alert-success" th:if="${param.success}">
 								<center>
 									<strong>Operacja zakończona sukcesem!</strong> <span
 										style="font-size: 12; font-weight: bold; color: orange">
@@ -102,47 +105,51 @@ BODY
 									</span>
 								</center>
 							</div>
-							
-						<div>
-							<div class="col-xs-2">
-								<label for="fullName">Nazwa grupy:</label> <input
-									class="form-control" id="fullName" type="text"
-									th:field="*{details.groupName}" required="required" />
+
+							<div>
+								<div class="col-xs-2">
+									<label for="fullName">Nazwa grupy:</label> <input
+										class="form-control" id="fullName" maxlength="20" type="text"
+										placeholder="np. 431 IDZ" th:field="*{details.groupName}"
+										required="required" />
+								</div>
+								<div class="col-xs-1">
+									<label for="fullName">Rok grupy:</label> <input
+										class="form-control" id="fullName" maxlength="4" type="text"
+										placeholder="np. 2016" th:field="*{details.year}"
+										required="required" />
+								</div>
+								<div class="col-xs-3">
+									<label for="fullName">Opis grupy:</label> <input
+										class="form-control" id="fullName" maxlength="100" type="text"
+										placeholder="np. Informatyka stacjonarne-dzienne pierwszego stopnia z tyt. inżyniera semestr zimowy 2016/2017"
+										th:field="*{details.description}" required="required" />
+								</div>
+								<table>
+									<tr>
+										<th>Wydział</th>
+										<th>Kierunek</th>
+									</tr>
+									<tr th:each="entry : ${fieldsdepts}">
+										<td th:text="${entry.getKey().details.departmentFullName}"
+											th:value="${entry.getKey().details.departmentFullName}"></td>
+										<td><select id="fieldslist" class="form-control"
+											th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
+												<option selected="selected" value="">Wybierz...</option>
+												<option th:each="field : ${entry.getValue()}"
+													th:value="${field.details.fieldOfStudyName}"
+													th:text="${field.details.fieldOfStudyName}"></option>
+										</select></td>
+									</tr>
+								</table>
 							</div>
-							<div class="col-xs-1">
-								<label for="fullName">Rok grupy:</label> <input
-									class="form-control" id="fullName" type="text"
-									th:field="*{details.year}" required="required" />
-							</div>
-							<div class="col-xs-3">
-								<label for="fullName">Opis grupy:</label> <input
-									class="form-control" id="fullName" type="text"
-									th:field="*{details.description}" required="required" />
-							</div>
-							<table>
-								<tr>
-									<th>Wydział</th>
-									<th>Kierunek</th>
-								</tr>
-								<tr th:each="entry : ${fieldsdepts}">
-									<td th:text="${entry.getKey().details.departmentFullName}" th:value="${entry.getKey().details.departmentFullName}"></td>
-									<td>
-										<select id="fieldslist" class="form-control" th:field="*{details.fieldOfStudy.details.fieldOfStudyName}">
-											<option selected="selected" value="">Wybierz...</option>
-											<option th:each="field : ${entry.getValue()}" th:value="${field.details.fieldOfStudyName}" 
-												th:text="${field.details.fieldOfStudyName}">
-											</option>
-										</select>
-									</td>
-								</tr>
-							</table>
+							<!-- -->
+							<br /> <br />
 						</div>
 						<!-- -->
-						<br /> <br />
-					</div>
-					<!-- -->
-					<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
-				</form>
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Dodaj" />
+					</form>
 				</div>
 			</div>
 		</div>

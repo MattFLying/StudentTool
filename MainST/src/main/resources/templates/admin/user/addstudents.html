@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -19,7 +20,7 @@ BODY
 	<div id="bodyContainer">
 		<div id="header"></div>
 		<div id="body">
-		
+
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<span style="font-size: 12; font-weight: bold; color: black">
@@ -62,8 +63,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -85,13 +86,16 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
-					<form action="#" th:action="@{/addstudentsdb}" method="post" enctype="multipart/form-data">
+					<form action="#" th:action="@{/addstudentsdb}" method="post"
+						enctype="multipart/form-data">
 						<div class="panel-body">
 							<div class="alert alert-success" th:if="${param.success}">
 								<center>
@@ -102,10 +106,12 @@ BODY
 								</center>
 							</div>
 
-							<label class="control-label">Wybierz plik z danymi studentów Excel(.xls)</label> 
-							<input id="file" name="file" type="file" class="file" data-show-preview="false" required="required" />
+							<label class="control-label">Wybierz plik z danymi
+								studentów Excel(.xls)</label> <input id="file" name="file" type="file"
+								class="file" data-show-preview="false" required="required" />
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj studentów" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Dodaj studentów" />
 					</form>
 				</div>
 			</div>

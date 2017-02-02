@@ -18,6 +18,12 @@ import app.services.UsersService;
 import core.humanity.student.Student;
 import core.user.User;
 
+/***
+ * Class is the controller which allows all available for students operations.
+ * 
+ * @author Mateusz Mucha
+ *
+ */
 @Controller
 @Secured("ROLE_STUDENT")
 public class StudentController {
@@ -28,71 +34,138 @@ public class StudentController {
 	@Autowired
 	private GradeService gradeService = new GradeService();
 	private Student student;
-	
-	
-	
-	@RequestMapping(value="/student/index", method=RequestMethod.GET)
+
+	/***
+	 * Method allows to view main page in student panel with all details of
+	 * student.
+	 * 
+	 * @param session
+	 *            - session object
+	 * @param model
+	 *            - model object
+	 * @return index page to show
+	 */
+	@RequestMapping(value = "/student/index", method = RequestMethod.GET)
 	public String studentDetails(HttpSession session, Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
-		String username = authentication.getName(); 
+
+		String username = authentication.getName();
 		session.setAttribute("username", username);
-		
+
 		student = studentService.createStudent(username);
 		model.addAttribute("student", student);
-		
+
 		return "student/index";
-	}	
-	@RequestMapping(value="/student/failed", method = RequestMethod.GET)
-	public String operationFailed() {	
+	}
+
+	/***
+	 * Method allows to redirect to failed page after unsuccessful operations.
+	 * 
+	 * @return failed page to show
+	 */
+	@RequestMapping(value = "/student/failed", method = RequestMethod.GET)
+	public String operationFailed() {
 		return "student/failed";
 	}
-	@RequestMapping(value="/student/changepwd", method=RequestMethod.GET)
+
+	/***
+	 * Method show change password page for student.
+	 * 
+	 * @param model
+	 *            - model object
+	 * @return change password page to show
+	 */
+	@RequestMapping(value = "/student/changepwd", method = RequestMethod.GET)
 	public String changePasswordStudent(Model model) {
 		User user = new User();
 
 		model.addAttribute("userform", user);
-		
+
 		return "student/changepwd";
 	}
-	@RequestMapping(value="/student/studentindex", method=RequestMethod.GET)
+
+	/***
+	 * Method shows all terms for students.
+	 * 
+	 * @param model
+	 *            - model object
+	 * @return available terms page
+	 */
+	@RequestMapping(value = "/student/studentindex", method = RequestMethod.GET)
 	public String studentIndex(Model model) {
 		model.addAttribute("studentSemester", student.getDetails().getCurrentTermNumber());
-		
+
 		return "student/studentindex";
 	}
-	@RequestMapping(value="/student/grades", method=RequestMethod.GET)
+
+	/***
+	 * Method to show all grades for students.
+	 * 
+	 * @param model
+	 *            - model object
+	 * @return grades page
+	 */
+	@RequestMapping(value = "/student/grades", method = RequestMethod.GET)
 	public String grades(Model model) {
 		model.addAttribute("terms", studentService);
 		model.addAttribute("student", student);
 		model.addAttribute("grades", gradeService);
-		
+
 		return "student/grades";
 	}
-	@RequestMapping(value="/student/grade", method=RequestMethod.GET)
+
+	/***
+	 * Method to show details about grade
+	 * 
+	 * @param model
+	 *            - model object
+	 * @return grade details page
+	 */
+	@RequestMapping(value = "/student/grade", method = RequestMethod.GET)
 	public String grade(Model model) {
 		model.addAttribute("grade", gradeService);
-		
+
 		return "student/grade";
 	}
-	@RequestMapping(value="/student/teacher", method=RequestMethod.GET)
+
+	/***
+	 * Method to show details about teacher
+	 * 
+	 * @param model
+	 *            - model object
+	 * @return teacher details page
+	 */
+	@RequestMapping(value = "/student/teacher", method = RequestMethod.GET)
 	public String teacher(Model model) {
 		model.addAttribute("teacher", teacherService);
-		
+
 		return "student/teacher";
 	}
-	@RequestMapping(value="changepwd", method=RequestMethod.POST)
-	public String changePasswordStudent(HttpSession session, @ModelAttribute(value="userform") User user, RedirectAttributes redirectAttributes) {
+
+	/***
+	 * Method allows student to change user password.
+	 * 
+	 * @param session
+	 *            - session object
+	 * @param user
+	 *            - student user object
+	 * @param redirectAttributes
+	 *            - redirecting attributes after completing operation
+	 * @return redirecting correct page after completing oepration
+	 */
+	@RequestMapping(value = "changepwd", method = RequestMethod.POST)
+	public String changePasswordStudent(HttpSession session, @ModelAttribute(value = "userform") User user,
+			RedirectAttributes redirectAttributes) {
 		try {
-			user.setLogin((String)session.getAttribute("username"));
-			
+			user.setLogin((String) session.getAttribute("username"));
+
 			new UsersService().changePassword(user);
 			redirectAttributes.addAttribute("success", true);
-			
+
 			return "redirect:/student/changepwd";
-		} catch(Exception e) {
+		} catch (Exception e) {
 			redirectAttributes.addAttribute("error", true);
-			
+
 			return "redirect:/student/failed";
 		}
 	}

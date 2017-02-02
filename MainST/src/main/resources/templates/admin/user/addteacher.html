@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -61,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -84,13 +85,16 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
-					<form action="#" th:action="@{/addteacherdb}" th:object="${teacherform}" method="post">
+					<form action="#" th:action="@{/addteacherdb}"
+						th:object="${teacherform}" method="post">
 						<div class="panel-body">
 							<div class="alert alert-success" th:if="${param.success}">
 								<center>
@@ -103,96 +107,116 @@ BODY
 
 							<div>
 								<div class="col-xs-3">
-									<label for="password">Hasło:</label> 
-									<input class="form-control" id="password" name="password" type="text"
-										th:value="${userform.password}" required="required" />
+									<label for="password">Hasło:</label> <input
+										class="form-control" id="password" name="password"
+										type="password" th:value="${userform.password}"
+										required="required" />
 								</div>
 							</div>
 							<br /> <br /> <br /> <br /> <br />
 							<div>
 								<div class="col-xs-2">
-									<label>Tytuł:</label> 
-									<select class="form-control" th:field="${teacherform.details.title}" required="required">
-										<option th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
-											th:value="${title}" th:text="${title.name}">
-										</option>
+									<label>Tytuł:</label> <select class="form-control"
+										th:field="${teacherform.details.title}" required="required">
+										<option
+											th:each="title : ${T(core.humanity.details.ResearchTitle).values()}"
+											th:value="${title}" th:text="${title.name}"></option>
 									</select>
 								</div>
 								<div class="col-xs-2">
-									<label for="details.firstName">Imie:</label> 
-									<input class="form-control" id="details.firstName" name="details.firstName" type="text"
-										th:value="${teacherform.details.firstName}" required="required" />
+									<label for="details.firstName">Imie:</label> <input
+										class="form-control" id="details.firstName" maxlength="100"
+										placeholder="np. Jan" name="details.firstName" type="text"
+										th:value="${teacherform.details.firstName}"
+										required="required" />
 								</div>
 								<div class="col-xs-2">
-									<label for="details.secondName">Drugie imie:</label> 
-									<input class="form-control" id="details.secondName" name="details.secondName" type="text"
+									<label for="details.secondName">Drugie imie:</label> <input
+										class="form-control" id="details.secondName" maxlength="100"
+										placeholder="np. Piotr" name="details.secondName" type="text"
 										th:value="${teacherform.details.secondName}" />
 								</div>
 								<div class="col-xs-2">
-									<label for="details.lastName">Nazwisko:</label> 
-									<input class="form-control" id="details.lastName" name="details.lastName" type="text"
+									<label for="details.lastName">Nazwisko:</label> <input
+										class="form-control" id="details.lastName" maxlength="100"
+										placeholder="np. Kowalski" name="details.lastName" type="text"
 										th:value="${teacherform.details.lastName}" required="required" />
 								</div>
 								<div class="col-xs-2">
-									<label for="details.birthDate">Data urodzenia:</label> 
-									<input class="form-control" id="details.birthDate" name="details.birthDate" type="text"
-										th:value="${teacherform.details.birthDate}" required="required" />
+									<label for="details.birthDate">Data urodzenia:</label> <input
+										class="form-control" id="details.birthDate" maxlength="10"
+										placeholder="np. 07-19-1999" name="details.birthDate"
+										type="text" th:value="${teacherform.details.birthDate}"
+										required="required" />
 								</div>
 								<div class="col-xs-2">
-									<label for="details.phoneNumber">Telefon:</label> 
-									<input class="form-control" id="details.phoneNumber" name="details.phoneNumber"
-										type="text" th:value="${teacherform.details.phoneNumber}" required="required" />
+									<label for="details.phoneNumber">Telefon:</label> <input
+										class="form-control" id="details.phoneNumber" maxlength="20"
+										placeholder="np. 742130015" name="details.phoneNumber"
+										type="text" th:value="${teacherform.details.phoneNumber}"
+										required="required" />
 								</div>
 							</div>
 							<div>
 								<div class="col-xs-2">
-									<label for="details.room">Pokój:</label> 
-									<input class="form-control" id="details.room" name="details.room" type="text"
+									<label for="details.room">Pokój:</label> <input
+										class="form-control" id="details.room" maxlength="10"
+										placeholder="np. 325-A" name="details.room" type="text"
 										th:value="${teacherform.details.room}" required="required" />
 								</div>
 								<div class="col-xs-2">
-									<label for="details.website">Strona internetowa:</label> 
-									<input class="form-control" id="details.website" name="details.website" type="text"
+									<label for="details.website">Strona internetowa:</label> <input
+										class="form-control" id="details.website"
+										placeholder="np. www.jankowalski.pl" name="details.website"
+										maxlength="150" type="text"
 										th:value="${teacherform.details.website}" required="required" />
 								</div>
 								<table>
 									<tr>
-										<td class="form-group col-xs-1"><label for="details.address.city">Miasto:</label> <input
-											class="form-control" id="details.address.city"
-											name="details.address.city" type="text"
-											th:value="${teacherform.details.address.city}" required="required" /></td>
-										<td class="form-group col-xs-1"><label for="details.address.postalCode">Kod pocztowy:</label> <input
+										<td class="form-group col-xs-1"><label
+											for="details.address.city">Miasto:</label> <input
+											class="form-control" id="details.address.city" maxlength="75"
+											placeholder="np. Zielona Góra" name="details.address.city"
+											type="text" th:value="${teacherform.details.address.city}"
+											required="required" /></td>
+										<td class="form-group col-xs-1"><label
+											for="details.address.postalCode">Kod pocztowy:</label> <input
 											class="form-control" id="details.address.postalCode"
+											placeholder="np. 65-459" maxlength="8"
 											name="details.address.postalCode" type="text"
-											th:value="${teacherform.details.address.postalCode}" required="required" /></td>
-										<td class="form-group col-xs-2"><label for="details.address.streetFullAddress">Ulica:</label> <input
+											th:value="${teacherform.details.address.postalCode}"
+											required="required" /></td>
+										<td class="form-group col-xs-2"><label
+											for="details.address.streetFullAddress">Ulica:</label> <input
 											class="form-control" id="details.address.streetFullAddress"
+											placeholder="np. ul. Podgórna 113 A/10" maxlength="150"
 											name="details.address.streetFullAddress" type="text"
-											th:value="${teacherform.details.address.streetFullAddress}" required="required" />
-										</td>
+											th:value="${teacherform.details.address.streetFullAddress}"
+											required="required" /></td>
 									</tr>
 								</table>
-								<br />
-								<br />
+								<br /> <br />
 								<table>
 									<tr>
 										<th>Wydział</th>
 										<th>Instytut</th>
 									</tr>
 									<tr th:each="entry : ${institutesdepts}">
-										<td th:text="${entry.getKey().details.departmentFullName}" th:value="${entry.getKey().details.departmentFullName}"></td>
-										<td>
-											<select id="fieldslist" class="form-control" th:field="*{details.institute.details.instituteFullName}">
+										<td th:text="${entry.getKey().details.departmentFullName}"
+											th:value="${entry.getKey().details.departmentFullName}"></td>
+										<td><select id="fieldslist" class="form-control"
+											th:field="*{details.institute.details.instituteFullName}">
 												<option selected="selected" value="">Wybierz...</option>
-												<option th:each="institute : ${entry.getValue()}" th:value="${institute.details.instituteFullName}"
+												<option th:each="institute : ${entry.getValue()}"
+													th:value="${institute.details.instituteFullName}"
 													th:text="${institute.details.instituteFullName}"></option>
-											</select>
-										</td>
+										</select></td>
 									</tr>
 								</table>
 							</div>
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Dodaj" />
 					</form>
 				</div>
 			</div>

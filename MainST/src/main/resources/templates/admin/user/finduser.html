@@ -62,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -85,27 +85,31 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
-				
-				
-				
-					<form action="#" th:action="@{/userexist}" th:object="${findUser}" method="post">
+
+
+
+					<form action="#" th:action="@{/userexist}" th:object="${findUser}"
+						method="post">
 						<div class="col-xs-3">
-							<label for="fullName">Login:</label> 
-							<input class="form-control" id="fullName" type="text" th:field="*{name}" required="required" />
+							<label for="fullName">Login:</label> <input class="form-control"
+								id="fullName" maxlength="5" type="text" th:field="*{name}"
+								placeholder="np. J.Kow / 85847" required="required" />
 						</div>
-						<br /> <br /><br /> <br />
+						<br /> <br /> <br /> <br />
 						<div>
 							<input type="submit" class="btn btn-info" value="Szukaj" />
 						</div>
 					</form>
-					
-					
+
+
 				</div>
 			</div>
 		</div>

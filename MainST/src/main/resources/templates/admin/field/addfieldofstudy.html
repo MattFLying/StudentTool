@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -61,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -84,13 +85,16 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
-					<form action="#" th:action="@{/addfieldofstudydb}" th:object="${fieldofstudyform}" method="post">
+					<form action="#" th:action="@{/addfieldofstudydb}"
+						th:object="${fieldofstudyform}" method="post">
 						<div class="panel-body">
 							<div class="alert alert-success" th:if="${param.success}">
 								<center>
@@ -103,21 +107,25 @@ BODY
 
 							<div>
 								<div class="col-xs-3">
-									<label for="fullName">Pełna nazwa:</label> 
-									<input class="form-control" id="fullName" type="text" th:field="*{details.fieldOfStudyName}" required="required" />
+									<label for="fullName">Pełna nazwa:</label> <input
+										class="form-control" id="fullName" maxlength="100" type="text"
+										placeholder="np. Informatyka"
+										th:field="*{details.fieldOfStudyName}" required="required" />
 								</div>
 								<div class="form-group col-xs-3">
-									<label for="sel1">Wydział:</label> 
-									<select class="form-control" th:field="*{details.department.details.departmentFullName}" required="required">
-										<option th:each="dept : ${departments}" th:value="${dept.details.departmentFullName}"
-											th:text="${dept.details.departmentFullName}">
-										</option>
+									<label for="sel1">Wydział:</label> <select class="form-control"
+										th:field="*{details.department.details.departmentFullName}"
+										required="required">
+										<option th:each="dept : ${departments}"
+											th:value="${dept.details.departmentFullName}"
+											th:text="${dept.details.departmentFullName}"></option>
 									</select>
 								</div>
 							</div>
 							<br /> <br />
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Dodaj" />
 					</form>
 				</div>
 			</div>

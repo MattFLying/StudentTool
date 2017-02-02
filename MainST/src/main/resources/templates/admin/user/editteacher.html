@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <!-- 
 HEAD  
 -->
 <head>
-	<meta charset="utf-8" />
-	<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
-	<script src="/webjars/jquery/2.1.4/jquery.js"></script>
-	<link rel="stylesheet" href="/css/mainST.css" />
+<meta charset="utf-8" />
+<script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" href="/css/mainST.css" />
 </head>
 <!-- 
 /HEAD  
@@ -61,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -84,8 +85,10 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -101,7 +104,7 @@ BODY
 									</span>
 								</center>
 							</div>
-							
+
 							<div>
 								<div class="col-xs-2">
 									<label>Tytuł:</label> <select class="form-control"
@@ -113,62 +116,65 @@ BODY
 								</div>
 								<div class="col-xs-2">
 									<label for="details.firstName">Imie:</label> <input
-										class="form-control" id="details.firstName"
-										name="details.firstName" type="text"
+										class="form-control" id="details.firstName" maxlength="100"
+										placeholder="np. Jan" name="details.firstName" type="text"
 										th:value="${teacherform.details.firstName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.secondName">Drugie imie:</label> <input
-										class="form-control" id="details.secondName"
-										name="details.secondName" type="text"
+										class="form-control" id="details.secondName" maxlength="100"
+										placeholder="np. Piotr" name="details.secondName" type="text"
 										th:value="${teacherform.details.secondName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.lastName">Nazwisko:</label> <input
-										class="form-control" id="details.lastName"
-										name="details.lastName" type="text"
+										class="form-control" id="details.lastName" maxlength="100"
+										placeholder="np. Kowalski" name="details.lastName" type="text"
 										th:value="${teacherform.details.lastName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.birthDate">Data urodzenia:</label> <input
-										class="form-control" id="details.birthDate"
-										name="details.birthDate" type="text"
-										th:value="${teacherform.details.birthDate}" />
+										class="form-control" id="details.birthDate" maxlength="10"
+										placeholder="np. 07-19-1999" name="details.birthDate"
+										type="text" th:value="${teacherform.details.birthDate}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.phoneNumber">Telefon:</label> <input
-										class="form-control" id="details.phoneNumber"
-										name="details.phoneNumber" type="text"
-										th:value="${teacherform.details.phoneNumber}" />
+										class="form-control" id="details.phoneNumber" maxlength="20"
+										placeholder="np. 742130015" name="details.phoneNumber"
+										type="text" th:value="${teacherform.details.phoneNumber}" />
 								</div>
 							</div>
 							<div>
 								<div class="col-xs-2">
 									<label for="details.room">Pokój:</label> <input
 										class="form-control" id="details.room" name="details.room"
-										type="text" th:value="${teacherform.details.room}" />
+										placeholder="np. 325-A" maxlength="10" type="text"
+										th:value="${teacherform.details.room}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="details.website">Strona internetowa:</label> <input
-										class="form-control" id="details.website"
-										name="details.website" type="text"
-										th:value="${teacherform.details.website}" />
+										class="form-control" id="details.website" maxlength="150"
+										placeholder="np. www.jankowalski.pl" name="details.website"
+										type="text" th:value="${teacherform.details.website}" />
 								</div>
 								<table>
 									<tr>
 										<td class="form-group col-xs-1"><label
 											for="details.address.city">Miasto:</label> <input
-											class="form-control" id="details.address.city"
-											name="details.address.city" type="text"
-											th:value="${teacherform.details.address.city}" /></td>
+											class="form-control" id="details.address.city" maxlength="75"
+											placeholder="np. Zielona Góra" name="details.address.city"
+											type="text" th:value="${teacherform.details.address.city}" /></td>
 										<td class="form-group col-xs-1"><label
 											for="details.address.postalCode">Kod pocztowy:</label> <input
 											class="form-control" id="details.address.postalCode"
+											placeholder="np. 65-459" maxlength="8"
 											name="details.address.postalCode" type="text"
 											th:value="${teacherform.details.address.postalCode}" /></td>
 										<td class="form-group col-xs-2"><label
 											for="details.address.streetFullAddress">Ulica:</label> <input
 											class="form-control" id="details.address.streetFullAddress"
+											placeholder="np. ul. Podgórna 113 A/10" maxlength="150"
 											name="details.address.streetFullAddress" type="text"
 											th:value="${teacherform.details.address.streetFullAddress}" />
 										</td>

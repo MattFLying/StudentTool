@@ -62,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -85,8 +85,10 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -94,7 +96,8 @@ BODY
 
 
 
-					<form action="#" th:action="@{/editdepartmentdb}" th:object="${departmentform}" method="post">
+					<form action="#" th:action="@{/editdepartmentdb}"
+						th:object="${departmentform}" method="post">
 						<div class="panel-body">
 							<div class="alert alert-success" th:if="${param.edited}">
 								<center>
@@ -108,18 +111,20 @@ BODY
 							<div>
 								<div class="col-xs-3">
 									<label for="fullName">Pełna nazwa:</label> <input
-										class="form-control" id="fullName" type="text"
-										th:field="*{details.departmentFullName}"/>
+										class="form-control" id="fullName" maxlength="150" type="text"
+										placeholder="np. Wydział Informatyki Elektrotechniki i Automatyki"
+										th:field="*{details.departmentFullName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="shortName">Skrót wydziału:</label> <input
-										class="form-control" id="shortName" type="text"
+										class="form-control" id="shortName" maxlength="20" type="text"
+										placeholder="np. WIEA"
 										th:field="*{details.departmentShortName}" />
 								</div>
 								<div class="col-xs-2">
 									<label for="building">Budynek:</label> <input
-										class="form-control" id="building" type="text"
-										th:field="*{details.departmentBuilding}" />
+										class="form-control" id="building" maxlength="15" type="text"
+										placeholder="np. A-0" th:field="*{details.departmentBuilding}" />
 								</div>
 							</div>
 							<br /> <br />

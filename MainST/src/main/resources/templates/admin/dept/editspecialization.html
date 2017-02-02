@@ -62,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -85,8 +85,10 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -94,8 +96,8 @@ BODY
 
 
 
-					
-					
+
+
 					<form action="#" th:action="@{/editspecializationdb}"
 						th:object="${specializationform}" method="post">
 						<!-- -->
@@ -112,18 +114,20 @@ BODY
 							<div>
 								<div class="col-xs-3">
 									<label for="fullName">Pełna nazwa:</label> <input
-										class="form-control" id="fullName" type="text"
+										class="form-control" id="fullName" maxlength="75" type="text"
+										placeholder="np. Sieciowe systemy informatyczne"
 										th:field="*{details.specializationName}" />
 								</div>
 							</div>
 							<br /> <br />
 						</div>
-						<input type="submit" class="btn btn-info text-center center-block" value="Edytuj" />
+						<input type="submit" class="btn btn-info text-center center-block"
+							value="Edytuj" />
 					</form>
-					
-					
-					
-					
+
+
+
+
 
 
 

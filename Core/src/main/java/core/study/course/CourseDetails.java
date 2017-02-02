@@ -3,6 +3,7 @@ package core.study.course;
 import core.study.details.CourseForm;
 import core.study.details.StudyDetails;
 import core.study.fieldofstudy.FieldOfStudy;
+import core.study.fieldofstudy.IFieldOfStudy;
 
 /***
  * Class represents course details.
@@ -81,7 +82,17 @@ public class CourseDetails extends StudyDetails {
 	}
 
 	/***
-	 * Method to gets field of study for course.
+	 * Method to sets field of study for course.
+	 * 
+	 * @param fieldOfStudy
+	 *            - field of study interface for course
+	 */
+	public void setFieldOfStudy(IFieldOfStudy fieldOfStudy) {
+		this.fieldOfStudy = fieldOfStudy.getModel();
+	}
+
+	/***
+	 * Method to sets field of study for course.
 	 * 
 	 * @param fieldOfStudy
 	 *            - field of study for course

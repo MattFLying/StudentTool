@@ -62,8 +62,8 @@ BODY
 							<ul class="dropdown-menu">
 								<li><a href="/admin/dept/adddepartment.html">Dodaj
 										wydział akademicki</a></li>
-								<li><a href="/admin/dept/finddept.html">Edytuj
-										wydział akademicki</a></li>
+								<li><a href="/admin/dept/finddept.html">Edytuj wydział
+										akademicki</a></li>
 								<li><a href="/admin/dept/addinstitute.html">Dodaj
 										instytut wydziałowy</a></li>
 								<li><a href="/admin/dept/findinstitute.html">Edytuj
@@ -85,66 +85,74 @@ BODY
 										akademicką</a></li>
 								<li><a href="/admin/field/findgroup.html">Edytuj grupę
 										akademicką</a></li>
-								<li><a href="/admin/course/addcourse.html">Dodaj przedmiot akademicki</a></li>
-								<li><a href="/admin/course/findcourse.html">Edytuj przedmiot akademicki</a></li>
+								<li><a href="/admin/course/addcourse.html">Dodaj
+										przedmiot akademicki</a></li>
+								<li><a href="/admin/course/findcourse.html">Edytuj
+										przedmiot akademicki</a></li>
 							</ul></li>
 					</ul>
 				</div>
 				<div class="jumbotron">
-					<form action="#" th:action="@{/adduserdb}" th:object="${userform}" method="post">
+					<form action="#" th:action="@{/adduserdb}" th:object="${userform}"
+						method="post">
 
 
 						<div class="alert alert-success" th:if="${param.success}">
-							<center><strong>Operacja zakończona sukcesem!</strong> 
-							<span style="font-size: 12; font-weight: bold; color: orange">
-								<br />Użytkownik został pomyślnie dodany!
-							</span></center>
+							<center>
+								<strong>Operacja zakończona sukcesem!</strong> <span
+									style="font-size: 12; font-weight: bold; color: orange">
+									<br />Użytkownik został pomyślnie dodany!
+								</span>
+							</center>
 						</div>
 
 
 						<div>
 							<div class="col-xs-1">
-								<label for="login">Login:</label> 
-								<input class="form-control" name="login" id="login" type="text" th:field="*{login}" required="required" />
+								<label for="login">Login:</label> <input class="form-control"
+									name="login" id="login" maxlength="5" type="text"
+									placeholder="np. J.Kow / 85847" th:field="*{login}"
+									required="required" />
 							</div>
-							<br /><br /><br />
+							<br /> <br /> <br />
 							<div class="col-xs-2">
-								<label for="password">Hasło:</label> 
-								<input class="form-control" name="password" id="password" type="text" th:field="*{password}" required="required" />
+								<label for="password">Hasło:</label> <input class="form-control"
+									name="password" id="password" type="password"
+									th:field="*{password}" required="required" />
 							</div>
-							
-							
-							<br /> <br /> <br /> <br /> 
-						
+
+
+							<br /> <br /> <br /> <br />
+
 							<div class="radio col-xs-2">
-								<label>
-								<span style="font-size: 12; font-weight: bold">Typ konta</span>
+								<label> <span style="font-size: 12; font-weight: bold">Typ
+										konta</span>
 								</label>
 							</div>
-							<br /><br />
+							<br /> <br />
 							<div class="radio col-xs-2">
-								<label>
-									<input type="radio" name="role" id="role" value="ADMIN" th:field="*{role}" required="required" />
+								<label> <input type="radio" name="role" id="role"
+									value="ADMIN" th:field="*{role}" required="required" />
 									Administrator
 								</label>
 							</div>
-							<br /><br />
+							<br /> <br />
 							<div class="radio col-xs-2">
-								<label>
-								<input type="radio" name="role" id="role" value="STUDENT" th:field="*{role}" required="required" />
+								<label> <input type="radio" name="role" id="role"
+									value="STUDENT" th:field="*{role}" required="required" />
 									Student
 								</label>
 							</div>
-							<br /><br />
+							<br /> <br />
 							<div class="radio col-xs-2">
-								<label>
-								<input type="radio" name="role" id="role" value="TEACHER" th:field="*{role}" required="required" />
+								<label> <input type="radio" name="role" id="role"
+									value="TEACHER" th:field="*{role}" required="required" />
 									Prowadzący zajęcia
 								</label>
 							</div>
 						</div>
-						<br /> <br /> 
-						<input type="submit" class="btn btn-info text-center center-block" value="Dodaj" />
+						<br /> <br /> <input type="submit"
+							class="btn btn-info text-center center-block" value="Dodaj" />
 					</form>
 				</div>
 			</div>
