@@ -9,30 +9,35 @@ public class Specialization extends Entity {
 	private SpecializationId id;
 	private String specializationName;
 
-	
-	public Specialization() {}
+	public Specialization() {
+	}
+
 	public Specialization(SpecializationId id) {
 		this.id = id;
 	}
+
 	public Specialization(SpecializationId id, String specializationName) {
 		this.id = id;
 		this.specializationName = specializationName;
 	}
+
 	public Specialization(int specializationId, int fieldOfStudyId, String specializationName) {
 		this.id = new SpecializationId(specializationId, fieldOfStudyId);
 		this.specializationName = specializationName;
 	}
 
-	
 	public SpecializationId getId() {
 		return this.id;
 	}
+
 	public void setId(SpecializationId id) {
 		this.id = id;
 	}
+
 	public String getSpecializationName() {
 		return this.specializationName;
 	}
+
 	public void setSpecializationName(String specializationName) {
 		this.specializationName = specializationName;
 	}

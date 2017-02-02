@@ -14,178 +14,224 @@ import model.entity.Specialization;
 import model.entity.Student;
 import model.entity.StudentId;
 
+/***
+ * DAO class represents student for all operations on this type.
+ * 
+ * @author Mateusz Mucha
+ *
+ */
 public class StudentDao extends GenericDao<Student, StudentId> implements IStudentDao {
 	private Student studentEntity;
-	
-	
+
+	/***
+	 * Default construtor sets basic field using in this class.
+	 */
 	public StudentDao() {
 		this.studentEntity = null;
 	}
-
 
 	public List<Student> findByGroupId(Integer id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		List<Student> list = new ArrayList<Student>();
-		
+
 		try {
 			criteria = session.createCriteria(Student.class);
 			criteria.add(Restrictions.eq("groupId", id));
 			list = criteria.list();
-		} catch( Exception e ) {
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
-		
+
 		return list;
 	}
+
 	public List<Student> findByFieldOfStudyId(Integer id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		List<Student> list = new ArrayList<Student>();
-		
+
 		try {
 			criteria = session.createCriteria(Student.class);
 			criteria.add(Restrictions.eq("fieldOfStudyId", id));
 			list = criteria.list();
-		} catch( Exception e ) {
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
-		
+
 		return list;
 	}
+
 	public List<Student> findBySpecializationId(Integer id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		List<Student> list = new ArrayList<Student>();
-		
+
 		try {
 			criteria = session.createCriteria(Student.class);
 			criteria.add(Restrictions.eq("specializationId", id));
 			list = criteria.list();
-		} catch( Exception e ) {
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
-		
+
 		return list;
 	}
+
 	public Student findByAlbum(String album) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
-		
 		try {
 			criteria = session.createCriteria(Student.class);
-			criteria.add(Restrictions.eq("studentAlbum", album));
-			studentEntity = (Student)criteria.list().get(0);
-		} catch( Exception e ) {
+			criteria.add(Restrictions.eq("studentAlbum", Long.valueOf(album)));
+			studentEntity = (Student) criteria.list().get(0);
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 
-		if(studentEntity != null) {
+		if (studentEntity != null) {
 			return studentEntity;
 		} else {
 			return null;
 		}
 	}
+
 	public Student findByName(String firstName, String lastName) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
-		
+
 		try {
 			criteria = session.createCriteria(Student.class);
-			criteria.add(Restrictions.and(Restrictions.eq("studentFirstname", firstName), Restrictions.eq("studentLastname", lastName)));
-			studentEntity = (Student)criteria.list().get(0);
-		} catch( Exception e ) {
+			criteria.add(Restrictions.and(Restrictions.eq("studentFirstname", firstName),
+					Restrictions.eq("studentLastname", lastName)));
+			studentEntity = (Student) criteria.list().get(0);
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 
-		if(studentEntity != null) {
+		if (studentEntity != null) {
 			return studentEntity;
 		} else {
 			return null;
 		}
 	}
+
 	public List<Student> findByGroupName(String name) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		List<Student> list = new ArrayList<Student>();
-		
+
 		try {
 			Group group = new GroupDao().findByName(name);
-			
+
 			criteria = session.createCriteria(Student.class);
 			criteria.add(Restrictions.eq("groupId", group.getGroupId()));
 			list = criteria.list();
-		} catch( Exception e ) {
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
-		
+
 		return list;
 	}
+
 	public List<Student> findByFieldOfStudyName(String name) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		List<Student> list = new ArrayList<Student>();
-		
+
 		try {
 			FieldOfStudy field = new FieldOfStudyDao().findByName(name);
-			
+
 			criteria = session.createCriteria(Student.class);
 			criteria.add(Restrictions.eq("fieldOfStudyId", field.getFieldOfStudyId()));
 			list = criteria.list();
-		} catch( Exception e ) {
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
-		
+
 		return list;
 	}
+
 	public List<Student> findBySpecializationName(String name) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Criteria criteria = null;
 		List<Student> list = new ArrayList<Student>();
-		
+
 		try {
 			Specialization specialization = new SpecializationDao().findByName(name);
-			
+
 			criteria = session.createCriteria(Student.class);
 			criteria.add(Restrictions.eq("specializationId", specialization.getId().getSpecializationId()));
 			list = criteria.list();
-		} catch( Exception e ) {
+		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			session.close();
-		}
-		
-		return list;
-	}
-	public Student findByUserId(Integer id) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Criteria criteria = null;
-		
-		try {
-			criteria = session.createCriteria(Student.class);
-			criteria.add(Restrictions.eq("id.userId", id));
-			studentEntity = (Student)criteria.list().get(0);
-		} catch( Exception e ) {
-			e.getStackTrace();
-		} finally {
+			session.evict(studentEntity);
 			session.close();
 		}
 
-		if(studentEntity != null) {
+		return list;
+	}
+
+	public Student findByUserId(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+
+		try {
+			criteria = session.createCriteria(Student.class);
+			criteria.add(Restrictions.eq("id.userId", id));
+			studentEntity = (Student) criteria.list().get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.evict(studentEntity);
+			session.close();
+		}
+
+		if (studentEntity != null) {
+			return studentEntity;
+		} else {
+			return null;
+		}
+	}
+
+	public Student findById(Integer id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Criteria criteria = null;
+
+		try {
+			criteria = session.createCriteria(Student.class);
+			criteria.add(Restrictions.eq("id.studentId", id));
+			studentEntity = (Student) criteria.list().get(0);
+		} catch (Exception e) {
+			e.getStackTrace();
+		} finally {
+			session.evict(studentEntity);
+			session.close();
+		}
+
+		if (studentEntity != null) {
 			return studentEntity;
 		} else {
 			return null;

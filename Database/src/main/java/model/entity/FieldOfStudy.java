@@ -10,29 +10,34 @@ public class FieldOfStudy extends Entity {
 	private String fieldOfStudyName;
 	private Integer departmentId;
 
-	
-	public FieldOfStudy() {}
+	public FieldOfStudy() {
+	}
+
 	public FieldOfStudy(String fieldOfStudyName, Integer departmentId) {
 		this.fieldOfStudyName = fieldOfStudyName;
 		this.departmentId = departmentId;
 	}
 
-	
 	public Integer getFieldOfStudyId() {
 		return this.fieldOfStudyId;
 	}
+
 	public void setFieldOfStudyId(Integer fieldOfStudyId) {
 		this.fieldOfStudyId = fieldOfStudyId;
 	}
+
 	public String getFieldOfStudyName() {
 		return this.fieldOfStudyName;
 	}
+
 	public void setFieldOfStudyName(String fieldOfStudyName) {
 		this.fieldOfStudyName = fieldOfStudyName;
 	}
+
 	public Integer getDepartmentId() {
 		return this.departmentId;
 	}
+
 	public void setDepartmentId(Integer departmentId) {
 		this.departmentId = departmentId;
 	}

@@ -8,12 +8,12 @@ public class Users extends Entity {
 	private static final long serialVersionUID = -2082437761674163920L;
 	private String login;
 	private String password;
-	private byte enabled;
+	private Integer enabled;
 
 	public Users() {
 	}
 
-	public Users(String login, String password, byte enabled) {
+	public Users(String login, String password, Integer enabled) {
 		this.login = login;
 		this.password = password;
 		this.enabled = enabled;
@@ -35,11 +35,11 @@ public class Users extends Entity {
 		this.password = password;
 	}
 
-	public byte getEnabled() {
+	public Integer getEnabled() {
 		return this.enabled;
 	}
 
-	public void setEnabled(byte enabled) {
+	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
 

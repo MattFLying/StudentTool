@@ -8,35 +8,31 @@ public class TeachersCoursesId extends Entity {
 	private static final long serialVersionUID = -8441083904027712888L;
 	private int teacherId;
 	private int courseId;
-	private int courseFormId;
 
-	
-	public TeachersCoursesId() {}
-	public TeachersCoursesId(int teacherId, int courseId, int courseFormId) {
-		this.teacherId = teacherId;
-		this.courseId = courseId;
-		this.courseFormId = courseFormId;
+	public TeachersCoursesId() {
 	}
 
-	
+	public TeachersCoursesId(int teacherId, int courseId) {
+		this.teacherId = teacherId;
+		this.courseId = courseId;
+	}
+
 	public int getTeacherId() {
 		return this.teacherId;
 	}
+
 	public void setTeacherId(int teacherId) {
 		this.teacherId = teacherId;
 	}
+
 	public int getCourseId() {
 		return this.courseId;
 	}
+
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public int getCourseFormId() {
-		return this.courseFormId;
-	}
-	public void setCourseFormId(int courseFormId) {
-		this.courseFormId = courseFormId;
-	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -46,15 +42,14 @@ public class TeachersCoursesId extends Entity {
 			return false;
 		TeachersCoursesId castOther = (TeachersCoursesId) other;
 
-		return (this.getTeacherId() == castOther.getTeacherId()) && (this.getCourseId() == castOther.getCourseId())
-				&& (this.getCourseFormId() == castOther.getCourseFormId());
+		return (this.getTeacherId() == castOther.getTeacherId()) && (this.getCourseId() == castOther.getCourseId());
 	}
+
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getTeacherId();
 		result = 37 * result + this.getCourseId();
-		result = 37 * result + this.getCourseFormId();
 		return result;
 	}
 }

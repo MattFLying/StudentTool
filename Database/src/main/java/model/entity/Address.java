@@ -11,36 +11,43 @@ public class Address extends Entity {
 	private String addressStreet;
 	private String addressCode;
 
-	
-	public Address() {}
+	public Address() {
+	}
+
 	public Address(String addressCity, String addressStreet, String addressCode) {
 		this.addressCity = addressCity;
 		this.addressStreet = addressStreet;
 		this.addressCode = addressCode;
 	}
 
-	
 	public Integer getAddressId() {
 		return this.addressId;
 	}
+
 	public void setAddressId(Integer addressId) {
 		this.addressId = addressId;
 	}
+
 	public String getAddressCity() {
 		return this.addressCity;
 	}
+
 	public void setAddressCity(String addressCity) {
 		this.addressCity = addressCity;
 	}
+
 	public String getAddressStreet() {
 		return this.addressStreet;
 	}
+
 	public void setAddressStreet(String addressStreet) {
 		this.addressStreet = addressStreet;
 	}
+
 	public String getAddressCode() {
 		return this.addressCode;
 	}
+
 	public void setAddressCode(String addressCode) {
 		this.addressCode = addressCode;
 	}

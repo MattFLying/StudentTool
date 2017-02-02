@@ -1,9 +1,12 @@
 package model.dao.interfaces;
 
-import java.util.List;
 import model.entity.Address;
 
+/***
+ * Interface represents address database object.
+ * 
+ * @author Mateusz Mucha
+ *
+ */
 public interface IAddressDao extends IGenericDao<Address, Integer> {
-	List<Address> findAllByCity(String city);
-	List<Address> findAllByCode(String code);
 }

@@ -9,42 +9,40 @@ public class GradeId extends Entity {
 	private int gradeId;
 	private int studentId;
 	private int courseId;
-	private int courseFormId;
 
-	
-	public GradeId() {}
-	public GradeId(int gradeId, int studentId, int courseId, int courseFormId) {
+	public GradeId() {
+	}
+
+	public GradeId(int gradeId, int studentId, int courseId) {
 		this.gradeId = gradeId;
 		this.studentId = studentId;
 		this.courseId = courseId;
-		this.courseFormId = courseFormId;
 	}
 
-	
 	public int getGradeId() {
 		return this.gradeId;
 	}
+
 	public void setGradeId(int gradeId) {
 		this.gradeId = gradeId;
 	}
+
 	public int getStudentId() {
 		return this.studentId;
 	}
+
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
+
 	public int getCourseId() {
 		return this.courseId;
 	}
+
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public int getCourseFormId() {
-		return this.courseFormId;
-	}
-	public void setCourseFormId(int courseFormId) {
-		this.courseFormId = courseFormId;
-	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -55,16 +53,15 @@ public class GradeId extends Entity {
 		GradeId castOther = (GradeId) other;
 
 		return (this.getGradeId() == castOther.getGradeId()) && (this.getStudentId() == castOther.getStudentId())
-				&& (this.getCourseId() == castOther.getCourseId())
-				&& (this.getCourseFormId() == castOther.getCourseFormId());
+				&& (this.getCourseId() == castOther.getCourseId());
 	}
+
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getGradeId();
 		result = 37 * result + this.getStudentId();
 		result = 37 * result + this.getCourseId();
-		result = 37 * result + this.getCourseFormId();
 		return result;
 	}
 }

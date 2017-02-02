@@ -11,36 +11,43 @@ public class Institute extends Entity {
 	private String instituteDescription;
 	private Integer departmentId;
 
-	
-	public Institute() {}
+	public Institute() {
+	}
+
 	public Institute(String instituteName, String instituteDescription, Integer departmentId) {
 		this.instituteName = instituteName;
 		this.instituteDescription = instituteDescription;
 		this.departmentId = departmentId;
 	}
 
-	
 	public Integer getInstituteId() {
 		return this.instituteId;
 	}
+
 	public void setInstituteId(Integer instituteId) {
 		this.instituteId = instituteId;
 	}
+
 	public String getInstituteName() {
 		return this.instituteName;
 	}
+
 	public void setInstituteName(String instituteName) {
 		this.instituteName = instituteName;
 	}
+
 	public String getInstituteDescription() {
 		return this.instituteDescription;
 	}
+
 	public void setInstituteDescription(String instituteDescription) {
 		this.instituteDescription = instituteDescription;
 	}
+
 	public Integer getDepartmentId() {
 		return this.departmentId;
 	}
+
 	public void setDepartmentId(Integer departmentId) {
 		this.departmentId = departmentId;
 	}
