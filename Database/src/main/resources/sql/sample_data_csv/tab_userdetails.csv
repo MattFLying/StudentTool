@@ -1,0 +1,5 @@
+user_role_id,login,role
+1,admin,ROLE_ADMIN
+4,45612,ROLE_STUDENT
+2,85847,ROLE_STUDENT
+3,J.Kow,ROLE_TEACHER

@@ -49,7 +49,7 @@ public class Certificate extends CertificateAbstract {
 			X509Certificate cert = keyGen.getSelfCertificate(owner, (long) 365 * 24 * 60 * 60 * yearsValidity);
 
 			cert = createSignedCertificate(cert, getRootCert(), getKey().getPrivate());
-			System.out.println(cert);
+			
 			saveCert(cert, keyGen.getPrivateKey(), buildAlias(certOwner), password,
 					CERTIFICATES_PATH + buildAlias(certOwner) + CERTIFICATES_FILE_TYPE);
 		} catch (Exception ex) {
