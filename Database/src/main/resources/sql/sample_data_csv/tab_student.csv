@@ -1,0 +1,3 @@
+student_id,user_login,group_id,address_id,field_of_study_id,specialization_id,student_title,student_firstname,student_secondname,student_lastname,student_pesel,student_birthdate,student_phone,student_album,student_study_system,student_current_term,student_form_of_study,student_start_date,student_end_date,student_bank_number
+1,85847,1,1,45,5,brak,Mateusz,Marek,Mucha,92112202515,22-11-1992,723435192,85847,Dzienne,7,Inzynier,01-10-2013,30-03-2017,1234564
+2,45612,2,1,45,5,brak,Piotr,Adam,Kowalski,931154664,23-02-1994,658946311,45612,Zaoczne,7,Inzynier,01-10-2013,30-03-2017,4567456

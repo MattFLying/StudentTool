@@ -1,0 +1,13 @@
+department_id,department_name,department_building,department_description
+1,WIEA,A-2,"Wydział Informatyki Elektrotechniki i Automatyki"
+2,WPA,,"Wydział Prawa i Administracji"
+3,WPPS,,"Wydział Pedagogiki Psychologii i Socjologii"
+4,WA,,"Wydział Artystyczny"
+5,WBAIS,,"Wydział Budownictwa Architektury i Inżynierii Środowiska"
+6,WEZ,,"Wydział Ekonomii i Zarządzania"
+7,WFA,,"Wydział Fizyki i Astronomii"
+8,WH,,"Wydział Humanistyczny"
+9,WLNZ,,"Wydział Lekarski i Nauk o Zdrowiu"
+10,WMIE,,"Wydział Matematyki Informatyki i Ekonometrii"
+11,WM,,"Wydział Mechaniczny"
+12,WNB,,"Wydział Nauk Biologicznych"

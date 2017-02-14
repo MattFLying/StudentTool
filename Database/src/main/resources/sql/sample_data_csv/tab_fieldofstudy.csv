@@ -1,0 +1,69 @@
+field_of_study_id,department_id,field_of_study_name
+1,4,"Architektura wnętrz"
+2,4,"Edukacja artystyczna w zakresie sztuki muzycznej"
+3,4,Grafika
+4,4,"Jazz i muzyka estradowa"
+5,4,Malarstwo
+6,4,"Sztuki wizualne"
+7,5,Architektura
+8,5,"Architektura krajobrazu"
+9,5,Budownictwo
+10,5,"Energetyka komunalna"
+11,5,"Inżynieria środowiska"
+12,6,"Bezpieczeństwo narodowe"
+13,6,Ekonomia
+14,6,Logistyka
+15,6,Zarządzanie
+16,7,Astronomia
+17,7,Fizyka
+18,7,"Fizyka medyczna"
+19,7,"Inżynieria kosmiczna"
+20,8,"Coaching i doradztwo filozoficzne"
+21,8,"Dziennikarstwo i komunikacja społeczna"
+22,8,"Europeistyka i stosunki transgraniczne"
+23,8,"Filologia polska"
+24,8,"Filologia angielska"
+25,8,"Filologia francuska z drugim językiem romańskim"
+26,8,"Filologia germańska"
+27,8,"Filologia rosyjska"
+28,8,"Filologia rosyjska z dodatkowym językiem angielskim"
+29,8,"Język francuski w komunikacji zawodowej, z drugim językiem romańskim"
+30,8,"Filologiczna obsługa internetu i e-edytorstwo"
+31,8,Filozofia
+32,8,Historia
+33,8,Językoznawstwo
+34,8,"Komunikacja biznesowa w języku rosyjskim"
+35,8,Kulturoznawstwo
+36,8,"Literatura popularna i kreacje światów gier"
+37,8,Literaturoznawstwo
+38,8,Politologia
+39,8,"Stosunki międzykulturowe"
+40,1,"Automatyka i robotyka"
+41,1,"Biznes elektroniczny"
+42,1,"Efektywność energetyczna"
+43,1,"Elektronika i telekomunikacja"
+44,1,Elektrotechnika
+45,1,Informatyka
+46,9,Lekarski
+47,9,Pielęgniarstwo
+48,9,"Wychowanie fizyczne"
+49,10,"Informatyka i ekonometria"
+50,10,"Inżynieria danych"
+51,10,Matematyka
+52,11,"Bezpieczeństwo i higiena pracy"
+53,11,"Budowa i eksploatacja maszyn"
+54,11,"Inżynieria bezpieczeństwa"
+55,11,"Inżynieria biomedyczna"
+56,11,"Inżynieria produkcji"
+57,11,"Mechanika i budowa maszyn"
+58,11,"Zarządzanie i inżynieria produkcji"
+59,12,Biologia
+60,12,Biotechnologia
+61,12,"Ochrona środowiska"
+62,3,Pedagogika
+63,3,"Pedagogika specjalna"
+64,3,"Praca socjalna"
+65,3,Psychologia
+66,3,Socjologia
+67,2,Administracja
+68,2,Prawo
